@@ -14,3 +14,5 @@ Thumbs.db
 # Temp
 _*.md
 _shot/
+
+.vercel
