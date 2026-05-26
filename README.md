@@ -1,5 +1,7 @@
 # Seguros Iberis — Sitio web
 
+🔗 **En vivo:** https://segurosibero.vercel.app
+
 Landing rediseñada de **Agencia de Seguros Iberis**, con dos vistas conmutables desde el header:
 
 - **Personas** — accidentes personales, asistencia médica/hogar/jurídica, mascotas, auto y odontología, con tabla comparativa de planes **PLUS vs PLUS Ampliado**.
