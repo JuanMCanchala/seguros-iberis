@@ -323,26 +323,35 @@ p { margin: 0 0 1rem; }
 .avatars span:nth-child(2) { background: linear-gradient(135deg, var(--accent-500), var(--accent-100)); }
 
 .hero-mini {
-  position: absolute; background: #fff; border-radius: var(--radius);
-  padding: .85rem 1.1rem; display: flex; align-items: center; gap: .8rem;
+  position: absolute; background: #fff; border-radius: 14px;
+  padding: .55rem .8rem; display: flex; align-items: center; gap: .55rem;
   box-shadow: var(--shadow);
-  font-size: .88rem; color: var(--ink-900);
+  font-size: .78rem; color: var(--ink-900);
+  max-width: 150px;
   animation: floaty 7s ease-in-out infinite;
 }
-.hero-mini svg { color: var(--brand-500); flex: none; }
-.hero-mini strong { display: block; font-size: .95rem; }
-.hero-mini span { color: var(--ink-500); font-size: .8rem; }
-.mini-1 { top: 18%; left: -10px; animation-delay: -2s; }
-.mini-2 { bottom: 12%; left: 5%; animation-delay: -4s; }
+.hero-mini svg { color: var(--brand-500); flex: none; width: 18px; height: 18px; }
+.hero-mini strong { display: block; font-size: .82rem; line-height: 1.2; }
+.hero-mini span { color: var(--ink-500); font-size: .7rem; line-height: 1.3; display: block; }
+
+/* Mini-cards posicionadas OUTSIDE de la card principal:
+   en desktop a la izquierda de la card (que va right-aligned),
+   en tablet/mobile a la derecha (donde la card va left-aligned),
+   ocultas en mobile pequeño donde el espacio no alcanza. */
+.mini-1 { top: 10%; left: -6%; animation-delay: -2s; }
+.mini-2 { bottom: 12%; left: -2%; animation-delay: -4s; }
 
 @media (max-width: 980px) {
   .hero-visual { min-height: 340px; margin-top: 1.5rem; }
   .hero-card { margin-left: 0; margin-right: auto; }
-  .mini-1 { left: auto; right: 5%; top: 5%; }
-  .mini-2 { left: 5%; bottom: 5%; }
+  /* Single-column: card left-aligned, mini-cards a la derecha */
+  .mini-1 { left: auto; right: 4%; top: 6%; }
+  .mini-2 { left: auto; right: 4%; bottom: 8%; }
+}
+@media (max-width: 640px) {
+  .hero-mini { display: none; }    /* sin espacio en mobile pequeño */
 }
 @media (max-width: 520px) {
-  .hero-mini { display: none; }
   .hero-card { padding: 1.4rem; }
 }
 
