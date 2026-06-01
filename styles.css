@@ -1447,3 +1447,16 @@ body[data-view="empresas"] .only-personas { display: none; }
 .testi-feat footer strong { color: #fff; }
 .testi footer span { font-size: .78rem; color: var(--ink-500); }
 .testi-feat footer span { color: rgba(255,255,255,.65); }
+
+/* Aviso discreto de contenido placeholder pendiente de actualizacion real */
+.placeholder-note {
+  display: inline-block;
+  margin-top: .8rem;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  background: var(--orange-100);
+  color: #B5560C;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
