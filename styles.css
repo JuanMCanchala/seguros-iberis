@@ -125,8 +125,16 @@ p { margin: 0 0 1rem; }
   gap: 1.25rem;
   height: 78px;
 }
-.brand { display: inline-flex; align-items: center; height: 100%; }
-.brand-logo { height: 48px; width: auto; }
+.brand {
+  display: inline-flex; align-items: center; height: 100%;
+  flex: none;                       /* NUNCA encoger el logo */
+  margin-right: .5rem;
+}
+.brand-logo {
+  height: 42px; width: auto;
+  max-width: none;                  /* anular el max-width:100% global */
+  display: block;
+}
 
 .primary-nav ul {
   display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;
@@ -142,12 +150,13 @@ p { margin: 0 0 1rem; }
 }
 .primary-nav a:hover::after { transform: scaleX(1); }
 
-.nav-actions { display: flex; align-items: center; gap: .75rem; }
+.nav-actions { display: flex; align-items: center; gap: .75rem; flex: 0 0 auto; }
 .nav-cta { white-space: nowrap; }
 
 .nav-toggle {
-  display: none; width: 44px; height: 44px;
-  background: transparent; border: 1px solid var(--ink-100); border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; flex: 0 0 44px;
+  background: #fff; border: 1.5px solid var(--ink-100); border-radius: 12px;
   cursor: pointer; padding: 0; position: relative;
 }
 .nav-toggle span {
@@ -781,7 +790,7 @@ p { margin: 0 0 1rem; }
 }
 
 /* ---------- 17. Mobile menu ---------- */
-@media (max-width: 980px) {
+@media (max-width: 1099px) {
   .primary-nav {
     position: fixed; top: 78px; left: 0; right: 0;
     background: #fff; padding: 1.5rem clamp(1rem, 3vw, 2rem) 2rem;
@@ -792,12 +801,10 @@ p { margin: 0 0 1rem; }
     box-shadow: 0 20px 50px -25px rgba(13,79,92,.25);
   }
   .primary-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-  .primary-nav ul { flex-direction: column; gap: 0; }
+  .primary-nav ul { flex-direction: column; gap: 0; list-style: none; padding: 0; margin: 0; }
   .primary-nav li { border-bottom: 1px solid var(--ink-100); }
   .primary-nav li:last-child { border-bottom: 0; }
   .primary-nav a { display: block; padding: 1rem .25rem; font-size: 1.05rem; font-weight: 600; }
-  .nav-cta { display: none; }
-  .nav-toggle { display: inline-block; }
 }
 
 /* ---------- 18. Animations on scroll ---------- */
@@ -954,20 +961,72 @@ body[data-view="empresas"] .only-personas { display: none; }
 /* ---- Responsive header for the switch ---- */
 @media (max-width: 720px) {
   .view-switch .vs-btn span { display: none; }
-  .view-switch .vs-btn { padding: .6rem .8rem; }
-  .brand-logo { height: 40px; }
+  .view-switch .vs-btn { padding: .55rem .7rem; }
+  .view-switch { padding: 3px; }
+  .brand-logo { height: 38px; }
+  .nav-bar { gap: .55rem; height: 70px; }
+  .brand { margin-right: 0; }
+  .nav-actions { gap: .4rem; }
 }
-@media (max-width: 980px) {
-  .nav-actions { margin-left: auto; }
-}
-@media (max-width: 400px) {
-  .nav-bar { gap: .5rem; }
+@media (max-width: 480px) {
   .brand-logo { height: 34px; }
+  .nav-bar { gap: .4rem; }
+  .container { padding: 0 .75rem; }
+}
+@media (max-width: 1099px) {
+  .nav-actions { margin-left: auto; }
+  .nav-cta { display: none; }                  /* solo CTA en drawer/mobile */
+  .nav-toggle { display: inline-block; }       /* mostrar hamburguesa */
+  .phone-cta span { display: none; }           /* phone icon-only */
+  .phone-cta { padding: .55rem .7rem; }
+}
+@media (min-width: 1100px) {
+  .nav-toggle { display: none; }               /* sin hamburguesa en desktop */
+  .nav-cta { display: inline-flex; }
 }
 
 /* ==========================================================================
    21. V3 — Fase 1+2 · marca oficial · pilares · cómo funciona · ciudades
    ========================================================================== */
+
+/* ---- Header layout refinado (V3.1) ---- */
+.nav-bar { gap: .9rem; }
+
+/* La nav vieja .primary-nav ahora SOLO sirve como drawer móvil */
+.primary-nav { display: none; }
+@media (max-width: 1099px) {
+  .primary-nav { display: block; }   /* drawer móvil/tablet, abierto/cerrado por JS */
+}
+
+/* Nav desktop: minimal, 3-4 items */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 1.4rem;
+  margin-left: auto;
+  margin-right: .25rem;
+}
+@media (min-width: 1100px) {
+  .desktop-nav { display: inline-flex; }
+}
+.desktop-nav a {
+  font-weight: 500; font-size: .94rem; color: var(--ink-700);
+  white-space: nowrap; position: relative; padding: .4rem 0;
+  transition: color .25s var(--ease);
+}
+.desktop-nav a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 2px; background: var(--cyan-500);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s var(--ease);
+}
+.desktop-nav a:hover { color: var(--brand-700); }
+.desktop-nav a:hover::after { transform: scaleX(1); }
+
+/* En el header desktop el view-switch va junto al logo, no flotando */
+.view-switch { flex: none; }
+
+/* En desktop el orden visual: brand | switch | desktop-nav | nav-actions */
 
 /* ---- Phone CTA en header ---- */
 .phone-cta {
@@ -983,6 +1042,9 @@ body[data-view="empresas"] .only-personas { display: none; }
 @media (max-width: 720px) {
   .phone-cta span { display: none; }
   .phone-cta { padding: .55rem .7rem; }
+}
+@media (max-width: 540px) {
+  .phone-cta { display: none; }      /* WhatsApp flotante + drawer cubren contacto */
 }
 
 /* ---- Pillars row (3 confianza bajo hero) ---- */

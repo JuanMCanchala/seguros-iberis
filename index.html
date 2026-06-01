@@ -12,7 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo_header.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-view="personas">
@@ -50,6 +52,13 @@
           <li><a href="#ciudades">Ciudades</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
+      </nav>
+      <!-- Nav simplificada para desktop: solo elementos esenciales (las otras secciones se acceden por scroll) -->
+      <nav class="desktop-nav" aria-label="Navegación desktop">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#coberturas" class="only-personas">Coberturas</a>
+        <a href="#lineas" class="only-empresas">Líneas</a>
+        <a href="#contacto">Contacto</a>
       </nav>
 
       <div class="nav-actions">
