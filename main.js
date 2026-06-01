@@ -177,4 +177,55 @@
   /* ---------- 9. Year footer ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- 10. Cotizador exprés → WhatsApp ---------- */
+  const WA_PHONE = '573336025110';
+  const quoteTabs = document.querySelectorAll('.qt');
+  const quoteForms = document.querySelectorAll('.quote-form');
+
+  const setQuoteTab = target => {
+    quoteTabs.forEach(t => {
+      const active = t.dataset.quote === target;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', String(active));
+    });
+    quoteForms.forEach(f => f.classList.toggle('is-active', f.dataset.form === target));
+  };
+  quoteTabs.forEach(t => t.addEventListener('click', () => setQuoteTab(t.dataset.quote)));
+
+  // Sync con la vista actual al cambiar de view
+  const syncQuoteWithView = () => {
+    const v = body.getAttribute('data-view');
+    if (v === 'empresas' || v === 'personas') setQuoteTab(v);
+  };
+  syncQuoteWithView();
+  window.addEventListener('hashchange', syncQuoteWithView);
+  document.querySelectorAll('.vs-btn').forEach(b => b.addEventListener('click', () => setTimeout(syncQuoteWithView, 50)));
+
+  // Submit → WhatsApp con mensaje pre-armado
+  const labels = {
+    producto: 'Producto', ciudad: 'Ciudad', edad: 'Edad', nombre: 'Nombre',
+    telefono: 'Teléfono', tamano: 'Tamaño', sector: 'Sector', empresa: 'Empresa'
+  };
+  quoteForms.forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const tipo = form.dataset.form === 'empresas' ? 'EMPRESA' : 'PERSONA';
+      const lines = [`*Solicitud de cotización (${tipo})*`, ''];
+      for (const [k, v] of data.entries()) {
+        if (!v || !String(v).trim()) continue;
+        lines.push(`• *${labels[k] || k}*: ${v}`);
+      }
+      lines.push('', 'Quiero recibir asesoría personalizada. Gracias 🌼');
+      const msg = encodeURIComponent(lines.join('\n'));
+      window.open(`https://wa.me/${WA_PHONE}?text=${msg}`, '_blank', 'noopener');
+
+      // Feedback visual
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ Abriendo WhatsApp…';
+      setTimeout(() => { btn.innerHTML = original; }, 2200);
+    });
+  });
 })();

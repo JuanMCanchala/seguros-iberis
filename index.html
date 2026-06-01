@@ -58,6 +58,7 @@
         <a href="#nosotros">Nosotros</a>
         <a href="#coberturas" class="only-personas">Coberturas</a>
         <a href="#lineas" class="only-empresas">Líneas</a>
+        <a href="#cotizador">Cotizar</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
@@ -203,6 +204,37 @@
                 <h3>Asistencia jurídica</h3>
                 <p>Derechos de petición, tutelas y trámites pensionales con acompañamiento legal continuo.</p>
                 <a href="#coberturas" class="biz-link">Ver coberturas →</a>
+              </div>
+            </article>
+
+            <article class="feature-card feature-card--new">
+              <div class="feature-media feature-media--graphic" aria-hidden="true">
+                <svg viewBox="0 0 200 140" fill="none">
+                  <defs>
+                    <linearGradient id="edu-grad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#224859"/><stop offset="1" stop-color="#00B2BA"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="200" height="140" fill="url(#edu-grad)"/>
+                  <!-- Books stack -->
+                  <g fill="#fff" opacity=".95">
+                    <rect x="60" y="78" width="80" height="14" rx="2"/>
+                    <rect x="55" y="62" width="90" height="14" rx="2" fill="#F28E42"/>
+                    <rect x="65" y="46" width="70" height="14" rx="2"/>
+                  </g>
+                  <!-- Graduation cap -->
+                  <g fill="#fff">
+                    <polygon points="100,18 140,32 100,46 60,32"/>
+                    <rect x="98" y="32" width="4" height="14" fill="#F28E42"/>
+                    <circle cx="100" cy="50" r="3" fill="#F28E42"/>
+                  </g>
+                </svg>
+                <span class="new-badge">Nuevo</span>
+              </div>
+              <div class="feature-body">
+                <h3>Seguro Educativo</h3>
+                <p>Invierte en su futuro con seguridad y confianza. Has que la formación de los tuyos <em>pueda germinar</em>.</p>
+                <a href="#cotizador" class="biz-link">Quiero asesoría →</a>
               </div>
             </article>
           </div>
@@ -663,12 +695,180 @@
           <p>Trabajamos con aseguradoras líderes para ofrecerte cobertura sólida y respaldo real.</p>
         </header>
         <div class="logos-track" aria-label="Aseguradoras aliadas">
-          <div class="logo-pill"><span>SBS Seguros</span></div>
-          <div class="logo-pill"><span>AXA Colpatria</span></div>
-          <div class="logo-pill"><span>Pan-American Life</span></div>
-          <div class="logo-pill"><span>Excel Credit</span></div>
-          <div class="logo-pill"><span>Excel Seguros</span></div>
-          <div class="logo-pill"><span>Fasecolda</span></div>
+          <div class="logo-pill logo-pill-img"><img src="assets/logo-sbs.png" alt="SBS Seguros" loading="lazy" /></div>
+          <div class="logo-pill" style="--monogram:#E2231A"><span class="mono">AXA</span><span class="lp-name">Colpatria</span></div>
+          <div class="logo-pill" style="--monogram:#003B71"><span class="mono">PAL</span><span class="lp-name">Pan-American Life</span></div>
+          <div class="logo-pill" style="--monogram:#0099A8"><span class="mono">EC</span><span class="lp-name">Excel Credit</span></div>
+          <div class="logo-pill" style="--monogram:#1B7A8F"><span class="mono">ES</span><span class="lp-name">Excel Seguros</span></div>
+          <div class="logo-pill" style="--monogram:#F28E42"><span class="mono">FS</span><span class="lp-name">Fasecolda</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COTIZADOR EXPRÉS -->
+    <section class="section cotizador-section" id="cotizador">
+      <div class="container">
+        <header class="section-head center">
+          <span class="eyebrow">Cotizador exprés</span>
+          <h2>Tu cotización por <em class="bloom">WhatsApp</em> en menos de 2 minutos.</h2>
+          <p>Cuéntanos qué necesitas asegurar y un asesor humano te llega directo al chat con tu propuesta.</p>
+        </header>
+
+        <div class="quote-card">
+          <div class="quote-steps">
+            <div class="qstep is-active"><span>01</span>Cuéntanos</div>
+            <div class="qstep"><span>02</span>Asesor humano</div>
+            <div class="qstep"><span>03</span>Activa tu cobertura</div>
+          </div>
+
+          <div class="quote-tabs" role="tablist">
+            <button class="qt is-active" data-quote="personas" role="tab" aria-selected="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+              Para mí
+            </button>
+            <button class="qt" data-quote="empresas" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
+              Para mi empresa
+            </button>
+          </div>
+
+          <form class="quote-form is-active" data-form="personas" novalidate>
+            <div class="quote-grid">
+              <label class="qfield qfield-full">
+                <span>¿Qué quieres asegurar?</span>
+                <select name="producto" required>
+                  <option value="">Selecciona una opción…</option>
+                  <option>Plan A · $150.000 (cobertura $10M)</option>
+                  <option>Plan A · $170.000 (cobertura $15M)</option>
+                  <option>Plan B · $400.000 VIP (cobertura $50M + asistencias)</option>
+                  <option>Asistencia al hogar</option>
+                  <option>Asistencia jurídica</option>
+                  <option>Mascotas VIP</option>
+                  <option>Seguro educativo</option>
+                  <option>No estoy seguro / quiero orientación</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Tu ciudad</span>
+                <select name="ciudad" required>
+                  <option value="">Selecciona…</option>
+                  <option>Bogotá</option><option>Medellín</option><option>Cali</option>
+                  <option>Barranquilla</option><option>Cartagena</option><option>Bucaramanga</option>
+                  <option>Manizales</option><option>Armenia</option><option>Ibagué</option>
+                  <option>Neiva</option><option>Montería</option><option>Girardot</option>
+                  <option>Pasto</option><option>Otra ciudad</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Tu edad</span>
+                <input type="number" name="edad" min="18" max="99" placeholder="Ej. 35" />
+              </label>
+              <label class="qfield">
+                <span>Tu nombre</span>
+                <input type="text" name="nombre" required placeholder="¿Cómo te llamas?" />
+              </label>
+              <label class="qfield">
+                <span>WhatsApp</span>
+                <input type="tel" name="telefono" required placeholder="3XX XXX XXXX" />
+              </label>
+            </div>
+            <button type="submit" class="btn btn-orange full quote-submit">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91zM12 20.06a8 8 0 0 1-4.07-1.11l-.29-.17-3.06.78.82-2.98-.19-.31A8 8 0 1 1 12 20.06z"/></svg>
+              Enviar a WhatsApp
+            </button>
+            <p class="quote-note">Tu cotización llega como mensaje pre-armado al asesor. No spam.</p>
+          </form>
+
+          <form class="quote-form" data-form="empresas" novalidate>
+            <div class="quote-grid">
+              <label class="qfield qfield-full">
+                <span>¿Qué línea financiera necesitas?</span>
+                <select name="producto" required>
+                  <option value="">Selecciona una opción…</option>
+                  <option>Vida Deudor</option>
+                  <option>Infidelidad y riesgos financieros</option>
+                  <option>Cyber (ciberriesgos)</option>
+                  <option>D&amp;O (directores y administradores)</option>
+                  <option>Responsabilidad Civil Extracontractual</option>
+                  <option>Daños Materiales Pymes</option>
+                  <option>Combo / paquete personalizado</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Tamaño de la empresa</span>
+                <select name="tamano" required>
+                  <option value="">Selecciona…</option>
+                  <option>1 – 10 empleados</option>
+                  <option>11 – 50 empleados</option>
+                  <option>51 – 200 empleados</option>
+                  <option>+200 empleados</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Sector</span>
+                <select name="sector" required>
+                  <option value="">Selecciona…</option>
+                  <option>Banca / Financiera</option>
+                  <option>Fintech</option>
+                  <option>Cooperativa de crédito</option>
+                  <option>Pyme / comercial</option>
+                  <option>Servicios profesionales</option>
+                  <option>Industria / manufactura</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Empresa</span>
+                <input type="text" name="empresa" required placeholder="Razón social" />
+              </label>
+              <label class="qfield">
+                <span>WhatsApp</span>
+                <input type="tel" name="telefono" required placeholder="3XX XXX XXXX" />
+              </label>
+            </div>
+            <button type="submit" class="btn btn-orange full quote-submit">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91zM12 20.06a8 8 0 0 1-4.07-1.11l-.29-.17-3.06.78.82-2.98-.19-.31A8 8 0 1 1 12 20.06z"/></svg>
+              Enviar a WhatsApp empresarial
+            </button>
+            <p class="quote-note">Tu solicitud llega al equipo de líneas financieras. Respuesta en menos de un día hábil.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="section testimonios-section" id="testimonios">
+      <div class="container">
+        <header class="section-head center">
+          <span class="eyebrow">Lo que dicen nuestros clientes</span>
+          <h2>Confianza que <em class="bloom">florece</em> con cada póliza.</h2>
+          <p>+120.000 personas y empresas ya nos confiaron su tranquilidad.</p>
+        </header>
+        <div class="testimonios-grid">
+          <article class="testi">
+            <div class="testi-stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>«En menos de 72 horas tenía mi póliza activa y un asesor real al teléfono. No vuelvo a contratar seguros por mi cuenta.»</blockquote>
+            <footer>
+              <div class="testi-avatar" aria-hidden="true">A</div>
+              <div><strong>Andrea Velásquez</strong><span>Plan B Florecer · Bogotá</span></div>
+            </footer>
+          </article>
+          <article class="testi testi-feat">
+            <div class="testi-stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>«Como gerente de una fintech, necesitaba cyber y D&amp;O. Iberis nos armó el paquete en una semana y al precio adecuado para el tamaño de la empresa.»</blockquote>
+            <footer>
+              <div class="testi-avatar" aria-hidden="true">M</div>
+              <div><strong>Miguel Ortiz</strong><span>Director Financiero · Fintech Medellín</span></div>
+            </footer>
+          </article>
+          <article class="testi">
+            <div class="testi-stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>«Mi gato necesitó atención de urgencia y la asistencia veterinaria 24/7 del Plan B nos salvó. Vale cada peso.»</blockquote>
+            <footer>
+              <div class="testi-avatar" aria-hidden="true">L</div>
+              <div><strong>Laura Restrepo</strong><span>Plan B Florecer · Cali</span></div>
+            </footer>
+          </article>
         </div>
       </div>
     </section>

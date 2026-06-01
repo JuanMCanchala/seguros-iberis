@@ -1241,3 +1241,209 @@ body[data-view="empresas"] .only-personas { display: none; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
   font-style: italic;
 }
+
+/* ==========================================================================
+   22. V4 — FASE 3 · cotizador · seguro educativo · testimonios · logos reales
+   ========================================================================== */
+
+/* ---- Aliados refinados ---- */
+.logo-pill-img {
+  background: #fff; padding: .9rem 1rem;
+}
+.logo-pill-img img {
+  max-width: 100%; max-height: 36px; width: auto; height: auto;
+  object-fit: contain;
+  filter: grayscale(.15);
+  transition: filter .25s var(--ease);
+}
+.logo-pill-img:hover img { filter: grayscale(0); }
+
+/* Monograma sobre fondo con color de marca de la aseguradora */
+.logo-pill:not(.logo-pill-img) {
+  display: flex; flex-direction: column; align-items: center; gap: .35rem;
+  padding: 1rem;
+}
+.logo-pill .mono {
+  display: inline-grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--monogram, var(--brand-700)); color: #fff;
+  font-family: 'Montserrat'; font-weight: 800; font-size: .85rem;
+  letter-spacing: .03em;
+}
+.logo-pill .lp-name {
+  font-family: 'Montserrat'; font-weight: 600; font-size: .82rem;
+  color: var(--ink-700); letter-spacing: 0;
+}
+
+/* ---- Seguro Educativo (feature card con visual gráfico) ---- */
+.feature-card--new {
+  position: relative;
+  border-color: var(--cyan-300);
+  box-shadow: 0 14px 40px -22px rgba(0,178,186,.45);
+}
+.feature-card--new::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0,178,186,.06), transparent 50%);
+}
+.feature-media--graphic {
+  background: linear-gradient(135deg, var(--brand-700), var(--cyan-500));
+  display: grid; place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.feature-media--graphic svg { width: 100%; height: 100%; display: block; }
+.new-badge {
+  position: absolute; top: .8rem; right: .8rem;
+  background: var(--orange-500); color: #fff;
+  font-size: .68rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .12em; padding: .25rem .6rem; border-radius: 999px;
+  box-shadow: 0 6px 14px -6px rgba(242,142,66,.6);
+}
+
+/* ---- Cotizador exprés ---- */
+.cotizador-section {
+  background:
+    radial-gradient(60% 80% at 100% 0%, var(--cyan-100), transparent 60%),
+    radial-gradient(50% 60% at 0% 100%, var(--orange-100), transparent 60%),
+    var(--bg);
+}
+.quote-card {
+  background: #fff;
+  border: 1px solid var(--ink-100);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow);
+  max-width: 880px; margin: 0 auto;
+}
+
+.quote-steps {
+  display: grid; gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 1.6rem;
+}
+.qstep {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .7rem 1rem; border-radius: 12px;
+  background: var(--brand-050); color: var(--ink-700);
+  font-weight: 600; font-size: .88rem;
+}
+.qstep span {
+  font-family: 'Montserrat'; font-weight: 800; font-size: .95rem;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: #fff; color: var(--brand-700);
+  display: grid; place-items: center; flex: none;
+}
+.qstep.is-active { background: var(--brand-700); color: #fff; }
+.qstep.is-active span { background: var(--orange-500); color: #fff; }
+
+.quote-tabs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .4rem;
+  padding: .35rem; background: var(--brand-050);
+  border-radius: 999px; margin-bottom: 1.6rem;
+}
+.qt {
+  border: 0; background: transparent; padding: .8rem 1rem;
+  border-radius: 999px; font-weight: 600; cursor: pointer;
+  color: var(--ink-700); font-size: .95rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  transition: background .25s var(--ease), color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.qt svg { width: 18px; height: 18px; }
+.qt.is-active { background: var(--brand-700); color: #fff; box-shadow: var(--shadow-sm); }
+
+.quote-form { display: none; }
+.quote-form.is-active { display: block; animation: fadeUp .4s var(--ease); }
+
+.quote-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.qfield { display: flex; flex-direction: column; gap: .35rem; }
+.qfield-full { grid-column: 1 / -1; }
+.qfield span {
+  font-size: .82rem; font-weight: 600; color: var(--ink-700);
+}
+.qfield input, .qfield select {
+  width: 100%; padding: .85rem 1rem;
+  border: 1px solid var(--ink-100); border-radius: 12px;
+  background: #fff; font-size: .95rem; color: var(--ink-900);
+  transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.qfield input::placeholder { color: var(--ink-300); }
+.qfield input:focus, .qfield select:focus {
+  outline: none; border-color: var(--cyan-500);
+  box-shadow: 0 0 0 4px rgba(0,178,186,.16);
+}
+
+.quote-submit {
+  margin-top: 1.5rem;
+  background: #25D366; color: #fff;
+  box-shadow: 0 12px 28px -10px rgba(37,211,102,.5);
+}
+.quote-submit:hover {
+  background: #1FB955; color: #fff; transform: translateY(-2px);
+  box-shadow: 0 16px 32px -10px rgba(37,211,102,.65);
+}
+.quote-submit svg { flex: none; }
+.quote-note {
+  margin: .8rem 0 0; text-align: center;
+  font-size: .8rem; color: var(--ink-300);
+}
+
+/* ---- Testimonios ---- */
+.testimonios-section { background: var(--brand-050); }
+.testimonios-grid {
+  display: grid; gap: 1.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: stretch;
+}
+.testi {
+  background: #fff; border: 1px solid var(--ink-100);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 1.6rem 1.4rem;
+  display: flex; flex-direction: column; gap: 1.1rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  position: relative;
+}
+.testi::before {
+  content: '"'; position: absolute; top: -.5rem; right: 1.2rem;
+  font-family: 'Montserrat'; font-size: 4.5rem; font-weight: 800;
+  color: var(--cyan-100); line-height: 1; pointer-events: none;
+}
+.testi:hover { transform: translateY(-5px); border-color: var(--cyan-300); box-shadow: var(--shadow); }
+.testi-feat {
+  background: linear-gradient(180deg, var(--brand-700), var(--brand-800));
+  color: #fff; border-color: transparent;
+}
+.testi-feat::before { color: rgba(255,255,255,.12); }
+.testi-feat:hover { border-color: var(--cyan-500); }
+.testi-stars {
+  color: var(--orange-500); font-size: 1rem; letter-spacing: .15em;
+}
+.testi-feat .testi-stars { color: var(--orange-400); }
+.testi blockquote {
+  margin: 0; font-size: .95rem; line-height: 1.5;
+  color: var(--ink-700); font-style: italic;
+}
+.testi-feat blockquote { color: rgba(255,255,255,.92); }
+.testi footer {
+  display: flex; align-items: center; gap: .8rem;
+  margin-top: auto; padding-top: .5rem;
+  border-top: 1px solid var(--ink-100);
+}
+.testi-feat footer { border-top-color: rgba(255,255,255,.12); }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan-500), var(--brand-700));
+  color: #fff; display: grid; place-items: center;
+  font-family: 'Montserrat'; font-weight: 800; font-size: 1rem;
+  flex: none;
+}
+.testi-feat .testi-avatar {
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-300));
+}
+.testi footer strong { display: block; font-size: .9rem; color: var(--ink-900); }
+.testi-feat footer strong { color: #fff; }
+.testi footer span { font-size: .78rem; color: var(--ink-500); }
+.testi-feat footer span { color: rgba(255,255,255,.65); }
