@@ -202,7 +202,145 @@
   window.addEventListener('hashchange', syncQuoteWithView);
   document.querySelectorAll('.vs-btn').forEach(b => b.addEventListener('click', () => setTimeout(syncQuoteWithView, 50)));
 
-  // Submit → WhatsApp con mensaje pre-armado
+  /* ---------- 11. Calculadora "¿Cuál plan me conviene?" ---------- */
+  const quizCard = document.getElementById('quizCard');
+  if (quizCard) {
+    const steps = quizCard.querySelectorAll('.quiz-step');
+    const bar = quizCard.querySelector('.qp-bar');
+    const current = quizCard.querySelector('.qc-current');
+    const total = quizCard.querySelectorAll('.quiz-step:not(.quiz-result)').length;
+    const answers = {};
+    let stepIdx = 0;
+
+    const showStep = i => {
+      steps.forEach(s => s.classList.toggle('is-active', +s.dataset.step === i));
+      stepIdx = i;
+      if (i < total) {
+        current.textContent = String(i + 1);
+        bar.style.width = `${((i + 1) / total) * 100}%`;
+      } else {
+        bar.style.width = '100%';
+      }
+    };
+
+    // Plan recommendation logic — derived strictly from sourced coverage data
+    // (ayudaventas Plan A150 → $10M, Plan A170 → $15M, Plan B400 → $50M con asistencias VIP)
+    const recommend = a => {
+      const needsExtras = ['mascota', 'auto', 'todo'].includes(a.proteger)
+        || a.cobertura === '50'
+        || (a.extras && a.extras !== 'ninguno');
+
+      if (needsExtras) {
+        return {
+          plan: 'B', name: 'Plan B AMPLIADO', price: '$400.000', daily: '$1.095/día',
+          coverage: '$50.000.000',
+          subtitle: 'Cobertura VIP con todas las asistencias',
+          reasons: buildReasons(a, 'B'),
+          quoteValue: 'Plan B · $400.000 VIP (cobertura $50M + asistencias)'
+        };
+      }
+      if (a.cobertura === '15') {
+        return {
+          plan: 'A170', name: 'Plan A $170.000', price: '$170.000', daily: '$466/día',
+          coverage: '$15.000.000',
+          subtitle: 'Cobertura reforzada para tu tranquilidad',
+          reasons: buildReasons(a, 'A170'),
+          quoteValue: 'Plan A · $170.000 (cobertura $15M)'
+        };
+      }
+      return {
+        plan: 'A150', name: 'Plan A $150.000', price: '$150.000', daily: '$411/día',
+        coverage: '$10.000.000',
+        subtitle: 'Cobertura esencial al mejor precio',
+        reasons: buildReasons(a, 'A150'),
+        quoteValue: 'Plan A · $150.000 (cobertura $10M)'
+      };
+    };
+
+    function buildReasons(a, plan) {
+      const r = [];
+      if (plan === 'B') {
+        if (a.proteger === 'mascota' || a.proteger === 'todo') r.push('Asistencia veterinaria 24/7 + refuerzo de vacunación');
+        if (a.proteger === 'auto' || a.proteger === 'todo') r.push('Remolque grúa y auxilio vial para tu carro o moto');
+        if (a.extras === 'odonto') r.push('Odontología básica de urgencias');
+        if (a.extras === 'reembolso') r.push('Reembolso de gastos médicos por accidente ($1M)');
+        if (a.extras === 'renta') r.push('Renta de gastos de hogar por muerte accidental ($2M)');
+        r.push('Cobertura $50M y todas las asistencias del catálogo Iberis');
+      } else if (plan === 'A170') {
+        r.push('Cobertura por accidente reforzada: $15.000.000');
+        r.push('Asistencia médica 24/7 sin límite + acompañamiento a citas');
+        r.push('Asistencia al hogar (plomería, cerrajería, electricidad)');
+        r.push('Asistencia legal: derechos de petición y tutelas');
+      } else {
+        r.push('Cobertura esencial $10.000.000 por accidente');
+        r.push('Orientación médica 24/7 sin límite');
+        r.push('Asistencia al hogar y jurídica incluidas');
+        r.push('Solo $411 al día por la protección que necesitas');
+      }
+      return r.slice(0, 4);
+    }
+
+    const showResult = () => {
+      const result = quizCard.querySelector('.quiz-result');
+      const r = recommend(answers);
+      result.innerHTML = `
+        <span class="qr-badge">Plan recomendado para ti</span>
+        <h3 class="qr-title">${r.name}</h3>
+        <p class="qr-sub">${r.subtitle}</p>
+        <div class="qr-stat">
+          <div><strong>${r.coverage}</strong><span>Cobertura por accidente</span></div>
+          <div><strong>${r.price}</strong><span>Anual · ${r.daily}</span></div>
+        </div>
+        <ul class="qr-reasons">
+          ${r.reasons.map(x => `<li>${x}</li>`).join('')}
+        </ul>
+        <div class="qr-actions">
+          <a href="#cotizador" class="btn btn-orange qr-cta" data-prefill="${r.quoteValue}">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91z"/></svg>
+            Quiero este plan
+          </a>
+          <button type="button" class="qr-restart">Volver a empezar</button>
+        </div>
+      `;
+      showStep(3);
+
+      // Pre-fill cotizador with the recommended plan
+      result.querySelector('.qr-cta').addEventListener('click', e => {
+        const select = document.querySelector('.quote-form[data-form="personas"] select[name="producto"]');
+        if (select) {
+          // Find matching option (or first that includes the plan name fragment)
+          const target = r.quoteValue;
+          for (const opt of select.options) {
+            if (opt.textContent === target) { select.value = opt.textContent; break; }
+          }
+          setQuoteTab('personas');
+        }
+      });
+      result.querySelector('.qr-restart').addEventListener('click', () => {
+        Object.keys(answers).forEach(k => delete answers[k]);
+        quizCard.querySelectorAll('.qopt.is-selected').forEach(b => b.classList.remove('is-selected'));
+        showStep(0);
+      });
+    };
+
+    quizCard.querySelectorAll('.qopt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = btn.closest('.quiz-step');
+        const q = step.dataset.question;
+        answers[q] = btn.dataset.value;
+        step.querySelectorAll('.qopt').forEach(b => b.classList.toggle('is-selected', b === btn));
+        // Advance to next step with a small delay for feedback
+        setTimeout(() => {
+          if (stepIdx + 1 < total) showStep(stepIdx + 1);
+          else showResult();
+        }, 250);
+      });
+    });
+
+    showStep(0);
+  }
+
+  /* ---------- 10. Cotizador (continuación) — Submit → WhatsApp con mensaje pre-armado ---------- */
   const labels = {
     producto: 'Producto', ciudad: 'Ciudad', edad: 'Edad', nombre: 'Nombre',
     telefono: 'Teléfono', tamano: 'Tamaño', sector: 'Sector', empresa: 'Empresa'

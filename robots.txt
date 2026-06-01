@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /backup-v1/
+
+Sitemap: https://segurosibero.vercel.app/sitemap.xml
