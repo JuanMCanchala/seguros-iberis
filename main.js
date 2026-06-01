@@ -202,6 +202,257 @@
   window.addEventListener('hashchange', syncQuoteWithView);
   document.querySelectorAll('.vs-btn').forEach(b => b.addEventListener('click', () => setTimeout(syncQuoteWithView, 50)));
 
+  /* ---------- 12. Modal de detalle por producto ----------
+     Toda la data viene del manual/web original — sin invento.
+  */
+  const PRODUCTS = {
+    // ===== EMPRESAS · Líneas financieras =====
+    'vida-deudor': {
+      eyebrow: 'Empresas · Línea financiera',
+      num: '01',
+      image: 'assets/emp-vida-deudor.jpg',
+      title: 'Vida Deudor',
+      lead: 'Protección financiera que salvaguarda tu familia y tu patrimonio. Cubre el saldo de la deuda si el titular fallece o queda incapacitado.',
+      cubre: [
+        'Preexistencias cubiertas',
+        'Valor asegurado equivalente al saldo insoluto de la deuda',
+        'Muerte por cualquier causa desde el primer día (incluye suicidio, homicidio y SIDA)',
+        'Incapacidad total y permanente (no aplica si ya estás pensionado)'
+      ],
+      respaldo: [],
+      ventajas: ['Continuidad financiera', 'Protección del patrimonio', 'Tranquilidad para los socios']
+    },
+    'infidelidad': {
+      eyebrow: 'Empresas · Línea financiera',
+      num: '02',
+      image: 'assets/emp-infidelidad.jpg',
+      tag: 'Antifraude',
+      title: 'Infidelidad y riesgos financieros',
+      lead: 'Antifraude corporativo para entidades financieras y firmas contables.',
+      cubre: [
+        'Malversación de fondos',
+        'Falsificación documental',
+        'Volatilidad de mercados'
+      ],
+      respaldo: [
+        'Pérdidas financieras causadas por la infidelidad de empleados',
+        'Mala gestión de riesgos financieros',
+        'Otros eventos que puedan afectar la estabilidad financiera de la empresa'
+      ],
+      ventajas: ['Entidades financieras', 'Firmas contables / auditorías', 'Empresas con manejo de datos sensibles']
+    },
+    'cyber': {
+      eyebrow: 'Empresas · Línea financiera',
+      num: '03',
+      image: 'assets/emp-cyber.jpg',
+      tag: 'Defensa digital',
+      title: 'Seguro Cyber',
+      lead: 'Defensa digital integral para empresas con datos sensibles.',
+      cubre: [
+        'Extorsión cibernética',
+        'Restauración de datos',
+        'Multas regulatorias',
+        'Gestión de crisis'
+      ],
+      respaldo: [
+        'Riesgos y pérdidas financieras que pueden surgir de incidentes cibernéticos'
+      ],
+      ventajas: ['Continuidad del negocio', 'Protección reputacional', 'Servicios de respuesta a incidentes']
+    },
+    'do': {
+      eyebrow: 'Empresas · Línea financiera',
+      num: '04',
+      image: 'assets/emp-do.jpg',
+      tag: 'Talento directivo',
+      title: 'D&O · Directores y Administradores',
+      lead: 'Protección del talento directivo. Blindaje patrimonial personal para directores y funcionarios.',
+      cubre: [
+        'Demandas por negligencia',
+        'Reclamos por discriminación',
+        'Gastos de defensa jurídica'
+      ],
+      respaldo: [
+        'Pérdidas personales que puedan sufrir como resultado de demandas presentadas contra directores y funcionarios de una empresa por presuntos actos ilícitos cometidos en su capacidad de gestión'
+      ],
+      ventajas: ['Atracción de ejecutivos calificados', 'Blindaje patrimonial personal', 'Cumplimiento de normativas']
+    },
+    'rc': {
+      eyebrow: 'Empresas · Línea financiera',
+      num: '05',
+      image: 'assets/emp-rc.jpg',
+      title: 'Responsabilidad Civil Extracontractual (RCE)',
+      lead: 'Escudo legal para imprevistos derivados de tu operación empresarial.',
+      cubre: [
+        'Daños a terceros por actividades empresariales',
+        'Indemnizaciones y gastos legales',
+        'Eventos durante ejecución de contratos'
+      ],
+      respaldo: [
+        'Protección en caso de demandas y reclamos de terceros',
+        'Asistencia legal',
+        'Seguridad y tranquilidad para tu negocio'
+      ],
+      ventajas: ['Resguardo del patrimonio corporativo', 'Asesoría en prevención de riesgos', 'Coberturas adaptables a cada sector']
+    },
+    'pymes': {
+      eyebrow: 'Empresas · Línea financiera',
+      num: '06',
+      image: 'assets/emp-pymes.jpg',
+      tag: 'Capital tangible',
+      title: 'Daños Materiales Pymes',
+      lead: 'Tu capital tangible protegido frente a siniestros. Para empresas pequeñas o medianas.',
+      cubre: [
+        'Incendios',
+        'Robos',
+        'Fallas eléctricas',
+        'Explosiones',
+        'Averías',
+        'Lucro cesante'
+      ],
+      respaldo: [
+        'Pérdidas o daños a tus bienes'
+      ],
+      ventajas: ['Reemplazo de activos dañados', 'Responsabilidad civil incluida', 'Soporte para continuidad operativa']
+    },
+
+    // ===== PERSONAS =====
+    'accidentes': {
+      eyebrow: 'Personas · Plan Potenciado para Florecer',
+      image: 'assets/per-accidentes.jpg',
+      title: 'Accidentes personales',
+      lead: 'Tres planes anuales: Plan A $150.000 ($10M), Plan A $170.000 ($15M) y Plan B AMPLIADO $400.000 ($50M con asistencias VIP).',
+      cubre: [
+        'Muerte accidental (hasta $50.000.000 en Plan B)',
+        'Incapacidad total y permanente por accidente',
+        'Desmembración accidental',
+        'Ruptura de hueso, reembolso de gastos médicos y renta de hogar (Plan B)'
+      ],
+      respaldo: [
+        'Lesiones en el trabajo, accidentes de tráfico, caídas, lesiones deportivas y otros eventos accidentales'
+      ],
+      ventajas: ['Plan A · $150.000 ($411/día)', 'Plan A · $170.000 ($466/día)', 'Plan B AMPLIADO · $400.000 ($1.095/día)']
+    },
+    'hogar': {
+      eyebrow: 'Personas · Asistencia incluida',
+      image: 'assets/per-hogar.jpg',
+      title: 'Asistencias del hogar',
+      lead: 'Plomería, cerrajería y electricidad cubiertas. Soporte completo e individualizado cuando algo se sale de tus manos.',
+      cubre: [
+        'Plomería de urgencias',
+        'Cerrajería ante pérdida de llaves o daños',
+        'Electricidad: cortos, fallas y emergencias',
+        '3 eventos al año en Plan B (1 por especialidad)'
+      ],
+      respaldo: [],
+      ventajas: ['Plan A $150k: 2 eventos combinados', 'Plan A $170k: 2 eventos combinados', 'Plan B: 3 eventos (1 por especialidad)']
+    },
+    'juridica': {
+      eyebrow: 'Personas · Asistencia incluida',
+      image: 'assets/per-juridica.jpg',
+      title: 'Asistencia jurídica',
+      lead: 'Derechos de petición, tutelas, pensión de invalidez y sobrevivientes con minutas y acompañamiento legal continuo.',
+      cubre: [
+        'Derechos de petición (medicamentos, citas médicas, temas pensionales)',
+        'Tutelas (medicamentos, citas, negación de prestaciones)',
+        'Reclamación de prestaciones sociales ante el empleador',
+        'Reconocimiento de pensión de invalidez',
+        'Pensión de sobrevivientes y solicitud de bono pensional'
+      ],
+      respaldo: [],
+      ventajas: ['Minuta para solicitud de pensión incluida', 'Asistencia legal continua', 'Disponible en todos los planes']
+    },
+    'educativo': {
+      eyebrow: 'Personas · Producto Iberis',
+      image: 'assets/iberis-asesor.jpg',
+      tag: 'Nuevo',
+      title: 'Seguro Educativo',
+      lead: 'Invierte en su futuro con seguridad y confianza. Has que la formación de los tuyos pueda germinar.',
+      cubre: [
+        'Protección del proyecto educativo',
+        'Inversión segura en formación'
+      ],
+      respaldo: [],
+      ventajas: ['Producto oficial del catálogo Iberis', 'Asesoría personalizada para tu caso']
+    }
+  };
+
+  const modal = document.getElementById('productModal');
+  if (modal) {
+    const elTitle = modal.querySelector('.pm-title');
+    const elEyebrow = modal.querySelector('.pm-eyebrow');
+    const elLead = modal.querySelector('.pm-lead');
+    const elImg = modal.querySelector('.pm-img');
+    const elNum = modal.querySelector('.pm-num');
+    const elTag = modal.querySelector('.pm-tag');
+    const elCubre = modal.querySelector('.pm-cubre ul');
+    const elCubreSec = modal.querySelector('.pm-cubre');
+    const elResp = modal.querySelector('.pm-respaldo ul');
+    const elRespSec = modal.querySelector('.pm-respaldo');
+    const elVentajas = modal.querySelector('.pm-ventajas .pm-pills');
+    const elVentSec = modal.querySelector('.pm-ventajas');
+    const elCta = modal.querySelector('.pm-cta');
+    const elWa = modal.querySelector('.pm-wa');
+    const closeBtn = modal.querySelector('.pm-close');
+
+    const openProduct = key => {
+      const p = PRODUCTS[key];
+      if (!p) return;
+      elTitle.textContent = p.title;
+      elEyebrow.textContent = p.eyebrow || '';
+      elLead.textContent = p.lead;
+      elImg.src = p.image;
+      elImg.alt = p.title;
+      elNum.textContent = p.num || '';
+      elNum.style.display = p.num ? '' : 'none';
+      elTag.textContent = p.tag || '';
+
+      elCubre.innerHTML = (p.cubre || []).map(x => `<li>${x}</li>`).join('');
+      elCubreSec.classList.toggle('is-empty', !p.cubre || p.cubre.length === 0);
+
+      elResp.innerHTML = (p.respaldo || []).map(x => `<li>${x}</li>`).join('');
+      elRespSec.classList.toggle('is-empty', !p.respaldo || p.respaldo.length === 0);
+
+      elVentajas.innerHTML = (p.ventajas || []).map(x => `<span>${x}</span>`).join('');
+      elVentSec.classList.toggle('is-empty', !p.ventajas || p.ventajas.length === 0);
+
+      // WhatsApp directo con mensaje pre-armado
+      const waMsg = encodeURIComponent(`Hola Iberis, quiero información sobre el producto: ${p.title}`);
+      elWa.href = `https://wa.me/573336025110?text=${waMsg}`;
+
+      // CTA cotizar: cierra modal y enfoca cotizador
+      elCta.onclick = () => modal.close();
+
+      if (typeof modal.showModal === 'function') modal.showModal();
+      else modal.setAttribute('open', '');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      if (typeof modal.close === 'function') modal.close();
+      else modal.removeAttribute('open');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      // Click en el backdrop (área fuera del contenido)
+      const rect = modal.querySelector('.pm-grid').getBoundingClientRect();
+      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+        closeModal();
+      }
+    });
+    modal.addEventListener('close', () => { document.body.style.overflow = ''; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.open) closeModal(); });
+
+    // Trigger en todos los enlaces con data-product
+    document.querySelectorAll('[data-product]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openProduct(a.dataset.product);
+      });
+    });
+  }
+
   /* ---------- 11. Calculadora "¿Cuál plan me conviene?" ---------- */
   const quizCard = document.getElementById('quizCard');
   if (quizCard) {

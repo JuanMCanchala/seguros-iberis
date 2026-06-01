@@ -1448,6 +1448,176 @@ body[data-view="empresas"] .only-personas { display: none; }
 .testi footer span { font-size: .78rem; color: var(--ink-500); }
 .testi-feat footer span { color: rgba(255,255,255,.65); }
 
+/* ==========================================================================
+   23. V5 — FASE 5 · ilustración hero + modal de detalle por producto
+   ========================================================================== */
+
+/* ---- Hero illustration (reemplazo de la tarjeta flotante) ---- */
+.hero-illustration {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--brand-100), var(--cyan-100));
+  box-shadow: var(--shadow-lg);
+  max-width: 540px;
+  margin-left: auto;
+  aspect-ratio: 3 / 2;
+}
+.hero-illustration img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.hero-illust-badge {
+  position: absolute; bottom: 1rem; left: 1rem;
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.92); backdrop-filter: blur(6px);
+  padding: .55rem .85rem; border-radius: 999px;
+  font-weight: 700; font-size: .82rem;
+  color: var(--brand-800);
+  box-shadow: 0 6px 20px -8px rgba(13,79,92,.4);
+}
+.hero-illust-badge svg { width: 18px; height: 18px; color: var(--cyan-500); }
+
+@media (max-width: 980px) {
+  .hero-illustration { margin-left: 0; margin-right: auto; max-width: 100%; }
+}
+@media (max-width: 520px) {
+  .hero-illustration { aspect-ratio: 4 / 3; border-radius: var(--radius-lg); }
+  .hero-illust-badge { font-size: .75rem; padding: .45rem .7rem; }
+}
+
+/* ---- Mini-cards sobre la ilustración (ajustes nuevos) ---- */
+.hero-illustration ~ .hero-mini { z-index: 2; }
+.hero-mini { box-shadow: 0 14px 30px -10px rgba(13,79,92,.35); }
+
+/* ---- Product detail modal ---- */
+.product-modal {
+  border: 0; padding: 0;
+  max-width: min(900px, 96vw);
+  width: 100%;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 40px 80px -20px rgba(13,79,92,.55);
+  margin: auto;
+  overflow: hidden;
+}
+.product-modal::backdrop {
+  background: rgba(6,28,36,.7);
+  backdrop-filter: blur(4px);
+}
+.product-modal[open] {
+  animation: modalIn .35s var(--ease);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.pm-close {
+  position: absolute; top: .8rem; right: 1rem; z-index: 10;
+  background: rgba(255,255,255,.95); border: 0;
+  width: 38px; height: 38px; border-radius: 50%;
+  cursor: pointer; color: var(--ink-700);
+  font-size: 1.4rem; font-weight: 700; line-height: 1;
+  display: grid; place-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: background .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+}
+.pm-close:hover { background: var(--brand-700); color: #fff; transform: rotate(90deg); }
+
+.pm-grid {
+  display: grid; grid-template-columns: 1fr;
+  max-height: 90vh;
+}
+@media (min-width: 800px) {
+  .pm-grid { grid-template-columns: .9fr 1.1fr; }
+}
+
+.pm-media {
+  position: relative; min-height: 220px; background: var(--brand-050);
+  overflow: hidden;
+}
+.pm-img {
+  width: 100%; height: 100%; min-height: 220px;
+  object-fit: cover; display: block;
+}
+.pm-num {
+  position: absolute; top: 1rem; left: 1rem;
+  width: 48px; height: 48px; border-radius: 14px;
+  background: rgba(13,79,92,.88); color: #fff;
+  display: grid; place-items: center;
+  font-family: 'Montserrat'; font-weight: 800; font-size: 1.1rem;
+  backdrop-filter: blur(6px);
+}
+.pm-tag {
+  position: absolute; bottom: 1rem; left: 1rem;
+  background: var(--orange-500); color: #fff;
+  font-size: .72rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .12em; padding: .35rem .75rem; border-radius: 999px;
+}
+.pm-tag:empty { display: none; }
+
+.pm-content {
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  overflow-y: auto;
+}
+.pm-eyebrow {
+  display: inline-block; text-transform: uppercase; letter-spacing: .15em;
+  font-size: .72rem; font-weight: 700; color: var(--cyan-500);
+  margin-bottom: .7rem;
+}
+.pm-title {
+  font-family: 'Montserrat'; font-weight: 800;
+  font-size: clamp(1.5rem, 2.4vw + 1rem, 2.2rem);
+  color: var(--brand-800); margin: 0 0 .5rem;
+  line-height: 1.1;
+}
+.pm-lead {
+  color: var(--ink-500); font-size: var(--fs-lead);
+  margin-bottom: 1.4rem;
+}
+.pm-section { margin-bottom: 1.3rem; }
+.pm-section h3 {
+  font-size: .78rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--brand-600);
+  margin-bottom: .65rem;
+}
+.pm-section ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: .55rem;
+}
+.pm-section li {
+  position: relative; padding-left: 1.7rem;
+  color: var(--ink-700); font-size: .94rem; line-height: 1.4;
+}
+.pm-section li::before {
+  content: '✓'; position: absolute; left: 0; top: 0;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--cyan-100); color: var(--cyan-500);
+  display: grid; place-items: center;
+  font-weight: 800; font-size: .72rem;
+}
+.pm-respaldo li::before { background: var(--orange-100); color: #B5560C; content: '!'; }
+.pm-section.is-empty { display: none; }
+.pm-pills { display: flex; flex-wrap: wrap; gap: .4rem; }
+.pm-pills span {
+  font-size: .78rem; font-weight: 600;
+  background: var(--brand-050); color: var(--brand-700);
+  padding: .35rem .75rem; border-radius: 999px;
+}
+
+.pm-actions {
+  display: flex; gap: .7rem; flex-wrap: wrap;
+  margin-top: 1.5rem; padding-top: 1.3rem;
+  border-top: 1px solid var(--ink-100);
+}
+.pm-actions .btn { flex: 1 1 200px; }
+.pm-fineprint {
+  margin: 1rem 0 0; font-size: .76rem; color: var(--ink-300);
+  text-align: center;
+}
+
 /* ---- Calculadora / Quiz "¿Cuál plan me conviene?" ---- */
 .quiz-card {
   background: #fff;
