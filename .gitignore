@@ -16,3 +16,8 @@ _*.md
 _shot/
 
 .vercel
+
+# Material fuente interno (no publicar)
+ayudaventas_*.jpg
+Ayudaventas_*.png
+MANUAL_IDENTIDAD_*.pdf
