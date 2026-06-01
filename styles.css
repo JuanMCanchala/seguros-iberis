@@ -982,19 +982,6 @@ body[data-view="empresas"] .only-personas { display: none; }
   .phone-cta span { display: none; }           /* phone icon-only */
   .phone-cta { padding: .55rem .7rem; }
 }
-/* En móviles muy estrechos pinamos el hamburger al borde derecho via posicionamiento
-   absoluto sobre la nav-bar — así sobrevive a cualquier overflow horizontal del flex. */
-@media (max-width: 540px) {
-  .nav-bar { position: relative; padding-right: 56px; }
-  .nav-actions {
-    position: absolute;
-    right: clamp(.75rem, 3vw, 1rem);
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 0 !important;
-    gap: .4rem;
-  }
-}
 @media (min-width: 1100px) {
   .nav-toggle { display: none !important; }    /* sin hamburguesa en desktop */
   .nav-cta { display: inline-flex !important; }
@@ -1165,9 +1152,26 @@ body[data-view="empresas"] .only-personas { display: none; }
   background: rgba(0,178,186,.05);
 }
 .plans-table.cols-3 .plans-row-head .plans-cell.alt { background: var(--brand-600); }
+
+/* La tabla con 3 columnas tiene contenido (cifras) que no encoge bajo cierto ancho.
+   En mobile la hacemos scrolleable horizontal dentro de su propio contenedor para
+   evitar que empuje el layout global y rompa el header. */
+.plans { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 @media (max-width: 720px) {
+  .plans-table.cols-3 { min-width: 580px; }
   .plans-table.cols-3 .plans-row { grid-template-columns: 1.3fr .9fr .9fr 1fr; }
   .plans-table.cols-3 .plans-cell { padding: .7rem .55rem; font-size: .78rem; }
+  /* Hint visual de scroll */
+  .plans { position: relative; }
+  .plans::after {
+    content: '← desliza →';
+    display: block;
+    text-align: center;
+    font-size: .72rem; color: var(--ink-500);
+    padding: .6rem 0;
+    background: var(--brand-050);
+    border-top: 1px solid var(--ink-100);
+  }
 }
 
 /* ---- Flor Iberis 8 pétalos (decorativa) ---- */
