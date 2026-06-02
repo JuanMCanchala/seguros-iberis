@@ -178,6 +178,13 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Modo "captura" (?screenshot=1): oculta elementos fixed para capturas full-page limpias
+  if (location.search.includes('screenshot=1')) {
+    const style = document.createElement('style');
+    style.textContent = '.float-whats { display: none !important; }';
+    document.head.appendChild(style);
+  }
+
   /* ---------- 10. Cotizador exprés → WhatsApp ---------- */
   const WA_PHONE = '573336025110';
   const quoteTabs = document.querySelectorAll('.qt');
