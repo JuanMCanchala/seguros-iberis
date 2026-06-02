@@ -1866,14 +1866,6 @@ body[data-view="empresas"] .only-personas { display: none; }
 }
 
 /* ---- Tabla dinamica: ribbon + hover de filas + chips ---- */
-.plans-toggle {
-  display: inline-flex; align-items: center; gap: .45rem;
-  margin: 0 0 .85rem; padding: .55rem 1rem;
-  background: var(--brand-050); color: var(--brand-700);
-  border-radius: 999px; font-size: .82rem; font-weight: 700;
-  border: 1px solid var(--brand-100);
-}
-.plans-toggle svg { transform: rotate(-90deg); opacity: .7; }
 
 /* Ribbon flotante sobre la columna VIP */
 .plans-ribbon {
