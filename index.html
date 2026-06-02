@@ -1074,12 +1074,12 @@
 
     <!-- CONTACTO -->
     <section class="section contacto" id="contacto">
-      <div class="container two-col contact-grid">
+      <div class="container contact-solo">
         <div class="col-text">
           <span class="eyebrow">Contacto</span>
-          <h2>En Iberis nos importas. Pregunta lo que quieras.</h2>
-          <p class="lead">Cuéntanos qué necesitas asegurar y un asesor experto te contactará para diseñar la cobertura perfecta.</p>
-          <ul class="info-list">
+          <h2>En Iberis nos importas. Pregunta lo que <em class="bloom">quieras</em>.</h2>
+          <p class="lead">Estamos disponibles por teléfono, WhatsApp, correo o en nuestra oficina principal. Si prefieres una cotización pre-armada, usa el <a href="#cotizador">cotizador exprés</a> de arriba.</p>
+          <ul class="info-list info-list--grid">
             <li>
               <span class="info-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
               <div><strong>Líneas de solicitud de asistencia</strong>
@@ -1104,42 +1104,6 @@
             <a href="https://www.instagram.com/segurosiberis/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
             <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
             <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          </div>
-        </div>
-
-        <div class="col-form">
-          <div class="form-card">
-            <div class="form-tabs" role="tablist">
-              <button class="tab is-active" data-tab="natural" role="tab" aria-selected="true">Persona Natural</button>
-              <button class="tab" data-tab="juridica" role="tab" aria-selected="false">Persona Jurídica</button>
-            </div>
-
-            <form class="form-panel is-active" data-panel="natural" novalidate>
-              <div class="grid-2">
-                <label class="field"><span>Nombre completo</span><input type="text" name="nombre" required placeholder="Tu nombre" /></label>
-                <label class="field"><span>Cédula</span><input type="text" name="cedula" inputmode="numeric" required placeholder="Número de documento" /></label>
-                <label class="field"><span>Teléfono</span><input type="tel" name="telefono" required placeholder="Ej. 300 000 0000" /></label>
-                <label class="field"><span>Fecha de nacimiento</span><input type="date" name="nacimiento" /></label>
-                <label class="field grid-2-full"><span>Email</span><input type="email" name="email" required placeholder="tucorreo@ejemplo.com" /></label>
-                <label class="field grid-2-full"><span>Seguro de tu interés</span><select name="interes" required><option value="">Selecciona una opción</option><option>Plan A $150 (accidentes $10M)</option><option>Plan A $170 (accidentes $15M)</option><option>Plan B $400 VIP (accidentes $50M)</option><option>Asistencia al hogar</option><option>Asistencia jurídica</option><option>Mascotas VIP</option></select></label>
-              </div>
-              <button type="submit" class="btn btn-primary full">Solicitar asesoría</button>
-              <p class="form-note">Al enviar aceptas nuestra política de tratamiento de datos.</p>
-            </form>
-
-            <form class="form-panel" data-panel="juridica" novalidate>
-              <div class="grid-2">
-                <label class="field"><span>Empresa</span><input type="text" name="empresa" required placeholder="Razón social" /></label>
-                <label class="field"><span>NIT</span><input type="text" name="nit" required placeholder="NIT" /></label>
-                <label class="field"><span>Contacto</span><input type="text" name="contacto" required placeholder="Nombre del responsable" /></label>
-                <label class="field"><span>Cargo</span><input type="text" name="cargo" required placeholder="Tu cargo" /></label>
-                <label class="field"><span>Teléfono</span><input type="tel" name="telefono" required placeholder="Ej. 601 000 0000" /></label>
-                <label class="field"><span>Email corporativo</span><input type="email" name="email" required placeholder="contacto@empresa.com" /></label>
-                <label class="field grid-2-full"><span>Seguro de tu interés</span><select name="interes" required><option value="">Selecciona una opción</option><option>Vida Deudor</option><option>Infidelidad</option><option>Cyber</option><option>D&amp;O</option><option>Responsabilidad Civil</option><option>Daños Materiales Pymes</option></select></label>
-              </div>
-              <button type="submit" class="btn btn-primary full">Solicitar asesoría empresarial</button>
-              <p class="form-note">Al enviar aceptas nuestra política de tratamiento de datos.</p>
-            </form>
           </div>
         </div>
       </div>

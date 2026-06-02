@@ -2061,3 +2061,51 @@ body[data-view="empresas"] .only-personas { display: none; }
   .product-hero { padding: 2.5rem 0 2rem; }
   .phc-num { font-size: 2rem; }
 }
+
+/* ---- Contacto sin formulario (cotizador hace ese trabajo) ---- */
+.contact-solo {
+  max-width: 920px;
+  text-align: center;
+}
+.contact-solo .col-text { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.contact-solo h2 { margin-bottom: .3rem; }
+.contact-solo .lead { max-width: 640px; margin: 0 auto 1.6rem; }
+.contact-solo .lead a { color: var(--brand-700); font-weight: 700; text-decoration: underline; }
+
+.info-list--grid {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%; text-align: left;
+}
+.info-list--grid > li {
+  background: #fff;
+  border: 1px solid var(--ink-100);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  display: flex; align-items: flex-start; gap: .85rem;
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.info-list--grid > li:hover {
+  transform: translateY(-3px);
+  border-color: var(--brand-300);
+  box-shadow: var(--shadow-sm);
+}
+.info-list--grid .info-ico {
+  width: 40px; height: 40px; border-radius: 11px;
+  background: var(--cyan-100); color: var(--brand-700);
+  display: grid; place-items: center; flex: none;
+}
+.info-list--grid .info-ico svg { width: 19px; height: 19px; }
+.info-list--grid > li:nth-child(2) .info-ico { background: var(--orange-100); color: var(--orange-500); }
+.info-list--grid > li:nth-child(3) .info-ico { background: var(--brand-100); color: var(--brand-700); }
+.info-list--grid > li:nth-child(4) .info-ico { background: var(--cyan-100); color: var(--cyan-500); }
+.info-list--grid strong { display: block; color: var(--brand-800); font-weight: 700; margin-bottom: .15rem; }
+.info-list--grid a, .info-list--grid span { display: block; color: var(--ink-500); font-size: .9rem; }
+.info-list--grid a:hover { color: var(--brand-700); }
+
+.contact-solo .socials { margin-top: 1.5rem; justify-content: center; }
+
+@media (max-width: 700px) {
+  .info-list--grid { grid-template-columns: 1fr; }
+}
