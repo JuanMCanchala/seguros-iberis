@@ -1172,7 +1172,7 @@ body[data-view="empresas"] .only-personas { display: none; }
 /* La tabla con 3 columnas tiene contenido (cifras) que no encoge bajo cierto ancho.
    En mobile la hacemos scrolleable horizontal dentro de su propio contenedor para
    evitar que empuje el layout global y rompa el header. */
-.plans { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.plans { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-top: 20px; }
 @media (max-width: 720px) {
   .plans-table.cols-3 { min-width: 580px; }
   .plans-table.cols-3 .plans-row { grid-template-columns: 1.3fr .9fr .9fr 1fr; }
