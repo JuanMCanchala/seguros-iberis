@@ -1058,13 +1058,17 @@ body[data-view="empresas"] .only-personas { display: none; }
   .phone-cta { display: none; }      /* WhatsApp flotante + drawer cubren contacto */
 }
 
-/* ---- Pillars row (3 confianza bajo hero) ---- */
+/* ---- Pillars row (confianza bajo hero) ---- */
 .hero-pillars {
-  display: grid; gap: .8rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: flex; flex-wrap: nowrap; gap: 1.4rem;
   margin-top: 2.2rem;
   padding-top: 1.8rem;
   border-top: 1px solid var(--brand-100);
+}
+.hero-pillars > .hero-pillar { flex: 1 1 0; min-width: 0; }
+@media (max-width: 520px) {
+  .hero-pillars { flex-wrap: wrap; gap: 1rem; }
+  .hero-pillars > .hero-pillar { flex: 1 1 100%; }
 }
 .hero-pillar {
   display: flex; align-items: flex-start; gap: .75rem;
@@ -1240,6 +1244,10 @@ body[data-view="empresas"] .only-personas { display: none; }
   background: linear-gradient(120deg, var(--cyan-500), var(--brand-700));
   -webkit-background-clip: text; background-clip: text; color: transparent;
   font-style: italic;
+}
+.bloom--orange {
+  background: linear-gradient(120deg, var(--orange-500), #DD7C2E);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
 /* ==========================================================================
@@ -1756,4 +1764,170 @@ body[data-view="empresas"] .only-personas { display: none; }
   font-size: .72rem;
   font-weight: 600;
   letter-spacing: .02em;
+}
+
+/* ==========================================================================
+   23. FASE 6 — Comparativa de coberturas: tarjetas + tabla dinamica
+   ========================================================================== */
+
+/* ---- Plan cards (resumen visual de planes) ---- */
+.plans-cards {
+  display: grid; gap: 1.2rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 0 1.8rem;
+}
+@media (max-width: 920px) {
+  .plans-cards { grid-template-columns: 1fr; }
+}
+.plan-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--ink-100);
+  border-radius: 18px;
+  padding: 1.5rem 1.3rem 1.4rem;
+  display: flex; flex-direction: column; gap: .85rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  overflow: hidden;
+}
+.plan-card::before {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 4px;
+  background: linear-gradient(90deg, var(--cyan-500), var(--brand-700));
+  opacity: .85;
+}
+.plan-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--brand-300);
+  box-shadow: 0 20px 40px -22px rgba(34,72,89,.28);
+}
+.plan-card-head { display: flex; align-items: center; gap: .85rem; }
+.plan-card-ico {
+  width: 46px; height: 46px; border-radius: 13px;
+  background: var(--cyan-100); color: var(--brand-700);
+  display: grid; place-items: center; flex: none;
+}
+.plan-card-ico svg { width: 22px; height: 22px; }
+.plan-card-ico.is-vip { background: var(--orange-100); color: var(--orange-500); }
+.plan-card-eyebrow {
+  display: block; font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--ink-500);
+}
+.plan-card h3 {
+  font-size: 1.18rem; margin: .1rem 0 0;
+  color: var(--brand-800); font-weight: 700;
+}
+.plan-card-price {
+  display: flex; align-items: baseline; gap: .45rem;
+  padding: .55rem .85rem; border-radius: 12px;
+  background: var(--brand-050);
+}
+.pcp-num { font-size: 1.5rem; font-weight: 800; color: var(--brand-800); letter-spacing: -.01em; }
+.pcp-unit { font-size: .78rem; color: var(--ink-500); }
+.pcp-unit strong { color: var(--brand-700); }
+.plan-card-cov { font-size: .9rem; color: var(--ink-500); margin: 0; }
+.plan-card-cov strong { color: var(--brand-800); font-weight: 700; }
+.plan-card-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .45rem; }
+.plan-card-list li {
+  position: relative; padding-left: 1.4rem;
+  font-size: .87rem; color: var(--ink-700);
+}
+.plan-card-list li::before {
+  content: ''; position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px; border-radius: 50%;
+  background: rgba(31,157,124,.15);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F9D7C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12l5 5 9-11'/></svg>");
+  background-repeat: no-repeat; background-position: center; background-size: 10px;
+}
+.plan-card .btn { margin-top: auto; }
+
+/* Featured: Plan B */
+.plan-card--featured {
+  border-color: var(--orange-300);
+  box-shadow: 0 18px 38px -20px rgba(242,142,66,.45);
+  background: linear-gradient(180deg, #fff 70%, rgba(253,235,220,.55) 100%);
+}
+.plan-card--featured::before {
+  background: linear-gradient(90deg, var(--orange-500), #DD7C2E);
+  height: 5px; opacity: 1;
+}
+.plan-card-ribbon {
+  position: absolute; top: 14px; right: -34px;
+  transform: rotate(35deg);
+  background: linear-gradient(135deg, var(--orange-500), #DD7C2E);
+  color: #fff; font-size: .68rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: .35rem 2.4rem;
+  box-shadow: 0 6px 14px -6px rgba(242,142,66,.6);
+}
+
+/* ---- Tabla dinamica: ribbon + hover de filas + chips ---- */
+.plans-toggle {
+  display: inline-flex; align-items: center; gap: .45rem;
+  margin: 0 0 .85rem; padding: .55rem 1rem;
+  background: var(--brand-050); color: var(--brand-700);
+  border-radius: 999px; font-size: .82rem; font-weight: 700;
+  border: 1px solid var(--brand-100);
+}
+.plans-toggle svg { transform: rotate(-90deg); opacity: .7; }
+
+/* Ribbon flotante sobre la columna VIP */
+.plans-ribbon {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--orange-500), #DD7C2E);
+  color: #fff; font-size: .65rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .12em;
+  padding: .28rem .8rem; border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 8px 18px -6px rgba(242,142,66,.65);
+}
+.plans-row-head .plans-cell.highlight { position: relative; overflow: visible; }
+
+/* Hover row + zebra stripes en cuerpo */
+.plans-table .plans-row:not(.plans-row-head):not(.plans-row-cta):not(.plans-row-foot):nth-of-type(even):not(.plans-group) {
+  background: rgba(46,154,175,.025);
+}
+.plans-table .plans-row:not(.plans-row-head):not(.plans-row-cta):not(.plans-row-foot):not(.plans-group):hover {
+  background: rgba(0,178,186,.08);
+  transition: background .2s var(--ease);
+}
+.plans-table .plans-row:not(.plans-row-head):not(.plans-row-cta):not(.plans-row-foot):not(.plans-group):hover .plans-cell.label {
+  background: var(--cyan-100);
+}
+
+/* Glow en columna highlight */
+.plans-cell.highlight {
+  background: linear-gradient(180deg, rgba(242,142,66,.08), rgba(242,142,66,.02)) !important;
+  box-shadow: inset 0 0 0 1px rgba(242,142,66,.12);
+}
+.plans-row-head .plans-cell.highlight {
+  background: linear-gradient(135deg, var(--orange-500), #DD7C2E) !important;
+  color: #fff;
+  box-shadow: 0 12px 28px -14px rgba(242,142,66,.55);
+}
+.plans-row-foot .plans-cell.highlight {
+  background: linear-gradient(180deg, rgba(242,142,66,.14), rgba(242,142,66,.06)) !important;
+  color: var(--brand-800);
+}
+.plans-row-head .plans-cell.highlight .badge { background: rgba(255,255,255,.22); color: #fff; }
+
+/* Chip visual de check */
+.plans-row .x {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(34,72,89,.06); color: var(--ink-300);
+  font-weight: 700; font-size: .9rem;
+}
+
+/* Animacion suave al hacer scroll dentro de la tabla */
+.plans-table { scroll-behavior: smooth; }
+
+@media (max-width: 920px) {
+  .plan-card-ribbon { right: -28px; top: 16px; padding: .3rem 2rem; font-size: .62rem; }
+  .pcp-num { font-size: 1.35rem; }
+}
+@media (max-width: 720px) {
+  .plans-ribbon { top: -10px; font-size: .58rem; padding: .22rem .55rem; }
+  .plans-cards { margin-bottom: 1.2rem; }
 }

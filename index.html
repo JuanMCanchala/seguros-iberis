@@ -276,7 +276,7 @@
         <div class="container">
           <header class="section-head center">
             <span class="eyebrow">Nuestras soluciones</span>
-            <h2>Más oportunidades de <em class="bloom">tranquilidad</em> para ti.</h2>
+            <h2>Más oportunidades de <em class="bloom bloom--orange">tranquilidad</em> para ti.</h2>
             <p>Coberturas con asistencias diseñadas para acompañarte en cada momento — porque tu bienestar es la raíz que sostiene todo lo demás.</p>
           </header>
           <div class="feature-cards">
@@ -441,13 +441,90 @@
             <p>Tres planes anuales · de $411 a $1.095 al día. Lado a lado, todas las coberturas y asistencias.</p>
           </header>
 
+          <!-- Tarjetas resumen de planes -->
+          <div class="plans-cards" role="list">
+            <article class="plan-card" data-plan="a150" role="listitem">
+              <header class="plan-card-head">
+                <div class="plan-card-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div>
+                  <span class="plan-card-eyebrow">Plan A</span>
+                  <h3>Esencial</h3>
+                </div>
+              </header>
+              <div class="plan-card-price">
+                <span class="pcp-num">$150.000</span>
+                <span class="pcp-unit">/año · <strong>$411/día</strong></span>
+              </div>
+              <p class="plan-card-cov">Cobertura <strong>$10.000.000</strong> · asistencias básicas.</p>
+              <ul class="plan-card-list">
+                <li>Salud 24/7</li>
+                <li>Hogar (2 eventos)</li>
+                <li>Orientación jurídica</li>
+              </ul>
+              <a href="#contacto" class="btn btn-ghost small full">Quiero Plan A 150</a>
+            </article>
+
+            <article class="plan-card" data-plan="a170" role="listitem">
+              <header class="plan-card-head">
+                <div class="plan-card-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/></svg>
+                </div>
+                <div>
+                  <span class="plan-card-eyebrow">Plan A</span>
+                  <h3>Reforzado</h3>
+                </div>
+              </header>
+              <div class="plan-card-price">
+                <span class="pcp-num">$170.000</span>
+                <span class="pcp-unit">/año · <strong>$466/día</strong></span>
+              </div>
+              <p class="plan-card-cov">Cobertura <strong>$15.000.000</strong> · misma asistencia, más capital.</p>
+              <ul class="plan-card-list">
+                <li>Salud 24/7</li>
+                <li>Hogar (2 eventos)</li>
+                <li>+50% indemnización</li>
+              </ul>
+              <a href="#contacto" class="btn btn-ghost small full">Quiero Plan A 170</a>
+            </article>
+
+            <article class="plan-card plan-card--featured" data-plan="b400" role="listitem">
+              <span class="plan-card-ribbon">Más elegido</span>
+              <header class="plan-card-head">
+                <div class="plan-card-ico is-vip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z"/></svg>
+                </div>
+                <div>
+                  <span class="plan-card-eyebrow">Plan B</span>
+                  <h3>VIP Ampliado</h3>
+                </div>
+              </header>
+              <div class="plan-card-price">
+                <span class="pcp-num">$400.000</span>
+                <span class="pcp-unit">/año · <strong>$1.095/día</strong></span>
+              </div>
+              <p class="plan-card-cov">Cobertura <strong>$50.000.000</strong> + asistencias VIP completas.</p>
+              <ul class="plan-card-list">
+                <li>Veterinaria 24/7</li>
+                <li>Auxilio vial + grúa</li>
+                <li>Odontología + reembolso</li>
+              </ul>
+              <a href="#contacto" class="btn btn-orange small full">Quiero Plan B 400</a>
+            </article>
+          </div>
+
           <div class="plans">
+            <div class="plans-toggle">
+              <span class="plans-toggle-label">Comparar lado a lado</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
             <div class="plans-table cols-3" role="table" aria-label="Comparación de planes para personas">
               <div class="plans-row plans-row-head" role="row">
                 <div class="plans-cell label" role="columnheader">Beneficio / Asistencia</div>
                 <div class="plans-cell" role="columnheader"><span class="plan-name">Plan A · $150k</span></div>
                 <div class="plans-cell alt" role="columnheader"><span class="plan-name">Plan A · $170k</span></div>
-                <div class="plans-cell highlight" role="columnheader"><span class="plan-name">Plan B · $400k</span><span class="badge">VIP</span></div>
+                <div class="plans-cell highlight" role="columnheader"><span class="plan-name">Plan B · $400k</span><span class="badge">VIP</span><span class="plans-ribbon" aria-hidden="true">Más elegido</span></div>
               </div>
 
               <div class="plans-group" role="row"><span>Cobertura básica</span></div>
