@@ -1060,14 +1060,17 @@ body[data-view="empresas"] .only-personas { display: none; }
 
 /* ---- Pillars row (confianza bajo hero) ---- */
 .hero-pillars {
-  display: flex; flex-wrap: nowrap; gap: 1.4rem;
+  display: flex; flex-wrap: nowrap; gap: .9rem;
   margin-top: 2.2rem;
   padding-top: 1.8rem;
   border-top: 1px solid var(--brand-100);
 }
 .hero-pillars > .hero-pillar { flex: 1 1 0; min-width: 0; }
-@media (max-width: 520px) {
+@media (max-width: 980px) {
   .hero-pillars { flex-wrap: wrap; gap: 1rem; }
+  .hero-pillars > .hero-pillar { flex: 1 1 calc(50% - .5rem); }
+}
+@media (max-width: 520px) {
   .hero-pillars > .hero-pillar { flex: 1 1 100%; }
 }
 .hero-pillar {
