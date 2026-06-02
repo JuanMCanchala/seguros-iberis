@@ -1247,6 +1247,11 @@ body[data-view="empresas"] .only-personas { display: none; }
   background: linear-gradient(120deg, var(--cyan-500), var(--brand-700));
   -webkit-background-clip: text; background-clip: text; color: transparent;
   font-style: italic;
+  /* Italic overhang fix: el ultimo glifo se inclina mas alla del box y el gradient
+     se corta — extendemos el padding-right (y compensamos con margin negativo
+     para no desplazar el texto siguiente). */
+  padding-right: .14em;
+  margin-right: -.06em;
 }
 .bloom--orange {
   background: linear-gradient(120deg, var(--orange-500), #DD7C2E);
