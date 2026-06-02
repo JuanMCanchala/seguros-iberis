@@ -15,8 +15,10 @@
 
   let comments = [];
   let mode = 'idle'; // 'idle' | 'adding'
+  let sbClient = null;
+  let realtimeChannel = null;
 
-  // ---------- Supabase REST ----------
+  // ---------- Supabase REST (operaciones CRUD) ----------
   const baseHeaders = {
     apikey: SUPABASE_KEY,
     Authorization: 'Bearer ' + SUPABASE_KEY,
@@ -46,8 +48,8 @@
     if (!r.ok) throw new Error(await r.text());
     const arr = await r.json();
     const row = Array.isArray(arr) ? arr[0] : arr;
-    comments.push(row);
-    renderAll();
+    // Aplicamos el cambio localmente solo si Realtime aun no nos lo entrego.
+    upsertLocal(row);
     return row;
   }
   async function updateComment(id, patch) {
@@ -57,12 +59,29 @@
       body: JSON.stringify(patch),
     });
     const c = comments.find((x) => x.id === id);
-    if (c) Object.assign(c, patch);
-    renderAll();
+    if (c) {
+      Object.assign(c, patch);
+      renderAll();
+    }
   }
   async function deleteComment(id) {
     await api(`?id=eq.${id}`, { method: 'DELETE' });
-    comments = comments.filter((x) => x.id !== id);
+    removeLocal(id);
+  }
+
+  // ---------- Local cache mutators (usados por Realtime y CRUD optimista) ----------
+  function upsertLocal(row) {
+    if (!row || row.page_path !== PAGE) return;
+    const i = comments.findIndex((x) => x.id === row.id);
+    if (i >= 0) comments[i] = row;
+    else comments.push(row);
+    comments.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    renderAll();
+  }
+  function removeLocal(id) {
+    const i = comments.findIndex((x) => x.id === id);
+    if (i < 0) return;
+    comments.splice(i, 1);
     renderAll();
   }
 
@@ -405,5 +424,85 @@
   });
   window.addEventListener('load', () => setTimeout(renderPins, 300));
 
+  // ---------- Realtime: suscripcion a INSERT/UPDATE/DELETE en la tabla ----------
+  // Cargamos el SDK de Supabase desde ESM CDN (solo aqui, no en produccion regular).
+  async function bootRealtime() {
+    try {
+      const mod = await import('https://esm.sh/@supabase/supabase-js@2');
+      sbClient = mod.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        realtime: { params: { eventsPerSecond: 5 } },
+      });
+      realtimeChannel = sbClient
+        .channel('seguros-iberis-comments-' + PAGE)
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: TABLE,
+            filter: 'page_path=eq.' + PAGE,
+          },
+          (payload) => {
+            if (payload.eventType === 'INSERT') {
+              upsertLocal(payload.new);
+              flashIndicator('+ Nuevo comentario');
+            } else if (payload.eventType === 'UPDATE') {
+              upsertLocal(payload.new);
+            } else if (payload.eventType === 'DELETE') {
+              const oldRow = payload.old || {};
+              if (oldRow.id) removeLocal(oldRow.id);
+            }
+          }
+        )
+        .subscribe((status) => {
+          if (status === 'SUBSCRIBED') setLiveBadge(true);
+          else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT' || status === 'CLOSED') setLiveBadge(false);
+        });
+    } catch (err) {
+      console.warn('[review-mode] Realtime no disponible:', err);
+      setLiveBadge(false);
+    }
+  }
+
+  // Indicador visual: punto verde animado en el FAB cuando estamos suscritos
+  function setLiveBadge(on) {
+    const dot = fab.querySelector('.r-dot');
+    if (!dot) return;
+    dot.style.animation = on ? 'r-pulse 1.6s ease-in-out infinite' : 'none';
+  }
+  // Toast flotante para anunciar comentarios entrantes
+  let toastT;
+  function flashIndicator(text) {
+    let toast = document.querySelector('.r-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'r-toast';
+      toast.style.cssText =
+        'position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:#1F9D7C; color:#fff; padding:.55rem 1rem; border-radius:999px; font-family:Montserrat,system-ui,sans-serif; font-weight:700; font-size:.82rem; z-index:99999; box-shadow:0 12px 28px -10px rgba(0,0,0,.4); opacity:0; transition:opacity .25s, transform .25s; pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = text;
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(-6px)';
+    });
+    clearTimeout(toastT);
+    toastT = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    }, 2400);
+  }
+  // Keyframes para el pulso del dot
+  const pulseStyle = document.createElement('style');
+  pulseStyle.textContent =
+    '@keyframes r-pulse{0%,100%{box-shadow:0 0 0 4px rgba(31,157,124,.25)}50%{box-shadow:0 0 0 8px rgba(31,157,124,.15)}}';
+  document.head.appendChild(pulseStyle);
+
+  // Limpieza al cerrar / navegar
+  window.addEventListener('beforeunload', () => {
+    try { realtimeChannel && sbClient && sbClient.removeChannel(realtimeChannel); } catch {}
+  });
+
   loadComments();
+  bootRealtime();
 })();
