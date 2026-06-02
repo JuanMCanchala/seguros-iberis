@@ -1934,3 +1934,130 @@ body[data-view="empresas"] .only-personas { display: none; }
   .plans-ribbon { top: -10px; font-size: .58rem; padding: .22rem .55rem; }
   .plans-cards { margin-bottom: 1.2rem; }
 }
+
+/* ==========================================================================
+   24. SUBPAGES — paginas internas de producto
+   ========================================================================== */
+
+/* Subpage layout shim: el header siempre se ve como "scrolled" */
+.is-subpage { padding-top: 0; }
+.is-subpage .site-header { position: sticky; }
+
+/* Breadcrumb */
+.breadcrumb {
+  background: var(--brand-050);
+  border-bottom: 1px solid var(--ink-100);
+  padding: .85rem 0;
+  font-size: .85rem;
+}
+.breadcrumb .container { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.breadcrumb a { color: var(--brand-700); font-weight: 600; }
+.breadcrumb a:hover { color: var(--brand-800); text-decoration: underline; }
+.bc-sep { color: var(--ink-300); }
+.bc-current { color: var(--ink-700); font-weight: 600; }
+
+/* Product hero */
+.product-hero {
+  background:
+    radial-gradient(60% 80% at 0% 0%, var(--cyan-100), transparent 65%),
+    radial-gradient(50% 70% at 100% 100%, var(--orange-100), transparent 65%),
+    var(--brand-050);
+  padding: 3.5rem 0 3rem;
+}
+.product-hero-grid {
+  display: grid; gap: 2.5rem;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .product-hero-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+}
+.product-hero-copy h1 {
+  font-size: clamp(2rem, 4.4vw, 2.8rem);
+  line-height: 1.1; margin: .6rem 0 1rem;
+  color: var(--brand-800); font-weight: 800; letter-spacing: -.01em;
+}
+.product-hero-bullets {
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+  display: flex; flex-direction: column; gap: .55rem;
+}
+.product-hero-bullets li {
+  display: flex; align-items: center; gap: .55rem;
+  font-size: .95rem; color: var(--ink-700);
+}
+.phb-ico {
+  display: inline-grid; place-items: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(31,157,124,.18); color: var(--ok);
+  font-weight: 800; font-size: .82rem; flex: none;
+}
+
+/* Product hero card (price summary) */
+.product-hero-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.6rem 1.5rem;
+  box-shadow: 0 24px 60px -28px rgba(34,72,89,.32);
+  border: 1px solid var(--ink-100);
+  position: sticky; top: 100px;
+}
+@media (max-width: 900px) { .product-hero-card { position: static; } }
+.phc-tag {
+  display: inline-block;
+  font-size: .68rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .12em;
+  background: var(--orange-100); color: #B5560C;
+  padding: .3rem .65rem; border-radius: 999px;
+}
+.phc-price {
+  display: flex; align-items: baseline; gap: .4rem;
+  margin: .65rem 0 .25rem;
+}
+.phc-num {
+  font-size: 2.4rem; font-weight: 800; color: var(--brand-800);
+  letter-spacing: -.02em; line-height: 1;
+}
+.phc-unit { font-size: .95rem; color: var(--ink-500); font-weight: 600; }
+.phc-meta { font-size: .85rem; color: var(--ink-500); margin-bottom: 1rem; }
+.product-hero-card hr {
+  border: 0; border-top: 1px dashed var(--ink-100); margin: 1rem 0;
+}
+.phc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .35rem 0; font-size: .88rem;
+}
+.phc-row span { color: var(--ink-500); }
+.phc-row strong { color: var(--brand-800); font-weight: 700; }
+.product-hero-card .btn { margin-top: 1rem; }
+
+/* Protect list (¿Qué protege?) */
+.protect-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.protect-list li {
+  display: flex; align-items: center; gap: 1rem;
+  background: #fff;
+  border: 1px solid var(--ink-100);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.protect-list li:hover {
+  transform: translateX(4px);
+  border-color: var(--brand-300);
+  box-shadow: var(--shadow-sm);
+}
+.pl-ico {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--cyan-100);
+  display: grid; place-items: center;
+  font-size: 1.4rem; flex: none;
+}
+.protect-list strong { display: block; color: var(--brand-800); font-weight: 700; }
+.protect-list span { color: var(--ink-500); font-size: .9rem; }
+
+@media (max-width: 720px) {
+  .product-hero { padding: 2.5rem 0 2rem; }
+  .phc-num { font-size: 2rem; }
+}
