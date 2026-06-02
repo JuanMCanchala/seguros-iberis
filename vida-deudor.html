@@ -176,6 +176,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     const header = document.getElementById('siteHeader');
     addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 14), { passive: true });
+    if (/[?&]review=1\b/.test(location.search)) { var s = document.createElement('script'); s.src = 'review-mode.js'; s.defer = true; document.body.appendChild(s); }
   </script>
 </body>
 </html>
