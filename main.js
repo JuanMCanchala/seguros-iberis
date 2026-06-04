@@ -625,30 +625,65 @@
     });
   });
 
-  /* ---------- 13. Renovación de póliza → WhatsApp ---------- */
+  /* ---------- 13. Renovación de póliza → Supabase ---------- */
   const renovForm = document.getElementById('renovacionForm');
   if (renovForm) {
-    const renovLabels = {
-      nombre: 'Nombre', documento: 'Documento', telefono: 'WhatsApp',
-      email: 'Email', aseguradora: 'Aseguradora actual', tipo: 'Tipo de seguro',
-      poliza: 'No. de póliza', vencimiento: 'Vencimiento', ajustes: 'Notas / ajustes'
-    };
-    renovForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const data = new FormData(renovForm);
-      const lines = ['*Solicitud de renovación de póliza*', ''];
-      for (const [k, v] of data.entries()) {
-        if (!v || !String(v).trim()) continue;
-        lines.push(`• *${renovLabels[k] || k}*: ${v}`);
-      }
-      lines.push('', 'Quiero renovar mi seguro con Iberis. Gracias 🌼');
-      const msg = encodeURIComponent(lines.join('\n'));
-      window.open(`https://wa.me/${WA_PHONE}?text=${msg}`, '_blank', 'noopener');
+    const SB_URL = 'https://ltepezsefdypxzbmfise.supabase.co';
+    const SB_KEY = 'sb_publishable_KgxN0hKQjtopZ-OWLPGtYg_ZX6ZYAZz';
+    const SB_TABLE = 'seguros_iberis_renovaciones';
+    const note = document.getElementById('renovacionNote');
+    const btn = renovForm.querySelector('button[type="submit"]');
 
-      const btn = renovForm.querySelector('button[type="submit"]');
-      const original = btn.innerHTML;
-      btn.innerHTML = '✓ Abriendo WhatsApp…';
-      setTimeout(() => { btn.innerHTML = original; }, 2200);
+    renovForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!renovForm.reportValidity()) return;
+
+      const data = Object.fromEntries(new FormData(renovForm).entries());
+      const payload = {
+        nombre: data.nombre.trim(),
+        cedula: data.cedula.trim(),
+        telefono: data.telefono.trim(),
+        nacimiento: data.nacimiento,
+        email: data.email.trim().toLowerCase(),
+      };
+
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      note.textContent = '';
+      note.style.color = '';
+
+      try {
+        const r = await fetch(`${SB_URL}/rest/v1/${SB_TABLE}`, {
+          method: 'POST',
+          headers: {
+            apikey: SB_KEY,
+            Authorization: 'Bearer ' + SB_KEY,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+
+        // Estado de éxito: reemplaza el form por un mensaje
+        renovForm.innerHTML = `
+          <div class="ren-success">
+            <div class="ren-success-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>¡Solicitud recibida!</h3>
+            <p>Hemos registrado tu solicitud de renovación. Un asesor humano te contactará por el teléfono que nos compartiste en menos de <strong>24h hábiles</strong>.</p>
+            <p class="ren-success-name">Gracias, ${payload.nombre.split(' ')[0]} 🌼</p>
+          </div>
+        `;
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = original;
+        note.textContent = 'No pudimos enviar tu solicitud. Verifica los datos e inténtalo de nuevo.';
+        note.style.color = '#B5560C';
+        console.error('[renovacion]', err);
+      }
     });
   }
 })();
