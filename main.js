@@ -624,4 +624,31 @@
       setTimeout(() => { btn.innerHTML = original; }, 2200);
     });
   });
+
+  /* ---------- 13. Renovación de póliza → WhatsApp ---------- */
+  const renovForm = document.getElementById('renovacionForm');
+  if (renovForm) {
+    const renovLabels = {
+      nombre: 'Nombre', documento: 'Documento', telefono: 'WhatsApp',
+      email: 'Email', aseguradora: 'Aseguradora actual', tipo: 'Tipo de seguro',
+      poliza: 'No. de póliza', vencimiento: 'Vencimiento', ajustes: 'Notas / ajustes'
+    };
+    renovForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(renovForm);
+      const lines = ['*Solicitud de renovación de póliza*', ''];
+      for (const [k, v] of data.entries()) {
+        if (!v || !String(v).trim()) continue;
+        lines.push(`• *${renovLabels[k] || k}*: ${v}`);
+      }
+      lines.push('', 'Quiero renovar mi seguro con Iberis. Gracias 🌼');
+      const msg = encodeURIComponent(lines.join('\n'));
+      window.open(`https://wa.me/${WA_PHONE}?text=${msg}`, '_blank', 'noopener');
+
+      const btn = renovForm.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ Abriendo WhatsApp…';
+      setTimeout(() => { btn.innerHTML = original; }, 2200);
+    });
+  }
 })();

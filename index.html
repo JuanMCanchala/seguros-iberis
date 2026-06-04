@@ -179,9 +179,9 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="tel:+576013907370" class="phone-cta" aria-label="Llamar a Bogotá 601 390 7370">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>601 390 7370</span>
+        <a href="#renovacion" class="btn btn-orange nav-cta nav-cta--renovacion">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          <span>Renovación</span>
         </a>
         <a href="#contacto" class="btn btn-primary nav-cta">Quiero asesoría</a>
         <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -855,10 +855,41 @@
         </header>
         <div class="logos-track" aria-label="Aseguradoras aliadas">
           <div class="logo-pill logo-pill-img"><img src="assets/logo-sbs.png" alt="SBS Seguros" loading="lazy" /></div>
-          <div class="logo-pill" style="--monogram:#E2231A"><span class="mono">AXA</span><span class="lp-name">Colpatria</span></div>
-          <div class="logo-pill" style="--monogram:#003B71"><span class="mono">PAL</span><span class="lp-name">Pan-American Life</span></div>
-          <div class="logo-pill" style="--monogram:#0099A8"><span class="mono">EC</span><span class="lp-name">Excel Credit</span></div>
-          <div class="logo-pill" style="--monogram:#1B7A8F"><span class="mono">ES</span><span class="lp-name">Excel Seguros</span></div>
+
+          <div class="logo-pill logo-pill--svg" aria-label="AXA Colpatria">
+            <svg viewBox="0 0 110 60" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="6" width="68" height="42" fill="#00008F" rx="2"/>
+              <text x="36" y="36" fill="#fff" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="900" text-anchor="middle" letter-spacing="1">AXA</text>
+              <rect x="2" y="50" width="68" height="3" fill="#FF1721"/>
+              <text x="92" y="32" fill="#00008F" font-family="Arial, sans-serif" font-size="10" font-weight="700" text-anchor="middle">COLPATRIA</text>
+            </svg>
+          </div>
+
+          <div class="logo-pill logo-pill--svg" aria-label="Pan-American Life Insurance">
+            <svg viewBox="0 0 130 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="30" r="16" fill="none" stroke="#003B71" stroke-width="2.5"/>
+              <path d="M6 30 H38 M22 14 V46 M10 20 Q22 26 34 20 M10 40 Q22 34 34 40" stroke="#003B71" stroke-width="1.6" fill="none"/>
+              <text x="80" y="26" fill="#003B71" font-family="Georgia, serif" font-size="14" font-weight="700" text-anchor="middle">PAN-AMERICAN</text>
+              <text x="80" y="42" fill="#9F1D2C" font-family="Georgia, serif" font-size="10" font-style="italic" text-anchor="middle">Life Insurance</text>
+            </svg>
+          </div>
+
+          <div class="logo-pill logo-pill--svg" aria-label="Excel Credit">
+            <svg viewBox="0 0 130 60" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 18 L26 30 L10 42 M30 18 L30 42 L46 42" stroke="#0099A8" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="86" y="28" fill="#0099A8" font-family="Arial, sans-serif" font-size="14" font-weight="800" text-anchor="middle" letter-spacing="2">EXCEL</text>
+              <text x="86" y="44" fill="#666" font-family="Arial, sans-serif" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="3">CREDIT</text>
+            </svg>
+          </div>
+
+          <div class="logo-pill logo-pill--svg" aria-label="Excel Seguros">
+            <svg viewBox="0 0 130 60" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 14 L22 46 M14 30 L30 30 M14 14 L30 14 M14 46 L30 46" stroke="#1B7A8F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <path d="M38 14 L46 46 L52 22 L58 46 L64 14" stroke="#1B7A8F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="92" y="28" fill="#1B7A8F" font-family="Arial, sans-serif" font-size="13" font-weight="800" text-anchor="middle" letter-spacing="2">EXCEL</text>
+              <text x="92" y="44" fill="#666" font-family="Arial, sans-serif" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="2">SEGUROS</text>
+            </svg>
+          </div>
         </div>
         <p class="fineprint" style="margin-top:1.2rem">Coberturas alineadas con estándares <strong>Fasecolda</strong>.</p>
       </div>
@@ -1033,6 +1064,84 @@
       </div>
     </section>
 
+
+    <!-- RENOVACIÓN -->
+    <section class="section renovacion-section" id="renovacion">
+      <div class="container">
+        <header class="section-head center">
+          <span class="eyebrow">Renovación de póliza</span>
+          <h2>Renueva tu seguro sin <em class="bloom bloom--orange">papeleo</em>.</h2>
+          <p>¿Tu póliza está por vencer o ya venció? Diligencia este formulario y un asesor te contacta por WhatsApp en menos de 24h hábiles.</p>
+        </header>
+
+        <div class="renovacion-card">
+          <form class="renovacion-form" id="renovacionForm" novalidate>
+            <div class="ren-grid">
+              <label class="qfield">
+                <span>Nombre completo</span>
+                <input type="text" name="nombre" required placeholder="Tu nombre" />
+              </label>
+              <label class="qfield">
+                <span>Cédula o NIT</span>
+                <input type="text" name="documento" required inputmode="numeric" placeholder="Número de documento" />
+              </label>
+              <label class="qfield">
+                <span>WhatsApp</span>
+                <input type="tel" name="telefono" required placeholder="3XX XXX XXXX" />
+              </label>
+              <label class="qfield">
+                <span>Email</span>
+                <input type="email" name="email" placeholder="tucorreo@ejemplo.com" />
+              </label>
+              <label class="qfield">
+                <span>Aseguradora actual</span>
+                <select name="aseguradora" required>
+                  <option value="">Selecciona…</option>
+                  <option>SBS Seguros</option>
+                  <option>AXA Colpatria</option>
+                  <option>Pan-American Life</option>
+                  <option>Excel Credit</option>
+                  <option>Excel Seguros</option>
+                  <option>Otra aseguradora</option>
+                  <option>No la recuerdo</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Tipo de seguro</span>
+                <select name="tipo" required>
+                  <option value="">Selecciona…</option>
+                  <option>Accidentes personales</option>
+                  <option>Vida deudor</option>
+                  <option>Cyber</option>
+                  <option>D&amp;O</option>
+                  <option>Responsabilidad Civil</option>
+                  <option>Daños Materiales Pymes</option>
+                  <option>Infidelidad y riesgos financieros</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+              <label class="qfield">
+                <span>Número de póliza (opcional)</span>
+                <input type="text" name="poliza" placeholder="Ej. 12345-678" />
+              </label>
+              <label class="qfield">
+                <span>Fecha de vencimiento</span>
+                <input type="date" name="vencimiento" />
+              </label>
+              <label class="qfield qfield-full">
+                <span>¿Quieres mantener las mismas coberturas o ajustarlas?</span>
+                <textarea name="ajustes" rows="3" placeholder="Cuéntanos qué quieres mantener, mejorar o cambiar"></textarea>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-orange full">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91zM12 20.06a8 8 0 0 1-4.07-1.11l-.29-.17-3.06.78.82-2.98-.19-.31A8 8 0 1 1 12 20.06z"/></svg>
+              Enviar solicitud de renovación
+            </button>
+            <p class="quote-note">Tu solicitud se envía por WhatsApp a un asesor especializado. No spam, respuesta humana.</p>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACTO -->
     <section class="section contacto" id="contacto">
