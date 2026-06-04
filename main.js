@@ -217,7 +217,7 @@
     'vida-deudor': {
       eyebrow: 'Empresas · Línea financiera',
       num: '01',
-      image: 'assets/emp-vida-deudor.jpg',
+      image: 'assets/vidadeudor.png',
       title: 'Vida Deudor',
       lead: 'Protección financiera que salvaguarda tu familia y tu patrimonio. Cubre el saldo de la deuda si el titular fallece o queda incapacitado.',
       cubre: [
@@ -232,7 +232,7 @@
     'infidelidad': {
       eyebrow: 'Empresas · Línea financiera',
       num: '02',
-      image: 'assets/emp-infidelidad.jpg',
+      image: 'assets/infidelidad.png',
       tag: 'Antifraude',
       title: 'Infidelidad y riesgos financieros',
       lead: 'Antifraude corporativo para entidades financieras y firmas contables.',
@@ -251,7 +251,7 @@
     'cyber': {
       eyebrow: 'Empresas · Línea financiera',
       num: '03',
-      image: 'assets/emp-cyber.jpg',
+      image: 'assets/cyber.png',
       tag: 'Defensa digital',
       title: 'Seguro Cyber',
       lead: 'Defensa digital integral para empresas con datos sensibles.',
@@ -269,7 +269,7 @@
     'do': {
       eyebrow: 'Empresas · Línea financiera',
       num: '04',
-      image: 'assets/emp-do.jpg',
+      image: 'assets/do.png',
       tag: 'Talento directivo',
       title: 'D&O · Directores y Administradores',
       lead: 'Protección del talento directivo. Blindaje patrimonial personal para directores y funcionarios.',
@@ -286,7 +286,7 @@
     'rc': {
       eyebrow: 'Empresas · Línea financiera',
       num: '05',
-      image: 'assets/emp-rc.jpg',
+      image: 'assets/responsabilidadcivil.png',
       title: 'Responsabilidad Civil Extracontractual (RCE)',
       lead: 'Escudo legal para imprevistos derivados de tu operación empresarial.',
       cubre: [
@@ -304,7 +304,7 @@
     'pymes': {
       eyebrow: 'Empresas · Línea financiera',
       num: '06',
-      image: 'assets/emp-pymes.jpg',
+      image: 'assets/danosmateriales.png',
       tag: 'Capital tangible',
       title: 'Daños Materiales Pymes',
       lead: 'Tu capital tangible protegido frente a siniestros. Para empresas pequeñas o medianas.',
@@ -325,7 +325,7 @@
     // ===== PERSONAS =====
     'accidentes': {
       eyebrow: 'Personas · Plan Potenciado para Florecer',
-      image: 'assets/per-accidentes.jpg',
+      image: 'assets/accidentespersonales.png',
       title: 'Accidentes personales',
       lead: 'Tres planes anuales: Plan A $150.000 ($10M), Plan A $170.000 ($15M) y Plan B AMPLIADO $400.000 ($50M con asistencias VIP).',
       cubre: [
@@ -341,7 +341,7 @@
     },
     'hogar': {
       eyebrow: 'Personas · Asistencia incluida',
-      image: 'assets/per-hogar.jpg',
+      image: 'assets/asistenciadelhogar.png',
       title: 'Asistencias del hogar',
       lead: 'Plomería, cerrajería y electricidad cubiertas. Soporte completo e individualizado cuando algo se sale de tus manos.',
       cubre: [
@@ -355,7 +355,7 @@
     },
     'juridica': {
       eyebrow: 'Personas · Asistencia incluida',
-      image: 'assets/per-juridica.jpg',
+      image: 'assets/asistenciajuridica.png',
       title: 'Asistencia jurídica',
       lead: 'Derechos de petición, tutelas, pensión de invalidez y sobrevivientes con minutas y acompañamiento legal continuo.',
       cubre: [
