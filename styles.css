@@ -1260,6 +1260,12 @@ body[data-view="empresas"] .only-personas { display: none; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
+/* ---- CTA a la comparativa completa (landing) ---- */
+.plans-detail-link {
+  display: flex; justify-content: center;
+  margin-top: 1.5rem;
+}
+
 /* ---- Eslogan oficial Iberis (personas / empresas) ---- */
 .slogan {
   display: inline-flex; align-items: center; gap: .55rem;
