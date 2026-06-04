@@ -1104,6 +1104,8 @@ body[data-view="empresas"] .only-personas { display: none; }
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   margin-top: 1.5rem;
   counter-reset: step;
+  list-style: none;
+  padding: 0;
 }
 .how-step {
   position: relative;
