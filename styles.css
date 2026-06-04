@@ -1258,6 +1258,32 @@ body[data-view="empresas"] .only-personas { display: none; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
+/* ---- Eslogan oficial Iberis (personas / empresas) ---- */
+.slogan {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-style: italic; font-weight: 600;
+  color: var(--brand-700);
+  font-size: 1.02rem; line-height: 1.4;
+  margin: 0 0 1.2rem;
+  padding: .55rem .9rem;
+  border-left: 3px solid var(--orange-500);
+  background: var(--orange-100);
+  border-radius: 0 10px 10px 0;
+}
+.slogan::before {
+  content: '"'; font-size: 1.6rem; font-weight: 700;
+  color: var(--orange-500); line-height: 0; margin-top: .5rem;
+}
+.slogan--footer {
+  background: transparent; border-left: 0;
+  color: rgba(255,255,255,.85);
+  padding: 0; margin: .5rem 0 0;
+  font-size: .9rem;
+}
+.slogan--footer::before {
+  color: var(--orange-300);
+}
+
 /* ==========================================================================
    22. V4 — FASE 3 · cotizador · seguro educativo · testimonios · logos reales
    ========================================================================== */
