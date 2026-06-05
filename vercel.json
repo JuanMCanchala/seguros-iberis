@@ -1,4 +1,13 @@
 {
   "cleanUrls": false,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/colombia-tercer-hub-fintech.html",        "destination": "/blog/colombia-tercer-hub-fintech.html",        "permanent": true },
+    { "source": "/agencia-seguros-blindaje-pymes-fintech.html","destination": "/blog/agencia-seguros-blindaje-pymes-fintech.html","permanent": true },
+    { "source": "/hack-financiero-plan-proteccion.html",    "destination": "/blog/hack-financiero-plan-proteccion.html",    "permanent": true },
+    { "source": "/desafio-salud-colombia-tutelas.html",     "destination": "/blog/desafio-salud-colombia-tutelas.html",     "permanent": true },
+    { "source": "/seguro-cyber-2026.html",                  "destination": "/blog/seguro-cyber-2026.html",                  "permanent": true },
+    { "source": "/seguros-pyme-obligatorios-colombia.html", "destination": "/blog/seguros-pyme-obligatorios-colombia.html", "permanent": true },
+    { "source": "/blog.html",                               "destination": "/blog/",                                        "permanent": true }
+  ]
 }
