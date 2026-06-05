@@ -127,7 +127,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     const header = document.getElementById('siteHeader');
     addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 14), { passive: true });
-    if (/[?&]review=1\b/.test(location.search)) { var s = document.createElement('script'); s.src = 'review-mode.js'; s.defer = true; document.body.appendChild(s); }
+    (function(){var u=/[?&]review=1\b/.test(location.search),g=sessionStorage.getItem('sib_review_mode')==='1';if(!u&&!g)return;if(u)sessionStorage.setItem('sib_review_mode','1');var s=document.createElement('script');s.src='review-mode.js';s.defer=true;document.body.appendChild(s);})()
 
     // ---- Renovación → Supabase ----
     (function () {

@@ -1182,6 +1182,6 @@
 
   <script src="main.js"></script>
   <!-- Review mode (Figma-like comments) — solo se activa con ?review=1 -->
-  <script>if(/[?&]review=1\b/.test(location.search)){var s=document.createElement('script');s.src='review-mode.js';s.defer=true;document.body.appendChild(s);}</script>
+  <script>(function(){var u=/[?&]review=1\b/.test(location.search),g=sessionStorage.getItem('sib_review_mode')==='1';if(!u&&!g)return;if(u)sessionStorage.setItem('sib_review_mode','1');var s=document.createElement('script');s.src='review-mode.js';s.defer=true;document.body.appendChild(s);})()</script>
 </body>
 </html>

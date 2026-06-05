@@ -5,7 +5,12 @@
 */
 (function () {
   'use strict';
-  if (!/[?&]review=1\b/.test(location.search)) return;
+  // Activar si esta en la URL o si ya fue activado en esta sesion (sessionStorage).
+  const SESSION_KEY = 'sib_review_mode';
+  const urlHasParam = /[?&]review=1\b/.test(location.search);
+  const sessionActive = sessionStorage.getItem(SESSION_KEY) === '1';
+  if (!urlHasParam && !sessionActive) return;
+  if (urlHasParam) sessionStorage.setItem(SESSION_KEY, '1');
 
   const SUPABASE_URL = 'https://ltepezsefdypxzbmfise.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_KgxN0hKQjtopZ-OWLPGtYg_ZX6ZYAZz';
@@ -123,6 +128,8 @@
     .r-panel .r-count { background:#F28E42; padding:.15rem .55rem; border-radius:999px; font-size:.72rem; font-weight:800; }
     .r-add { width:100%; padding:.7rem; background:#F28E42; color:#fff; border:0; font-weight:700; cursor:pointer; font-size:.85rem; transition: background .15s; }
     .r-add:hover { background:#DD7C2E; }
+    .r-exit { width:100%; padding:.55rem; background:transparent; color:#97A6AB; border:0; border-top:1px solid #eef0f1; font-weight:600; cursor:pointer; font-size:.75rem; transition: color .15s, background .15s; }
+    .r-exit:hover { background:#fdebdc; color:#B5560C; }
     .r-list { list-style:none; margin:0; padding:0; overflow-y:auto; max-height: 45vh; }
     .r-list li { padding:.7rem 1rem; border-bottom:1px solid #eef0f1; cursor:pointer; font-size:.85rem; transition: background .15s; }
     .r-list li:hover { background:#f5f8f9; }
@@ -176,6 +183,7 @@
       <div class="r-head"><span>Comentarios en esta página</span><span class="r-count">0</span></div>
       <button class="r-add" type="button">+ Añadir comentario</button>
       <ul class="r-list"></ul>
+      <button class="r-exit" type="button" title="Salir del modo revisión">✕ Salir del modo revisión</button>
     </div>
   `;
   document.body.appendChild(root);
@@ -186,6 +194,16 @@
   const list = panel.querySelector('.r-list');
   const countEl = panel.querySelector('.r-count');
   const addBtn = panel.querySelector('.r-add');
+  const exitBtn = panel.querySelector('.r-exit');
+
+  exitBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!confirm('¿Salir del modo revisión? El widget desaparecerá hasta que vuelvas a entrar con ?review=1.')) return;
+    sessionStorage.removeItem(SESSION_KEY);
+    const url = new URL(location.href);
+    url.searchParams.delete('review');
+    location.href = url.toString();
+  });
 
   // ---------- Helpers ----------
   function escape(s) {
