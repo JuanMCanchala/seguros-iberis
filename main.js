@@ -598,30 +598,61 @@
     showStep(0);
   }
 
-  /* ---------- 10. Cotizador (continuación) — Submit → WhatsApp con mensaje pre-armado ---------- */
-  const labels = {
-    producto: 'Producto', ciudad: 'Ciudad', edad: 'Edad', nombre: 'Nombre',
-    telefono: 'Teléfono', tamano: 'Tamaño', sector: 'Sector', empresa: 'Empresa'
-  };
-  quoteForms.forEach(form => {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const tipo = form.dataset.form === 'empresas' ? 'EMPRESA' : 'PERSONA';
-      const lines = [`*Solicitud de cotización (${tipo})*`, ''];
-      for (const [k, v] of data.entries()) {
-        if (!v || !String(v).trim()) continue;
-        lines.push(`• *${labels[k] || k}*: ${v}`);
-      }
-      lines.push('', 'Quiero recibir asesoría personalizada. Gracias 🌼');
-      const msg = encodeURIComponent(lines.join('\n'));
-      window.open(`https://wa.me/${WA_PHONE}?text=${msg}`, '_blank', 'noopener');
+  /* ---------- 10. Cotizador (continuación) — Submit → Supabase ---------- */
+  const SB_URL = 'https://ltepezsefdypxzbmfise.supabase.co';
+  const SB_KEY = 'sb_publishable_KgxN0hKQjtopZ-OWLPGtYg_ZX6ZYAZz';
 
-      // Feedback visual
+  quoteForms.forEach(form => {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const d = Object.fromEntries(new FormData(form).entries());
+      const esEmpresa = form.dataset.form === 'empresas';
+      const extra = [];
+      if (d.edad) extra.push('Edad: ' + d.edad);
+      if (d.tamano) extra.push('Tamaño: ' + d.tamano);
+      if (d.sector) extra.push('Sector: ' + d.sector);
+      const payload = {
+        tipo: 'cotizacion',
+        audiencia: esEmpresa ? 'empresas' : 'personas',
+        producto: (d.producto || '').trim() || null,
+        nombre: (d.nombre || d.empresa || '').trim(),
+        telefono: (d.telefono || '').trim(),
+        ciudad: (d.ciudad || '').trim() || null,
+        empresa: (d.empresa || '').trim() || null,
+        notas: extra.join(' · ') || null,
+      };
+
       const btn = form.querySelector('button[type="submit"]');
+      const note = form.querySelector('.quote-note');
+      const noteOriginal = note ? note.textContent : '';
       const original = btn.innerHTML;
-      btn.innerHTML = '✓ Abriendo WhatsApp…';
-      setTimeout(() => { btn.innerHTML = original; }, 2200);
+      btn.disabled = true;
+      btn.innerHTML = 'Enviando…';
+
+      try {
+        const r = await fetch(`${SB_URL}/rest/v1/seguros_iberis_cotizaciones`, {
+          method: 'POST',
+          headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify(payload),
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        form.reset();
+        btn.innerHTML = '✓ Solicitud enviada';
+        btn.style.background = '#1F9D7C';
+        if (note) { note.textContent = '¡Listo! Un asesor te contactará en menos de 24h hábiles.'; note.style.color = '#1F9D7C'; }
+        setTimeout(() => {
+          btn.innerHTML = original;
+          btn.style.background = '';
+          btn.disabled = false;
+          if (note) { note.textContent = noteOriginal; note.style.color = ''; }
+        }, 4000);
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = original;
+        if (note) { note.textContent = 'No pudimos enviar tu solicitud. Inténtalo de nuevo.'; note.style.color = '#B5560C'; }
+        console.error('[cotizador]', err);
+      }
     });
   });
 

@@ -30,7 +30,7 @@
       </a>
       <nav class="desktop-nav" aria-label="Navegación">
         <a href="index.html">Inicio</a>
-        <a href="index.html#coberturas">Personas</a>
+        <a href="index.html">Personas</a>
         <a href="index.html#lineas">Empresas</a>
         <a href="blog/">Blog</a>
         <a href="index.html#contacto">Contacto</a>
@@ -59,35 +59,19 @@
         <header class="section-head center">
           <span class="eyebrow">Renovación de póliza</span>
           <h1>Renueva tu seguro sin <em class="bloom bloom--orange">papeleo</em>.</h1>
-          <p>¿Tu póliza está por vencer o ya venció? Diligencia este formulario y un asesor humano te contactará en menos de 24 horas hábiles.</p>
+          <p>¿Tu póliza está por vencer o ya venció? Solo necesitamos tu cédula — ya tenemos el resto de tus datos. Un asesor te contactará en menos de 24 horas hábiles.</p>
         </header>
 
         <div class="renovacion-card">
           <form class="renovacion-form" id="renovacionForm" novalidate>
             <div class="ren-grid">
               <label class="qfield qfield-full">
-                <span>Nombre <em>*</em></span>
-                <input type="text" name="nombre" required minlength="2" maxlength="120" placeholder="Nombre completo" />
-              </label>
-              <label class="qfield qfield-full">
                 <span>Cédula <em>*</em></span>
-                <input type="text" name="cedula" required minlength="5" maxlength="30" inputmode="numeric" placeholder="Documento de identidad" />
-              </label>
-              <label class="qfield qfield-full">
-                <span>Teléfono <em>*</em></span>
-                <input type="tel" name="telefono" required minlength="7" maxlength="30" placeholder="Teléfono" />
-              </label>
-              <label class="qfield qfield-full">
-                <span>Fecha de nacimiento <em>*</em></span>
-                <input type="date" name="nacimiento" required />
-              </label>
-              <label class="qfield qfield-full">
-                <span>Email <em>*</em></span>
-                <input type="email" name="email" required maxlength="150" placeholder="Email" />
+                <input type="text" name="cedula" required minlength="4" maxlength="30" inputmode="numeric" placeholder="Tu número de documento" autocomplete="off" />
               </label>
             </div>
-            <button type="submit" class="btn btn-orange full">Enviar</button>
-            <p class="quote-note" id="renovacionNote">Un asesor te contactará en menos de 24h hábiles.</p>
+            <button type="submit" class="btn btn-orange full">Solicitar renovación</button>
+            <p class="quote-note" id="renovacionNote">Con tu cédula identificamos tu póliza. Un asesor te contactará en menos de 24h hábiles.</p>
           </form>
         </div>
       </div>
@@ -143,13 +127,7 @@
         e.preventDefault();
         if (!form.reportValidity()) return;
         const d = Object.fromEntries(new FormData(form).entries());
-        const payload = {
-          nombre: d.nombre.trim(),
-          cedula: d.cedula.trim(),
-          telefono: d.telefono.trim(),
-          nacimiento: d.nacimiento,
-          email: d.email.trim().toLowerCase(),
-        };
+        const payload = { cedula: d.cedula.trim() };
         const original = btn.textContent;
         btn.disabled = true;
         btn.textContent = 'Enviando…';
@@ -173,8 +151,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
               </div>
               <h3>¡Solicitud recibida!</h3>
-              <p>Hemos registrado tu solicitud de renovación. Un asesor humano te contactará por el teléfono que nos compartiste en menos de <strong>24h hábiles</strong>.</p>
-              <p class="ren-success-name">Gracias, ${payload.nombre.split(' ')[0]} 🌼</p>
+              <p>Identificamos tu póliza con la cédula <strong>${payload.cedula}</strong>. Un asesor humano te contactará para gestionar tu renovación en menos de <strong>24h hábiles</strong>.</p>
+              <p class="ren-success-name">Gracias 🌼</p>
               <p style="margin-top:1.4rem"><a href="index.html" class="btn btn-ghost">Volver al inicio</a></p>
             </div>
           `;

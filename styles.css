@@ -1311,6 +1311,22 @@ body[data-view="empresas"] .only-personas { display: none; }
   font-size: .82rem; color: var(--ink-500);
 }
 
+/* Chip de producto pre-seleccionado (cotizar.html) */
+.cot-producto-chip {
+  display: flex; align-items: center; gap: .55rem;
+  background: var(--brand-050);
+  border: 1px solid var(--brand-100);
+  border-radius: 12px;
+  padding: .7rem 1rem;
+  margin-bottom: 1.3rem;
+  color: var(--brand-800); font-weight: 700; font-size: .92rem;
+}
+.cot-producto-chip svg {
+  flex: none; color: var(--ok);
+  background: rgba(31,157,124,.15); border-radius: 50%;
+  padding: 3px; width: 24px; height: 24px;
+}
+
 /* Estado de éxito */
 .ren-success { text-align: center; padding: 1rem 0; }
 .ren-success-ico {

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#224859" />
+  <meta name="description" content="Cotiza o adquiere tu seguro con Iberis · Diligencia el formulario y un asesor humano te contactará para finalizar tu compra en menos de 24 horas hábiles." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://segurosibero.vercel.app/cotizar.html" />
+  <meta property="og:title" content="Cotizar · Seguros Iberis" />
+  <meta property="og:description" content="Diligencia el formulario y un asesor te contactará para finalizar tu compra." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://segurosibero.vercel.app/cotizar.html" />
+  <meta property="og:image" content="https://segurosibero.vercel.app/assets/logo_header.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Cotizar tu seguro · Seguros Iberis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-view="personas" class="is-subpage">
+  <a href="#contenido" class="skip-link">Saltar al contenido</a>
+
+  <header class="site-header is-scrolled" id="siteHeader">
+    <div class="container nav-bar">
+      <a href="index.html" class="brand" aria-label="Inicio Seguros Iberis">
+        <img src="assets/logo_header.png" alt="Agencia de Seguros Iberis" class="brand-logo" />
+      </a>
+      <nav class="desktop-nav" aria-label="Navegación">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#lineas">Empresas</a>
+        <a href="blog/">Blog</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="renovacion.html" class="btn btn-orange nav-cta nav-cta--renovacion"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><span>Renovación</span></a>
+        <a href="index.html#contacto" class="btn btn-primary nav-cta">Quiero asesoría</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <div class="container">
+        <a href="index.html">Inicio</a>
+        <span class="bc-sep" aria-hidden="true">›</span>
+        <span class="bc-current" id="bcCurrent">Cotizar</span>
+      </div>
+    </nav>
+
+    <section class="section renovacion-section" id="cotizar">
+      <div class="container">
+        <header class="section-head center">
+          <span class="eyebrow" id="cotEyebrow">Cotización</span>
+          <h1 id="cotTitle">Cotiza tu <em class="bloom bloom--orange">seguro</em>.</h1>
+          <p id="cotSub">Diligencia el formulario y un asesor humano te contactará para finalizar el proceso en menos de 24 horas hábiles.</p>
+        </header>
+
+        <div class="renovacion-card">
+          <div class="cot-producto-chip" id="cotChip" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span id="cotChipText"></span>
+          </div>
+
+          <form class="renovacion-form" id="cotizarForm" novalidate>
+            <div class="ren-grid">
+              <label class="qfield qfield-full" id="fieldProductoSelect" hidden>
+                <span>¿Qué quieres asegurar? <em>*</em></span>
+                <select name="producto">
+                  <option value="">Selecciona una opción…</option>
+                  <optgroup label="Personas">
+                    <option>Accidentes personales</option>
+                    <option>Asistencia al hogar</option>
+                    <option>Asistencia jurídica</option>
+                  </optgroup>
+                  <optgroup label="Empresas">
+                    <option>Vida Deudor</option>
+                    <option>Infidelidad y riesgos financieros</option>
+                    <option>Cyber</option>
+                    <option>D&amp;O (directores y administradores)</option>
+                    <option>Responsabilidad Civil</option>
+                    <option>Daños Materiales Pymes</option>
+                  </optgroup>
+                  <option>No estoy seguro / quiero orientación</option>
+                </select>
+              </label>
+              <label class="qfield qfield-full">
+                <span>Nombre completo <em>*</em></span>
+                <input type="text" name="nombre" required minlength="2" maxlength="120" placeholder="¿Cómo te llamas?" />
+              </label>
+              <label class="qfield qfield-full">
+                <span>Teléfono / WhatsApp <em>*</em></span>
+                <input type="tel" name="telefono" required minlength="7" maxlength="30" placeholder="3XX XXX XXXX" />
+              </label>
+              <label class="qfield qfield-full">
+                <span>Email</span>
+                <input type="email" name="email" maxlength="150" placeholder="tucorreo@ejemplo.com" />
+              </label>
+              <label class="qfield qfield-full">
+                <span>Ciudad</span>
+                <input type="text" name="ciudad" maxlength="60" placeholder="Tu ciudad" />
+              </label>
+              <label class="qfield qfield-full" id="fieldEmpresa" hidden>
+                <span>Empresa</span>
+                <input type="text" name="empresa" maxlength="120" placeholder="Razón social" />
+              </label>
+              <label class="qfield qfield-full">
+                <span>Mensaje (opcional)</span>
+                <textarea name="notas" rows="3" maxlength="2000" placeholder="Cuéntanos qué necesitas"></textarea>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-orange full" id="cotSubmit">Enviar solicitud</button>
+            <p class="quote-note" id="cotNote">Un asesor te contactará en menos de 24h hábiles. No spam.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="foot-brand">
+        <img src="assets/logo_header.png" alt="Seguros Iberis" class="foot-logo" />
+        <p>«Has que tu futuro pueda germinar.» Tu aliado como agencia de seguros con más de 5 años acompañando a personas y compañías con cobertura a nivel nacional.</p>
+        <p class="slogan slogan--footer">Contigo hoy, mañana y siempre.</p>
+      </div>
+      <div class="foot-col"><h4>Personas</h4><ul><li><a href="accidentes-personales.html">Accidentes personales</a></li><li><a href="asistencias-hogar.html">Asistencia hogar</a></li><li><a href="asistencia-juridica.html">Asistencia jurídica</a></li></ul></div>
+      <div class="foot-col"><h4>Empresas</h4><ul><li><a href="vida-deudor.html">Vida Deudor</a></li><li><a href="infidelidad.html">Infidelidad</a></li><li><a href="cyber.html">Cyber</a></li><li><a href="directores-administradores.html">D&amp;O</a></li><li><a href="responsabilidad-civil.html">Responsabilidad Civil</a></li><li><a href="danos-materiales-pymes.html">Daños Pymes</a></li></ul></div>
+      <div class="foot-col">
+        <h4>Contacto directo</h4>
+        <ul class="foot-info">
+          <li><a href="tel:+576013907370"><strong>Bogotá:</strong> 601 390 7370</a></li>
+          <li><a href="https://wa.me/573336025110" target="_blank" rel="noopener">WhatsApp asesoría</a></li>
+          <li><a href="mailto:servicioalcliente@segurosiberis.co">servicioalcliente@segurosiberis.co</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <small>© <span id="year">2026</span> Agencia de Seguros Iberis.</small>
+      <small>Documentos sujetos a términos y condiciones. Vigencia 2026.</small>
+    </div>
+  </footer>
+
+  <a class="float-whats" href="https://wa.me/573336025110?text=Hola%2C%20quiero%20cotizar%20un%20seguro" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const header = document.getElementById('siteHeader');
+    addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 14), { passive: true });
+    if (/[?&]review=1\b/.test(location.search) || sessionStorage.getItem('sib_review_mode') === '1') {
+      if (/[?&]review=1\b/.test(location.search)) sessionStorage.setItem('sib_review_mode', '1');
+      var rs = document.createElement('script'); rs.src = 'review-mode.js'; rs.defer = true; document.body.appendChild(rs);
+    }
+
+    // ---- Cotizar → Supabase ----
+    (function () {
+      const PRODUCTOS = {
+        'accidentes-personales': { label: 'Accidentes personales', aud: 'personas' },
+        'asistencias-hogar':     { label: 'Asistencia al hogar', aud: 'personas' },
+        'asistencia-juridica':   { label: 'Asistencia jurídica', aud: 'personas' },
+        'vida-deudor':           { label: 'Vida Deudor', aud: 'empresas' },
+        'infidelidad':           { label: 'Infidelidad y riesgos financieros', aud: 'empresas' },
+        'cyber':                 { label: 'Cyber', aud: 'empresas' },
+        'directores-administradores': { label: 'D&O · Directores y Administradores', aud: 'empresas' },
+        'responsabilidad-civil': { label: 'Responsabilidad Civil', aud: 'empresas' },
+        'danos-materiales-pymes':{ label: 'Daños Materiales Pymes', aud: 'empresas' },
+      };
+      const PLANES = {
+        'a150': 'Plan A · $150.000 (cobertura $10M)',
+        'a170': 'Plan A · $170.000 (cobertura $15M)',
+        'b400': 'Plan B · $400.000 VIP (cobertura $50M + asistencias)',
+      };
+
+      const params = new URLSearchParams(location.search);
+      const prodKey = (params.get('producto') || '').toLowerCase();
+      const planKey = (params.get('plan') || '').toLowerCase();
+      const prod = PRODUCTOS[prodKey] || null;
+      const planLabel = PLANES[planKey] || (params.get('plan') || '');
+      const isCompra = !!planLabel;
+
+      const chip = document.getElementById('cotChip');
+      const chipText = document.getElementById('cotChipText');
+      const selectField = document.getElementById('fieldProductoSelect');
+      const empresaField = document.getElementById('fieldEmpresa');
+      const eyebrow = document.getElementById('cotEyebrow');
+      const title = document.getElementById('cotTitle');
+      const sub = document.getElementById('cotSub');
+      const bc = document.getElementById('bcCurrent');
+
+      let audiencia = prod ? prod.aud : null;
+
+      if (prod) {
+        // Producto fijado por URL → chip + no select
+        let txt = prod.label;
+        if (planLabel) txt += ' · ' + planLabel;
+        chipText.textContent = txt;
+        chip.hidden = false;
+        selectField.hidden = true;
+        if (prod.aud === 'empresas') empresaField.hidden = false;
+        bc.textContent = isCompra ? 'Adquirir ' + prod.label : 'Cotizar ' + prod.label;
+        if (isCompra) {
+          eyebrow.textContent = 'Adquiere tu plan';
+          title.innerHTML = 'Estás a un paso de <em class="bloom bloom--orange">protegerte</em>.';
+          sub.textContent = 'Déjanos tus datos y un asesor te contacta para finalizar la compra y activar tu cobertura.';
+          document.getElementById('cotSubmit').textContent = 'Quiero adquirir este plan';
+        } else {
+          title.innerHTML = 'Cotiza <em class="bloom bloom--orange">' + prod.label + '</em>.';
+        }
+      } else {
+        // Sin producto → mostrar el select
+        selectField.hidden = false;
+        selectField.querySelector('select').required = true;
+      }
+
+      const form = document.getElementById('cotizarForm');
+      const note = document.getElementById('cotNote');
+      const btn = document.getElementById('cotSubmit');
+      const SB_URL = 'https://ltepezsefdypxzbmfise.supabase.co';
+      const SB_KEY = 'sb_publishable_KgxN0hKQjtopZ-OWLPGtYg_ZX6ZYAZz';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const d = Object.fromEntries(new FormData(form).entries());
+        const productoFinal = prod ? prod.label : (d.producto || '').trim();
+        const payload = {
+          tipo: isCompra ? 'compra' : 'cotizacion',
+          audiencia: audiencia,
+          producto: productoFinal || null,
+          plan: planLabel || null,
+          nombre: (d.nombre || '').trim(),
+          telefono: (d.telefono || '').trim(),
+          email: (d.email || '').trim().toLowerCase() || null,
+          ciudad: (d.ciudad || '').trim() || null,
+          empresa: (d.empresa || '').trim() || null,
+          notas: (d.notas || '').trim() || null,
+        };
+        const original = btn.textContent;
+        btn.disabled = true; btn.textContent = 'Enviando…';
+        note.textContent = ''; note.style.color = '';
+        try {
+          const r = await fetch(`${SB_URL}/rest/v1/seguros_iberis_cotizaciones`, {
+            method: 'POST',
+            headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+            body: JSON.stringify(payload),
+          });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          form.innerHTML = `
+            <div class="ren-success">
+              <div class="ren-success-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <h3>${isCompra ? '¡Solicitud de compra recibida!' : '¡Solicitud recibida!'}</h3>
+              <p>Hemos registrado tu solicitud${productoFinal ? ' de <strong>' + productoFinal + '</strong>' : ''}. Un asesor humano te contactará en menos de <strong>24h hábiles</strong> para ${isCompra ? 'finalizar la compra' : 'darte tu cotización'}.</p>
+              <p class="ren-success-name">Gracias, ${payload.nombre.split(' ')[0]} 🌼</p>
+              <p style="margin-top:1.4rem"><a href="index.html" class="btn btn-ghost">Volver al inicio</a></p>
+            </div>`;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          btn.disabled = false; btn.textContent = original;
+          note.textContent = 'No pudimos enviar tu solicitud. Verifica los datos e inténtalo de nuevo.';
+          note.style.color = '#B5560C';
+          console.error('[cotizar]', err);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
