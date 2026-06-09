@@ -1387,10 +1387,10 @@ body[data-view="empresas"] .only-personas { display: none; }
 
 /* ---- Aliados refinados ---- */
 .logo-pill-img {
-  background: #fff; padding: .9rem 1rem;
+  background: #fff; padding: .7rem .9rem;
 }
 .logo-pill-img img {
-  max-width: 100%; max-height: 36px; width: auto; height: auto;
+  max-width: 100%; max-height: 56px; width: auto; height: auto;
   object-fit: contain;
   filter: grayscale(.15);
   transition: filter .25s var(--ease);
