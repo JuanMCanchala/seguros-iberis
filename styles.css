@@ -203,6 +203,14 @@ p { margin: 0 0 1rem; }
 .section-head.center { text-align: center; }
 .section-head h2 { font-size: var(--fs-h2); }
 .section-head p { color: var(--ink-500); font-size: var(--fs-lead); }
+/* Header asistencias: titulo grande (Figma 64px) + eyebrow pill muteado */
+.services-head { max-width: 880px; }
+.services-head h2 { font-size: var(--fs-h1); color: var(--brand-600); line-height: 1.08; letter-spacing: -.02em; }
+.services-head .eyebrow--soft {
+  color: #99B5BF; background: var(--brand-100);
+  padding: .32rem .85rem; border-radius: 999px; letter-spacing: .14em;
+}
+.services-head .eyebrow--soft::before { display: none; }
 .lead { color: var(--ink-500); font-size: var(--fs-lead); }
 
 .section { padding: var(--section-y) 0; position: relative; }
@@ -246,17 +254,24 @@ p { margin: 0 0 1rem; }
 }
 .hero-title {
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--fs-h1);
   letter-spacing: -.025em;
   line-height: 1.05;
-  color: var(--brand-900);
+  color: var(--brand-700);
   margin-bottom: 1.2rem;
 }
 .hero-title em {
   font-style: italic;
   background: linear-gradient(120deg, var(--brand-700), var(--brand-400));
   -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* Hero personas: titulo uniforme #224859 (Figma), sin gradiente/italica */
+.hero--personas .hero-title em {
+  font-style: normal;
+  background: none;
+  -webkit-text-fill-color: var(--brand-700);
+  color: var(--brand-700);
 }
 .hero-sub { color: var(--ink-500); font-size: var(--fs-lead); max-width: 540px; margin-bottom: 2rem; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: 2.2rem; }
@@ -358,11 +373,11 @@ p { margin: 0 0 1rem; }
 /* ---- Hero personas: foto a sangre que se funde con el fondo ---- */
 .hero-photo-bleed {
   position: absolute; top: 0; right: 0; height: 100%;
-  width: clamp(440px, 56%, 1180px);
-  object-fit: cover; object-position: 55% center;
+  width: clamp(460px, 62%, 1300px);
+  object-fit: cover; object-position: 46% center;
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 30%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 30%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 26%);
 }
 @media (max-width: 980px) {
   .hero-photo-bleed {
@@ -699,20 +714,21 @@ p { margin: 0 0 1rem; }
 
 /* ---------- 13. FAQ ---------- */
 .faq-grid { align-items: stretch; }
+@media (min-width: 900px) { .faq-grid { grid-template-columns: 1.35fr 1fr; } }
 .col-faq { display: flex; flex-direction: column; gap: .6rem; }
 
 /* FAQ intro: fotografía con card frosted superpuesta */
 .faq-intro {
   position: relative; display: flex; align-items: center;
-  min-height: 440px; padding: 1.4rem;
+  min-height: 500px; padding: 1.5rem;
   border-radius: var(--radius-xl); overflow: hidden;
 }
 .faq-intro-photo {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 28% center;
+  object-fit: cover; object-position: 38% center;
 }
 .faq-intro-card {
-  position: relative; margin-left: auto; width: min(86%, 360px);
+  position: relative; margin-left: auto; width: min(72%, 345px);
   background: linear-gradient(150deg, rgba(170,223,227,.94) 0%, rgba(226,239,241,.95) 100%);
   -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,.5);
@@ -978,8 +994,8 @@ body[data-view="empresas"] .only-personas { display: none; }
 .feature-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
 .feature-body h3 { font-size: 1.25rem; color: var(--brand-800); }
 .feature-body p { color: var(--ink-500); font-size: .94rem; flex: 1; }
-.feature-body .biz-link { color: var(--brand-600); margin-top: .4rem; }
-.feature-body .biz-link:hover { color: var(--brand-800); }
+.feature-body .biz-link { color: var(--orange-500); margin-top: .4rem; }
+.feature-body .biz-link:hover { color: #B5560C; }
 
 /* ---- Empresas line cards (light, with image) ---- */
 .empresas-lineas { background: var(--bg); }
@@ -1178,7 +1194,7 @@ body[data-view="empresas"] .only-personas { display: none; }
   display: inline-flex; align-items: baseline; gap: .35rem;
   margin: -.4rem 0 1.4rem;
   padding: .45rem .85rem; border-radius: 999px;
-  background: var(--orange-100); color: #B5560C;
+  background: rgba(153,229,233,.31); color: var(--ink-700);
   font-weight: 700; font-size: .88rem;
 }
 .price-hook .num { font-weight: 800; }
