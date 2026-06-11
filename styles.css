@@ -373,11 +373,11 @@ p { margin: 0 0 1rem; }
 /* ---- Hero personas: foto a sangre que se funde con el fondo ---- */
 .hero-photo-bleed {
   position: absolute; top: 0; right: 0; height: 100%;
-  width: clamp(420px, 50%, 1040px);
-  object-fit: cover; object-position: 50% center;
+  width: clamp(440px, 50%, 1080px);
+  object-fit: cover; object-position: 88% center;
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 14%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 14%);
 }
 @media (max-width: 980px) {
   .hero-photo-bleed {
@@ -491,7 +491,7 @@ p { margin: 0 0 1rem; }
 /* Variante con fotografía real (Nosotros) */
 .image-frame--photo { aspect-ratio: 4 / 5; max-width: 440px; }
 .image-frame--photo > img {
-  width: 100%; height: 100%; object-fit: cover; object-position: 64% 22%;
+  width: 100%; height: 100%; object-fit: cover; object-position: 84% 24%;
   border-radius: var(--radius-xl); display: block;
   box-shadow: var(--shadow-lg);
 }
