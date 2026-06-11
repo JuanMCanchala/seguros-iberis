@@ -373,11 +373,11 @@ p { margin: 0 0 1rem; }
 /* ---- Hero personas: foto a sangre que se funde con el fondo ---- */
 .hero-photo-bleed {
   position: absolute; top: 0; right: 0; height: 100%;
-  width: clamp(460px, 62%, 1300px);
-  object-fit: cover; object-position: 46% center;
+  width: clamp(420px, 50%, 1040px);
+  object-fit: cover; object-position: 50% center;
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 26%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 22%);
 }
 @media (max-width: 980px) {
   .hero-photo-bleed {
@@ -491,7 +491,7 @@ p { margin: 0 0 1rem; }
 /* Variante con fotografía real (Nosotros) */
 .image-frame--photo { aspect-ratio: 4 / 5; max-width: 440px; }
 .image-frame--photo > img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  width: 100%; height: 100%; object-fit: cover; object-position: 64% 22%;
   border-radius: var(--radius-xl); display: block;
   box-shadow: var(--shadow-lg);
 }
@@ -713,23 +713,23 @@ p { margin: 0 0 1rem; }
 .porque-card p { color: var(--ink-500); font-size: .92rem; margin: 0; }
 
 /* ---------- 13. FAQ ---------- */
-.faq-grid { align-items: stretch; }
-@media (min-width: 900px) { .faq-grid { grid-template-columns: 1.35fr 1fr; } }
+.faq-grid { align-items: start; }
+@media (min-width: 900px) { .faq-grid { grid-template-columns: 1.3fr 1fr; } }
 .col-faq { display: flex; flex-direction: column; gap: .6rem; }
 
 /* FAQ intro: fotografía con card frosted superpuesta */
 .faq-intro {
   position: relative; display: flex; align-items: center;
-  min-height: 500px; padding: 1.5rem;
+  aspect-ratio: 13 / 9; padding: 1.5rem;
   border-radius: var(--radius-xl); overflow: hidden;
 }
 .faq-intro-photo {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 38% center;
+  object-fit: cover; object-position: center;
 }
 .faq-intro-card {
-  position: relative; margin-left: auto; width: min(72%, 345px);
-  background: linear-gradient(150deg, rgba(170,223,227,.94) 0%, rgba(226,239,241,.95) 100%);
+  position: relative; margin-left: auto; width: min(74%, 400px);
+  background: linear-gradient(150deg, #D2EDEF 0%, #E7F5F6 60%, #ECF7F8 100%);
   -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,.5);
   border-radius: var(--radius-lg); padding: 1.6rem 1.5rem;
@@ -741,7 +741,7 @@ p { margin: 0 0 1rem; }
 @media (max-width: 899px) {
   .faq-intro {
     flex-direction: column; min-height: 0; padding: 0;
-    overflow: visible; border-radius: 0;
+    overflow: visible; border-radius: 0; aspect-ratio: auto;
   }
   .faq-intro-photo {
     position: relative; height: 240px; border-radius: var(--radius-lg);
@@ -1216,25 +1216,15 @@ body[data-view="empresas"] .only-personas { display: none; }
   transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
 }
 .how-step:hover { transform: translateY(-4px); border-color: var(--brand-300); box-shadow: var(--shadow); }
-.how-step::before {
-  counter-increment: step;
-  content: counter(step, decimal-leading-zero);
-  display: block; font-weight: 800; font-size: 1.6rem;
-  color: var(--orange-500); margin-bottom: .6rem;
-  letter-spacing: -.02em;
-}
+.how-step::before { content: none; }   /* sin numeros (Figma) */
 .how-step h3 { font-size: 1.08rem; margin-bottom: .35rem; color: var(--brand-800); }
 .how-step p { color: var(--ink-500); font-size: .93rem; margin: 0; }
 .how-step .step-ico {
-  position: absolute; top: 1.4rem; right: 1.3rem;
-  width: 36px; height: 36px; border-radius: 11px;
-  background: var(--cyan-100); color: var(--brand-700);
-  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--orange-500), var(--orange-400)); color: #fff;
+  display: grid; place-items: center; margin-bottom: .9rem;
 }
-.how-step .step-ico svg { width: 18px; height: 18px; }
-.how-step:nth-child(2) .step-ico { background: var(--orange-100); color: var(--orange-500); }
-.how-step:nth-child(3) .step-ico { background: var(--brand-100); color: var(--brand-700); }
-.how-step:nth-child(4) .step-ico { background: var(--cyan-100); color: var(--cyan-500); }
+.how-step .step-ico svg { width: 20px; height: 20px; }
 
 /* ---- Presencia nacional (13 ciudades) ---- */
 .cities-section {
