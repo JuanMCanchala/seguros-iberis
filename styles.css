@@ -358,11 +358,11 @@ p { margin: 0 0 1rem; }
 /* ---- Hero personas: foto a sangre que se funde con el fondo ---- */
 .hero-photo-bleed {
   position: absolute; top: 0; right: 0; height: 100%;
-  width: clamp(360px, 48%, 1000px);
-  object-fit: cover; object-position: 62% center;
+  width: clamp(440px, 56%, 1180px);
+  object-fit: cover; object-position: 55% center;
   z-index: 1;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 32%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 32%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 30%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 30%);
 }
 @media (max-width: 980px) {
   .hero-photo-bleed {
@@ -374,19 +374,47 @@ p { margin: 0 0 1rem; }
 
 /* ---------- 6. Stats Bar ---------- */
 .stats-bar { padding: 0; }
-.stats-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  background: var(--brand-700);
-  color: #fff;
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  margin-top: -2rem;
-  position: relative; z-index: 5;
-  box-shadow: var(--shadow-lg);
-  background-image: linear-gradient(135deg, var(--brand-800), var(--brand-600));
+
+/* Banda de cifras + pilares (tarjeta naranja + chips, overlapa el hero) */
+.cifras-grid {
+  display: flex; align-items: stretch; gap: 1.1rem;
+  margin-top: -2.6rem; position: relative; z-index: 5;
 }
-@media (min-width: 740px) { .stats-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); } }
+.cifra-card {
+  flex: 0 0 auto; min-width: 232px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-400) 100%);
+  color: #fff; border-radius: var(--radius-lg);
+  padding: 1.3rem 1.6rem; box-shadow: var(--shadow-lg);
+}
+.cifra-num { display: inline-flex; align-items: baseline; }
+.cifra-num .stat-num {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(2rem, 3.4vw, 2.8rem); font-weight: 700; line-height: 1;
+}
+.cifra-num .plus { color: #fff; opacity: .95; font-size: clamp(1.4rem, 2.4vw, 2rem); margin: 0 .05rem 0 0; }
+.cifra-card p { margin: .45rem 0 0; font-size: .9rem; color: rgba(255,255,255,.92); line-height: 1.35; }
+.cifras-pillars {
+  flex: 1 1 auto; list-style: none; margin: 0; padding: 0; border: 0;
+  display: flex; gap: 1.1rem;
+}
+.cifras-pillars > .hero-pillar {
+  flex: 1 1 0; align-items: center;
+  background: var(--orange-100); border-radius: 14px;
+  padding: .9rem 1.1rem;
+}
+.cifras-pillars .hero-pillar:nth-child(2) .hero-pillar-ico,
+.cifras-pillars .hero-pillar:nth-child(3) .hero-pillar-ico,
+.cifras-pillars .hero-pillar .hero-pillar-ico { background: var(--orange-500); color: #fff; }
+@media (max-width: 860px) {
+  .cifras-grid { flex-direction: column; }
+  .cifra-card { min-width: 0; }
+  .cifras-pillars { flex-wrap: wrap; }
+  .cifras-pillars > .hero-pillar { flex: 1 1 calc(50% - .55rem); }
+}
+@media (max-width: 520px) {
+  .cifras-pillars > .hero-pillar { flex: 1 1 100%; }
+}
 .stat { text-align: left; }
 .stat-num {
   font-family: 'Montserrat', system-ui, sans-serif;
@@ -1415,20 +1443,17 @@ body[data-view="empresas"] .only-personas { display: none; }
 
 /* ---- Eslogan oficial Iberis (personas / empresas) ---- */
 .slogan {
-  display: inline-flex; align-items: center; gap: .55rem;
+  display: inline-flex; align-items: baseline; gap: .15rem;
   font-style: italic; font-weight: 600;
-  color: var(--brand-700);
+  color: var(--orange-500);
   font-size: 1.02rem; line-height: 1.4;
   margin: 0 0 1.2rem;
-  padding: .55rem .9rem;
-  border-left: 3px solid var(--orange-500);
+  padding: .5rem 1.15rem;
   background: var(--orange-100);
-  border-radius: 0 10px 10px 0;
+  border-radius: 999px;
 }
-.slogan::before {
-  content: '"'; font-size: 1.6rem; font-weight: 700;
-  color: var(--orange-500); line-height: 0; margin-top: .5rem;
-}
+.slogan::before { content: '\201C'; color: var(--orange-500); }
+.slogan::after  { content: '\201D'; color: var(--orange-500); }
 .slogan--footer {
   background: transparent; border-left: 0;
   color: rgba(255,255,255,.85);
