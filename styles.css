@@ -2404,8 +2404,9 @@ body[data-view="empresas"] .only-personas { display: none; }
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
-.blog-card-media svg { width: 100%; height: 100%; display: block; }
-.blog-card--featured .blog-card-media--featured { aspect-ratio: auto; min-height: 280px; }
+.blog-card-media svg,
+.blog-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.blog-card--featured .blog-card-media--featured { aspect-ratio: 16 / 9; min-height: 280px; }
 .blog-card-cat {
   position: absolute;
   top: 12px; left: 12px;
