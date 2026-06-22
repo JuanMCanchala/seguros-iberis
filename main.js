@@ -186,7 +186,7 @@
   }
 
   /* ---------- 10. Cotizador exprés → WhatsApp ---------- */
-  const WA_PHONE = '573336025110';
+  const WA_PHONE = '573222679674';
   const quoteTabs = document.querySelectorAll('.qt');
   const quoteForms = document.querySelectorAll('.quote-form');
 
@@ -424,7 +424,7 @@
 
       // WhatsApp directo con mensaje pre-armado
       const waMsg = encodeURIComponent(`Hola Iberis, quiero información sobre el producto: ${p.title}`);
-      elWa.href = `https://wa.me/573336025110?text=${waMsg}`;
+      elWa.href = `https://wa.me/573222679674?text=${waMsg}`;
 
       // CTA cotizar: cierra modal y enfoca cotizador
       elCta.onclick = () => modal.close();
