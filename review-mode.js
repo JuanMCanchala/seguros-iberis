@@ -219,20 +219,45 @@
   function clearPins() {
     document.querySelectorAll('.r-pin').forEach((n) => n.remove());
   }
+  // Separa pines que quedarian montados unos sobre otros (clusters de comentarios
+  // muy juntos). Mantiene el primero en su sitio y abre los demas en abanico
+  // (filas a la derecha) para que todos sean legibles y clickeables.
+  function spread(top, left, placed) {
+    const MIN = 34; // distancia minima entre centros (px)
+    const STEP = 32;
+    const baseLeft = left;
+    let guard = 0;
+    const hits = (t, l) => placed.some((p) => Math.abs(p.left - l) < MIN && Math.abs(p.top - t) < MIN);
+    while (guard < 80 && hits(top, left)) {
+      left += STEP;
+      if (left - baseLeft > STEP * 6) { // se paso de fila: baja y reinicia
+        left = baseLeft;
+        top += STEP;
+      }
+      guard++;
+    }
+    return { top, left };
+  }
+
   function renderPins() {
     clearPins();
+    const placed = [];
     comments.forEach((c, i) => {
       const pos = pinPosition(c);
+      const spot = spread(pos.top - 30, pos.left - 15, placed);
+      placed.push(spot);
       const pin = document.createElement('button');
       pin.type = 'button';
       pin.className = 'r-pin' + (c.resolved ? ' is-resolved' : '');
       pin.dataset.id = c.id;
-      pin.style.top = (pos.top - 30) + 'px';
-      pin.style.left = (pos.left - 15) + 'px';
+      pin.style.top = spot.top + 'px';
+      pin.style.left = spot.left + 'px';
       pin.innerHTML = `<span>${i + 1}</span>`;
+      // El popover se ancla al pin ya desplazado (no a la posicion original).
+      const anchorPos = { top: spot.top + 30, left: spot.left + 15 };
       pin.addEventListener('click', (e) => {
         e.stopPropagation();
-        openThread(c.id, pos);
+        openThread(c.id, anchorPos);
       });
       document.body.appendChild(pin);
     });
