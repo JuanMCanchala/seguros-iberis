@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#224859" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Resultado de tu pago · Seguros Iberis" />
+  <title>Resultado del pago · Seguros Iberis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pay-wrap { min-height: 70vh; display: grid; place-items: center; padding: 3rem 1rem; }
+    .pay-card {
+      width: min(560px, 100%); background: #fff; border-radius: 20px;
+      box-shadow: 0 28px 70px -28px rgba(13,79,92,.4);
+      padding: clamp(1.6rem, 4vw, 2.6rem); text-align: center;
+    }
+    .pay-ico { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 1.1rem; }
+    .pay-ico svg { width: 38px; height: 38px; }
+    .pay-ico.ok { background: #E5F8F0; color: #1F9D7C; }
+    .pay-ico.bad { background: #FDEBDC; color: #C8541A; }
+    .pay-ico.wait { background: #FBF1DA; color: #B98314; }
+    .pay-ico.neutral { background: var(--brand-100, #E2EDF0); color: var(--brand-700, #224859); }
+    .pay-card h1 { font-size: clamp(1.5rem, 3.4vw, 2rem); color: var(--brand-700, #224859); margin: 0 0 .5rem; }
+    .pay-card p { color: var(--ink-700, #28434B); line-height: 1.55; margin: .3rem 0; }
+    .pay-detail { margin: 1.2rem auto 0; max-width: 360px; text-align: left; background: var(--brand-100, #f0f5f7); border-radius: 12px; padding: .85rem 1.1rem; font-size: .9rem; }
+    .pay-detail div { display: flex; justify-content: space-between; gap: 1rem; padding: .2rem 0; }
+    .pay-detail span { color: #6f8088; }
+    .pay-detail strong { color: var(--brand-700, #224859); text-align: right; word-break: break-all; }
+    .pay-actions { margin-top: 1.6rem; display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+    .pay-muted { font-size: .82rem; color: #8b9aa0; margin-top: 1.1rem; }
+  </style>
+</head>
+<body data-view="personas" class="is-subpage">
+  <header class="site-header is-scrolled" id="siteHeader">
+    <div class="container nav-bar">
+      <a href="index.html" class="brand" aria-label="Inicio Seguros Iberis"><img src="assets/logo_header.png" alt="Agencia de Seguros Iberis" class="brand-logo" /></a>
+      <nav class="desktop-nav" aria-label="Navegación">
+        <a href="index.html">Inicio</a>
+        <a href="accidentes-personales.html">Accidentes personales</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="pay-wrap">
+      <div class="pay-card" id="payCard" aria-live="polite">
+        <div class="pay-ico neutral" id="payIco" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h1 id="payTitle">Verificando tu pago…</h1>
+        <p id="payMsg">Un momento, estamos consultando el estado de la transacción.</p>
+        <div class="pay-detail" id="payDetail" hidden></div>
+        <div class="pay-actions">
+          <a href="index.html" class="btn btn-orange">Volver al inicio</a>
+          <a href="https://wa.link/f6jaj9" target="_blank" rel="noopener" class="btn btn-ghost">Hablar por WhatsApp</a>
+        </div>
+        <p class="pay-muted">Recibirás el comprobante por correo. Cualquier duda, escríbenos.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-bottom">
+      <small>© <span id="year">2026</span> Agencia de Seguros Iberis. Todos los derechos reservados.</small>
+      <small>Documentos sujetos a términos y condiciones. Vigencia 2026.</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      const ico = document.getElementById('payIco');
+      const title = document.getElementById('payTitle');
+      const msg = document.getElementById('payMsg');
+      const detail = document.getElementById('payDetail');
+
+      const ICONS = {
+        ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+        bad: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>',
+        wait: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
+      };
+      function render(kind, t, m) {
+        ico.className = 'pay-ico ' + kind;
+        if (ICONS[kind]) ico.innerHTML = ICONS[kind];
+        title.textContent = t;
+        msg.textContent = m;
+      }
+      function money(v) {
+        const n = Number(v);
+        if (!isFinite(n)) return v;
+        return '$' + n.toLocaleString('es-CO');
+      }
+
+      const params = new URLSearchParams(location.search);
+      const ref = params.get('ref_payco') || params.get('refPayco');
+
+      if (!ref) {
+        render('neutral', 'No encontramos la transacción', 'Si acabas de pagar, revisa tu correo o el panel; el comprobante puede tardar unos minutos.');
+        return;
+      }
+
+      fetch('https://secure.epayco.co/validation/v1/reference/' + encodeURIComponent(ref))
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          const d = (res && res.data) ? res.data : {};
+          const estado = (d.x_response || d.x_transaction_state || '').toLowerCase();
+          if (estado.indexOf('acept') === 0 || estado === 'aprobada') {
+            render('ok', '¡Pago aprobado! 🌼', 'Tu pago se procesó correctamente. Pronto activamos tu cobertura y te enviamos el comprobante al correo.');
+          } else if (estado.indexOf('pend') === 0) {
+            render('wait', 'Pago pendiente', 'Tu pago está en validación. Te confirmaremos por correo en cuanto el banco lo apruebe.');
+          } else if (estado) {
+            render('bad', 'Pago no completado', (d.x_response_reason_text || 'La transacción fue rechazada o cancelada.') + ' Puedes intentarlo de nuevo.');
+          } else {
+            render('neutral', 'Estado no disponible', 'No pudimos leer el estado de la transacción. Revisa tu correo o escríbenos.');
+          }
+          const rows = [];
+          if (d.x_ref_payco) rows.push(['Referencia', d.x_ref_payco]);
+          if (d.x_amount) rows.push(['Monto', money(d.x_amount) + (d.x_currency_code ? ' ' + d.x_currency_code : '')]);
+          if (d.x_id_invoice) rows.push(['Factura', d.x_id_invoice]);
+          if (d.x_response) rows.push(['Estado', d.x_response]);
+          if (rows.length) {
+            detail.innerHTML = rows.map(function (r) { return '<div><span>' + r[0] + '</span><strong>' + r[1] + '</strong></div>'; }).join('');
+            detail.hidden = false;
+          }
+        })
+        .catch(function () {
+          render('neutral', 'No pudimos verificar el pago', 'Hubo un problema al consultar el estado. Si el cobro se realizó, recibirás el comprobante por correo.');
+        });
+    })();
+  </script>
+  <script>(function(){var u=/[?&]review=1\b/.test(location.search),g=sessionStorage.getItem('sib_review_mode')==='1';if(!u&&!g)return;if(u)sessionStorage.setItem('sib_review_mode','1');var s=document.createElement('script');s.src='review-mode.js';s.defer=true;document.body.appendChild(s);})()</script>
+</body>
+</html>

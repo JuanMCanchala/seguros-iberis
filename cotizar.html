@@ -148,6 +148,8 @@
     <span>WhatsApp</span>
   </a>
 
+  <!-- Pasarela de pagos ePayco (solo PUBLIC_KEY; secretas NUNCA aquí) -->
+  <script src="https://checkout.epayco.co/checkout.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     const header = document.getElementById('siteHeader');
@@ -175,6 +177,12 @@
         'a170': 'Plan A · $170.000 (cobertura $15M)',
         'b400': 'Plan 400 · $400.000 VIP (cobertura $50M + asistencias)',
       };
+      // Montos (COP) para la pasarela. Solo Accidentes Personales tiene precio fijo.
+      const PLAN_AMOUNTS = { a150: 150000, a170: 170000, b400: 400000 };
+
+      // ---- ePayco (Standard/Onpage Checkout). Solo PUBLIC_KEY en el cliente. ----
+      const EPAYCO_PUBLIC_KEY = '1e87bc6fbc6af1ddc12c00a6104203da';
+      const EPAYCO_TEST = true; // true = pruebas (no cobra). Cambiar a false para producción.
 
       const params = new URLSearchParams(location.search);
       const prodKey = (params.get('producto') || '').toLowerCase();
@@ -182,6 +190,8 @@
       const prod = PRODUCTOS[prodKey] || null;
       const planLabel = PLANES[planKey] || (params.get('plan') || '');
       const isCompra = !!planLabel;
+      // Pago en línea solo para planes de Accidentes Personales con monto fijo.
+      const esPagoAP = isCompra && prodKey === 'accidentes-personales' && !!PLAN_AMOUNTS[planKey];
 
       const chip = document.getElementById('cotChip');
       const chipText = document.getElementById('cotChipText');
@@ -206,8 +216,16 @@
         if (isCompra) {
           eyebrow.textContent = 'Adquiere tu plan';
           title.innerHTML = 'Estás a un paso de <em class="bloom bloom--orange">protegerte</em>.';
-          sub.textContent = 'Déjanos tus datos y un asesor te contacta para finalizar la compra y activar tu cobertura.';
-          document.getElementById('cotSubmit').textContent = 'Quiero adquirir este plan';
+          if (esPagoAP) {
+            sub.textContent = 'Déjanos tus datos y paga en línea de forma segura para activar tu cobertura.';
+            document.getElementById('cotSubmit').textContent = 'Pagar y activar mi plan';
+            // El correo es obligatorio para enviar el recibo del pago.
+            const emailInput = document.querySelector('#cotizarForm input[name="email"]');
+            if (emailInput) emailInput.required = true;
+          } else {
+            sub.textContent = 'Déjanos tus datos y un asesor te contacta para finalizar la compra y activar tu cobertura.';
+            document.getElementById('cotSubmit').textContent = 'Quiero adquirir este plan';
+          }
         } else {
           title.innerHTML = 'Cotiza <em class="bloom bloom--orange">' + prod.label + '</em>.';
         }
@@ -241,8 +259,44 @@
           notas: (d.notas || '').trim() || null,
         };
         const original = btn.textContent;
-        btn.disabled = true; btn.textContent = 'Enviando…';
+        btn.disabled = true; btn.textContent = esPagoAP ? 'Abriendo pago…' : 'Enviando…';
         note.textContent = ''; note.style.color = '';
+
+        // Compra de Accidentes Personales → guardar lead (best-effort) y abrir la pasarela ePayco.
+        if (esPagoAP) {
+          try {
+            await fetch(`${SB_URL}/rest/v1/seguros_iberis_cotizaciones`, {
+              method: 'POST',
+              headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+              body: JSON.stringify(payload),
+            });
+          } catch (e2) { console.warn('[cotizar] lead no guardado:', e2); }
+          try {
+            const handler = ePayco.checkout.configure({ key: EPAYCO_PUBLIC_KEY, test: EPAYCO_TEST });
+            handler.open({
+              name: prod.label,
+              description: prod.label + ' · ' + planLabel,
+              invoice: 'IB-AP-' + Date.now(),
+              currency: 'cop',
+              amount: String(PLAN_AMOUNTS[planKey]),
+              tax_base: '0', tax: '0', tax_ico: '0',
+              country: 'co', lang: 'es',
+              external: 'false',
+              response: location.origin + '/respuesta.html',
+              name_billing: payload.nombre,
+              email_billing: payload.email || '',
+              mobilephone_billing: payload.telefono,
+            });
+            btn.disabled = false; btn.textContent = original; // restaurar si cierra el modal sin pagar
+          } catch (err) {
+            btn.disabled = false; btn.textContent = original;
+            note.textContent = 'No pudimos abrir la pasarela de pago. Intenta de nuevo o escríbenos por WhatsApp.';
+            note.style.color = '#B5560C';
+            console.error('[epayco]', err);
+          }
+          return;
+        }
+
         try {
           const r = await fetch(`${SB_URL}/rest/v1/seguros_iberis_cotizaciones`, {
             method: 'POST',
