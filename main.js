@@ -327,17 +327,17 @@
       eyebrow: 'Personas · Plan Potenciado para Florecer',
       image: 'assets/accidentespersonales.png',
       title: 'Accidentes personales',
-      lead: 'Tres planes anuales: Plan A $150.000 ($10M), Plan A $170.000 ($15M) y Plan B AMPLIADO $400.000 ($50M con asistencias VIP).',
+      lead: 'Tres planes anuales: Plan A $150.000 ($10M), Plan A $170.000 ($15M) y Plan 400 AMPLIADO $400.000 ($50M con asistencias VIP).',
       cubre: [
-        'Muerte accidental (hasta $50.000.000 en Plan B)',
+        'Muerte accidental (hasta $50.000.000 en Plan 400)',
         'Incapacidad total y permanente por accidente',
         'Desmembración accidental',
-        'Ruptura de hueso, reembolso de gastos médicos y renta de hogar (Plan B)'
+        'Ruptura de hueso, reembolso de gastos médicos y renta de hogar (Plan 400)'
       ],
       respaldo: [
         'Lesiones en el trabajo, accidentes de tráfico, caídas, lesiones deportivas y otros eventos accidentales'
       ],
-      ventajas: ['Plan A · $150.000 ($411/día)', 'Plan A · $170.000 ($466/día)', 'Plan B AMPLIADO · $400.000 ($1.095/día)']
+      ventajas: ['Plan A · $150.000 ($411/día)', 'Plan A · $170.000 ($466/día)', 'Plan 400 AMPLIADO · $400.000 ($1.095/día)']
     },
     'hogar': {
       eyebrow: 'Personas · Asistencia incluida',
@@ -348,10 +348,10 @@
         'Plomería de urgencias',
         'Cerrajería ante pérdida de llaves o daños',
         'Electricidad: cortos, fallas y emergencias',
-        '3 eventos al año en Plan B (1 por especialidad)'
+        '3 eventos al año en Plan 400 (1 por especialidad)'
       ],
       respaldo: [],
-      ventajas: ['Plan A $150k: 2 eventos combinados', 'Plan A $170k: 2 eventos combinados', 'Plan B: 3 eventos (1 por especialidad)']
+      ventajas: ['Plan A $150k: 2 eventos combinados', 'Plan A $170k: 2 eventos combinados', 'Plan 400: 3 eventos (1 por especialidad)']
     },
     'juridica': {
       eyebrow: 'Personas · Asistencia incluida',
@@ -490,11 +490,11 @@
 
       if (needsExtras) {
         return {
-          plan: 'B', name: 'Plan B AMPLIADO', price: '$400.000', daily: '$1.095/día',
+          plan: 'B', name: 'Plan 400 AMPLIADO', price: '$400.000', daily: '$1.095/día',
           coverage: '$50.000.000',
           subtitle: 'Cobertura VIP con todas las asistencias',
           reasons: buildReasons(a, 'B'),
-          quoteValue: 'Plan B · $400.000 VIP (cobertura $50M + asistencias)'
+          quoteValue: 'Plan 400 · $400.000 VIP (cobertura $50M + asistencias)'
         };
       }
       if (a.cobertura === '15') {
