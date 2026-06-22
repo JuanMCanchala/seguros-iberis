@@ -902,6 +902,28 @@ p { margin: 0 0 1rem; }
   .float-whats { padding: .85rem; border-radius: 50%; width: 56px; height: 56px; justify-content: center; }
 }
 
+/* Mensaje flotante de chat (burbuja sobre el botón de WhatsApp) */
+.wa-bubble {
+  position: fixed; right: 1rem; bottom: 4.7rem; z-index: 91;
+  max-width: 244px; background: #fff;
+  border-radius: 16px 16px 4px 16px;
+  box-shadow: 0 18px 44px -16px rgba(13,79,92,.45);
+  padding: .75rem .9rem;
+  animation: wa-pop .35s var(--ease);
+}
+.wa-bubble[hidden] { display: none; }
+.wa-bubble a { display: block; text-decoration: none; padding-right: .7rem; }
+.wa-bubble strong { display: block; color: var(--brand-700); font-size: .9rem; margin-bottom: .15rem; }
+.wa-bubble span { display: block; color: var(--ink-700); font-size: .82rem; line-height: 1.4; }
+.wa-bubble-x {
+  position: absolute; top: .3rem; right: .45rem;
+  border: 0; background: transparent; cursor: pointer;
+  font-size: 1.15rem; line-height: 1; color: #9aa7ab; padding: .1rem .25rem;
+}
+.wa-bubble-x:hover { color: var(--brand-700); }
+@keyframes wa-pop { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+@media (max-width: 520px) { .wa-bubble { bottom: 5.3rem; max-width: 200px; } }
+
 /* ---------- 17. Mobile menu ---------- */
 @media (max-width: 1099px) {
   .primary-nav {
