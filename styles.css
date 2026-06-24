@@ -712,6 +712,26 @@ p { margin: 0 0 1rem; }
 .porque-card h3 { font-size: 1.15rem; }
 .porque-card p { color: var(--ink-500); font-size: .92rem; margin: 0; }
 
+/* Respaldo empresas: 2 columnas (copy + CTA / cards 2x2) */
+.respaldo-grid {
+  display: grid; gap: clamp(2rem, 4.5vw, 4.5rem);
+  grid-template-columns: 1fr; align-items: center;
+}
+@media (min-width: 900px) {
+  .respaldo-grid { grid-template-columns: .92fr 1.08fr; }
+}
+.respaldo-copy h2 {
+  font-size: clamp(2.1rem, 4.4vw, 3.1rem); color: var(--brand-700);
+  line-height: 1.06; letter-spacing: -.02em; margin: .5rem 0 0;
+}
+.respaldo-cta { margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.respaldo-cta h3 { font-size: 1.3rem; color: var(--brand-700); margin-bottom: .3rem; }
+.respaldo-cta p { color: var(--ink-500); margin: 0 0 1.2rem; max-width: 42ch; }
+.respaldo-grid .porque-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 560px) {
+  .respaldo-grid .porque-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- 13. FAQ ---------- */
 .faq-grid { align-items: start; }
 @media (min-width: 900px) { .faq-grid { grid-template-columns: 1.3fr 1fr; } }
