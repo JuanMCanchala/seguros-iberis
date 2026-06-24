@@ -728,6 +728,10 @@ p { margin: 0 0 1rem; }
 .respaldo-cta h3 { font-size: 1.3rem; color: var(--brand-700); margin-bottom: .3rem; }
 .respaldo-cta p { color: var(--ink-500); margin: 0 0 1.2rem; max-width: 42ch; }
 .respaldo-grid .porque-grid { grid-template-columns: repeat(2, 1fr); }
+.respaldo-grid .badge-num {
+  background: linear-gradient(135deg, var(--orange-500) 0%, var(--orange-400) 100%);
+  color: #fff; border-radius: 14px;
+}
 @media (max-width: 560px) {
   .respaldo-grid .porque-grid { grid-template-columns: 1fr; }
 }
