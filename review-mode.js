@@ -107,11 +107,25 @@
     } catch {
       el = null;
     }
-    if (!el) el = document.body;
+    // Ancla inexistente en esta página → sin pin (el comentario sigue accesible en el panel).
+    if (!el) return null;
     const rect = el.getBoundingClientRect();
+    // Ancla oculta (p. ej. la otra vista Personas/Empresas con display:none): rect 0×0.
+    // No pintamos el pin aquí — aparecerá al cambiar a la vista que lo contiene.
+    if (rect.width === 0 && rect.height === 0) return null;
     const top = rect.top + window.scrollY + (c.y_pct / 100) * rect.height;
     const left = rect.left + window.scrollX + (c.x_pct / 100) * rect.width;
     return { top, left };
+  }
+
+  // Devuelve la vista ('personas' | 'empresas' | null) que contiene el ancla del comentario.
+  function anchorView(c) {
+    let el;
+    try { el = document.querySelector(c.anchor_selector); } catch { el = null; }
+    if (!el) return null;
+    if (el.closest('.view--empresas')) return 'empresas';
+    if (el.closest('.view--personas')) return 'personas';
+    return null;
   }
 
   // ---------- Styles ----------
@@ -244,6 +258,7 @@
     const placed = [];
     comments.forEach((c, i) => {
       const pos = pinPosition(c);
+      if (!pos) return; // ancla no visible en esta vista → no se pinta (queda en el panel)
       const spot = spread(pos.top - 30, pos.left - 15, placed);
       placed.push(spot);
       const pin = document.createElement('button');
@@ -286,9 +301,21 @@
         const id = li.dataset.id;
         const c = comments.find((x) => x.id === id);
         if (!c) return;
-        const pos = pinPosition(c);
-        window.scrollTo({ top: Math.max(0, pos.top - 200), behavior: 'smooth' });
-        setTimeout(() => openThread(id, pos), 420);
+        const openAt = () => {
+          const pos = pinPosition(c);
+          if (pos) {
+            window.scrollTo({ top: Math.max(0, pos.top - 200), behavior: 'smooth' });
+            setTimeout(() => openThread(id, pos), 420);
+          } else {
+            // Ancla no disponible (elemento removido): abre el hilo en un punto fijo visible.
+            openThread(id, { top: window.scrollY + 120, left: window.scrollX + Math.max(16, Math.min(window.innerWidth - 340, 60)) });
+          }
+        };
+        // Si el comentario vive en la otra vista (Personas/Empresas), cámbiala primero.
+        const need = anchorView(c);
+        const cur = document.body.getAttribute('data-view');
+        const btn = need && cur && need !== cur && document.querySelector('.vs-btn[data-view="' + need + '"]');
+        if (btn) { btn.click(); setTimeout(openAt, 520); } else { openAt(); }
       });
     });
   }
@@ -466,6 +493,14 @@
     resizeT = setTimeout(renderPins, 120);
   });
   window.addEventListener('load', () => setTimeout(renderPins, 300));
+
+  // Re-pintar pines al cambiar de vista Personas/Empresas (togglean display:none),
+  // para que cada pin aparezca solo sobre su elemento real y no amontonados en la esquina.
+  const viewObserver = new MutationObserver(() => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(renderPins, 80);
+  });
+  viewObserver.observe(document.body, { attributes: true, attributeFilter: ['data-view'] });
 
   // ---------- Realtime: suscripcion a INSERT/UPDATE/DELETE en la tabla ----------
   // Cargamos el SDK de Supabase desde ESM CDN (solo aqui, no en produccion regular).
