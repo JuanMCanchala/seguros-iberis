@@ -1531,6 +1531,8 @@ body[data-view="empresas"] .only-personas { display: none; }
   transition: filter .25s var(--ease);
 }
 .logo-pill-img:hover img { filter: grayscale(0); }
+/* Logo apilado (símbolo + palabra), p. ej. Quálitas: se le da un poco más de alto */
+.logo-pill-img.is-stack img { max-height: 90px; }
 
 /* Monograma sobre fondo con color de marca de la aseguradora */
 .logo-pill:not(.logo-pill-img) {
