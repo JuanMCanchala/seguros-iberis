@@ -21,3 +21,13 @@ _shot/
 ayudaventas_*.jpg
 Ayudaventas_*.png
 MANUAL_IDENTIDAD_*.pdf
+
+# Material de trabajo (no desplegar): manuales de marca, actas, reportes, fuentes
+*.docx
+*.ai
+*.pptx
+/Reporte-correcciones-Iberis.pdf
+/MANUAL*.pdf
+/Manual*.pdf
+/PIEZAS*.pdf
+/segurosmundial.png
