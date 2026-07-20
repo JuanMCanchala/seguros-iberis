@@ -173,7 +173,7 @@
         <a href="accidentes-personales.html" class="only-personas">Coberturas</a>
         <a href="#lineas" class="only-empresas">Líneas</a>
         <a href="#calculadora" class="only-personas">Calculadora</a>
-        <a href="#cotizador">Cotizar</a>
+        <a href="cotizar.html">Cotizar</a>
         <a href="blog/">Blog</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -789,123 +789,6 @@
       </div>
     </section>
 
-    <!-- COTIZADOR -->
-    <section class="section cotizador-section" id="cotizador">
-      <div class="container">
-        <header class="section-head center">
-          <span class="eyebrow">Cotiza tu seguro</span>
-          <h2>Tu cotización en <em class="bloom bloom--orange">línea</em> en menos de 2 minutos.</h2>
-          <p>Cuéntanos qué necesitas asegurar y un ejecutivo especializado te contacta con tu propuesta personalizada.</p>
-        </header>
-
-        <div class="quote-card">
-          <div class="quote-tabs" role="tablist">
-            <button class="qt is-active" data-quote="personas" role="tab" aria-selected="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-              Para mí
-            </button>
-            <button class="qt" data-quote="empresas" role="tab" aria-selected="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
-              Para mi empresa
-            </button>
-          </div>
-
-          <form class="quote-form is-active" data-form="personas" novalidate>
-            <div class="quote-grid">
-              <label class="qfield qfield-full">
-                <span>¿Qué quieres asegurar?</span>
-                <select name="producto" required>
-                  <option value="">Selecciona una opción…</option>
-                  <option>Plan A · $150.000 (cobertura $10M)</option>
-                  <option>Plan A · $170.000 (cobertura $15M)</option>
-                  <option>Plan 400 · $400.000 VIP (cobertura $50M + asistencias)</option>
-                  <option>Seguro educativo</option>
-                  <option>No estoy seguro / quiero orientación</option>
-                </select>
-              </label>
-              <label class="qfield">
-                <span>Tu ciudad</span>
-                <select name="ciudad" required>
-                  <option value="">Selecciona…</option>
-                  <option>Bogotá</option><option>Medellín</option><option>Cali</option>
-                  <option>Barranquilla</option><option>Cartagena</option><option>Bucaramanga</option>
-                  <option>Manizales</option><option>Armenia</option><option>Ibagué</option>
-                  <option>Neiva</option><option>Montería</option><option>Girardot</option>
-                  <option>Pasto</option><option>Otra ciudad</option>
-                </select>
-              </label>
-              <label class="qfield">
-                <span>Tu edad</span>
-                <input type="number" name="edad" min="18" max="99" placeholder="Ej. 35" />
-              </label>
-              <label class="qfield">
-                <span>Tu nombre</span>
-                <input type="text" name="nombre" required placeholder="¿Cómo te llamas?" />
-              </label>
-              <label class="qfield">
-                <span>WhatsApp</span>
-                <input type="tel" name="telefono" required placeholder="3XX XXX XXXX" />
-              </label>
-            </div>
-            <button type="submit" class="btn btn-orange full quote-submit">Enviar solicitud</button>
-            <p class="quote-note">Recibimos tu solicitud y un asesor te contacta. No spam.</p>
-          </form>
-
-          <form class="quote-form" data-form="empresas" novalidate>
-            <div class="quote-grid">
-              <label class="qfield qfield-full">
-                <span>¿Qué línea financiera necesitas?</span>
-                <select name="producto" required>
-                  <option value="">Selecciona una opción…</option>
-                  <option>Vida Deudor</option>
-                  <option>Infidelidad y Riesgo Financiero</option>
-                  <option>Cyber (ciberriesgos)</option>
-                  <option>D&amp;O (directores y administradores)</option>
-                  <option>Responsabilidad Civil y Extracontractual</option>
-                  <option>Todo Riesgo Pymes</option>
-                  <option>Combo / paquete personalizado</option>
-                </select>
-              </label>
-              <label class="qfield">
-                <span>Tamaño de la empresa</span>
-                <select name="tamano" required>
-                  <option value="">Selecciona…</option>
-                  <option>1 – 10 empleados</option>
-                  <option>11 – 50 empleados</option>
-                  <option>51 – 200 empleados</option>
-                  <option>+200 empleados</option>
-                </select>
-              </label>
-              <label class="qfield">
-                <span>Sector</span>
-                <select name="sector" required>
-                  <option value="">Selecciona…</option>
-                  <option>Banca / Financiera</option>
-                  <option>Fintech</option>
-                  <option>Cooperativa de crédito</option>
-                  <option>Pyme / comercial</option>
-                  <option>Servicios profesionales</option>
-                  <option>Industria / manufactura</option>
-                  <option>Otro</option>
-                </select>
-              </label>
-              <label class="qfield">
-                <span>Empresa</span>
-                <input type="text" name="empresa" required placeholder="Razón social" />
-              </label>
-              <label class="qfield">
-                <span>WhatsApp</span>
-                <input type="tel" name="telefono" required placeholder="3XX XXX XXXX" />
-              </label>
-            </div>
-            <button type="submit" class="btn btn-orange full quote-submit">Enviar solicitud</button>
-            <p class="quote-note">Tu solicitud llega al equipo de líneas financieras. Respuesta en menos de un día hábil.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-
     <!-- CONTACTO -->
     <section class="section contacto" id="contacto">
       <div class="container contact-solo">
@@ -1007,7 +890,7 @@
         </div>
 
         <div class="pm-actions">
-          <a class="btn btn-orange pm-cta" href="#cotizador">Cotizar este producto</a>
+          <a class="btn btn-orange pm-cta" href="cotizar.html">Cotizar este producto</a>
           <a class="btn btn-ghost pm-wa" target="_blank" rel="noopener">WhatsApp directo</a>
         </div>
         <p class="pm-fineprint">Documentos sujetos a términos y condiciones · Vigencia 2026.</p>

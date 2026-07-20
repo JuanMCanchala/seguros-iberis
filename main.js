@@ -426,7 +426,14 @@
       const waMsg = encodeURIComponent(`Hola Iberis, quiero información sobre el producto: ${p.title}`);
       elWa.href = `https://wa.me/573222679674?text=${waMsg}`;
 
-      // CTA cotizar: cierra modal y enfoca cotizador
+      // CTA cotizar → página dedicada cotizar.html con el producto preseleccionado
+      const COTIZAR_KEY = {
+        'vida-deudor': 'vida-deudor', 'infidelidad': 'infidelidad', 'cyber': 'cyber',
+        'do': 'directores-administradores', 'rc': 'responsabilidad-civil', 'pymes': 'danos-materiales-pymes',
+        'accidentes': 'accidentes-personales', 'hogar': 'asistencias-hogar', 'juridica': 'asistencia-juridica'
+      };
+      const ck = COTIZAR_KEY[key];
+      elCta.href = 'cotizar.html' + (ck ? '?producto=' + ck : '');
       elCta.onclick = () => modal.close();
 
       if (typeof modal.showModal === 'function') modal.showModal();
@@ -541,6 +548,8 @@
     const showResult = () => {
       const result = quizCard.querySelector('.quiz-result');
       const r = recommend(answers);
+      const planParam = r.plan === 'B' ? 'b400' : (r.plan === 'A170' ? 'a170' : 'a150');
+      const cotizarUrl = 'cotizar.html?producto=accidentes-personales&plan=' + planParam;
       result.innerHTML = `
         <span class="qr-badge">Plan recomendado para ti</span>
         <h3 class="qr-title">${r.name}</h3>
@@ -553,7 +562,7 @@
           ${r.reasons.map(x => `<li>${x}</li>`).join('')}
         </ul>
         <div class="qr-actions">
-          <a href="#cotizador" class="btn btn-orange qr-cta" data-prefill="${r.quoteValue}">
+          <a href="${cotizarUrl}" class="btn btn-orange qr-cta">
             <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91z"/></svg>
             Quiero este plan
           </a>
@@ -562,18 +571,6 @@
       `;
       showStep(3);
 
-      // Pre-fill cotizador with the recommended plan
-      result.querySelector('.qr-cta').addEventListener('click', e => {
-        const select = document.querySelector('.quote-form[data-form="personas"] select[name="producto"]');
-        if (select) {
-          // Find matching option (or first that includes the plan name fragment)
-          const target = r.quoteValue;
-          for (const opt of select.options) {
-            if (opt.textContent === target) { select.value = opt.textContent; break; }
-          }
-          setQuoteTab('personas');
-        }
-      });
       result.querySelector('.qr-restart').addEventListener('click', () => {
         Object.keys(answers).forEach(k => delete answers[k]);
         quizCard.querySelectorAll('.qopt.is-selected').forEach(b => b.classList.remove('is-selected'));
