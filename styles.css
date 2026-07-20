@@ -536,6 +536,21 @@ p { margin: 0 0 1rem; }
   background: var(--brand-050); color: var(--brand-700);
   padding: .3rem .7rem; border-radius: 999px;
 }
+/* Descripción como lista con chulitos */
+.service-card ul.feat-list {
+  display: block; margin: 0 0 .9rem; padding: 0;
+}
+.service-card ul.feat-list li {
+  position: relative; display: block;
+  background: none; border-radius: 0;
+  color: var(--ink-500); font-size: .9rem; font-weight: 400;
+  padding: .18rem 0 .18rem 1.55rem; line-height: 1.35;
+}
+.service-card ul.feat-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: .1em;
+  color: var(--orange-500); font-weight: 700; font-size: .9rem;
+}
 
 /* ---------- 9. Plans table ---------- */
 .plans {
