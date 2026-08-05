@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#224859" />
+  <meta name="description" content="Catálogo de seguros Seguros Iberis · encuentra el seguro ideal por categoría: accidentes personales, SOAT, carro, moto, vida, salud, hogar, viajes y líneas empresariales." />
+  <meta name="robots" content="noindex" />
+  <title>Nuestros seguros — Catálogo · Seguros Iberis (vista alternativa)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ====== Catálogo de productos (vista alternativa) ====== */
+    .cat-hero { padding: 2.4rem 0 1rem; text-align: center; }
+    .cat-hero .eyebrow { justify-content: center; display: inline-flex; }
+    .cat-hero h1 { font-size: clamp(1.9rem, 4vw, 2.9rem); color: var(--brand-700); line-height: 1.06; letter-spacing: -.02em; margin: .3rem 0 .6rem; }
+    .cat-hero h1 em { font-style: italic; color: var(--orange-500); }
+    .cat-hero p { color: var(--ink-500); max-width: 620px; margin: 0 auto; font-size: 1.02rem; }
+    .cat-draft { display: inline-flex; align-items: center; gap: .45rem; margin-top: .9rem; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--orange-500); background: var(--orange-100); padding: .35rem .8rem; border-radius: 999px; }
+
+    .cat-wrap { display: grid; grid-template-columns: 236px 1fr; gap: 2rem; align-items: start; padding-bottom: 3.5rem; }
+
+    /* Sidebar */
+    .cat-side { position: sticky; top: 90px; display: flex; flex-direction: column; gap: .3rem; }
+    .cat-side h2 { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-400, #8a9499); font-weight: 700; margin: 0 0 .5rem .2rem; }
+    .cat-btn { display: flex; align-items: center; gap: .7rem; width: 100%; text-align: left; background: none; border: 0; padding: .6rem .7rem; border-radius: 12px; cursor: pointer; color: var(--ink-700); font-family: inherit; font-size: .95rem; font-weight: 600; transition: background .2s var(--ease), color .2s var(--ease); }
+    .cat-btn:hover { background: var(--brand-050); }
+    .cat-btn.is-active { background: var(--brand-050); color: var(--brand-700); }
+    .cat-btn.is-active::after { content: ''; margin-left: auto; width: 8px; height: 8px; border-radius: 999px; background: var(--orange-500); }
+    .cat-ic { flex: none; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; color: #fff; }
+    .cat-ic svg { width: 18px; height: 18px; }
+
+    /* Grid */
+    .cat-count { margin: 0 0 1rem; color: var(--ink-500); font-size: .9rem; }
+    .cat-count strong { color: var(--brand-700); }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 1.4rem; }
+
+    .pcard { background: #fff; border: 1px solid var(--ink-100); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
+    .pcard:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(34,72,89,.14); border-color: var(--orange-300); }
+    .pcard-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+    .pcard-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+    .pcard:hover .pcard-media img { transform: scale(1.06); }
+    .pcard-media.is-grad { display: grid; place-items: center; }
+    .pcard-media.is-grad svg { width: 66px; height: 66px; color: rgba(255,255,255,.95); }
+    .pcard-price { position: absolute; left: .8rem; bottom: .8rem; background: rgba(20,42,52,.86); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); color: #fff; border-radius: 12px; padding: .45rem .7rem; line-height: 1.05; }
+    .pcard-price strong { display: block; font-size: 1.12rem; font-weight: 800; letter-spacing: -.01em; }
+    .pcard-price span { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .85; }
+    .pcard-tc { position: absolute; top: .7rem; right: .7rem; background: rgba(255,255,255,.9); color: var(--ink-500); font-size: .62rem; font-weight: 700; letter-spacing: .04em; padding: .22rem .5rem; border-radius: 999px; }
+    .pcard-body { padding: 1.1rem 1.2rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
+    .pcard-chip { display: inline-flex; align-items: center; gap: .35rem; align-self: flex-start; font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: .24rem .55rem; border-radius: 999px; margin-bottom: .55rem; }
+    .pcard h3 { font-size: 1.08rem; color: var(--brand-800); line-height: 1.2; margin: 0 0 .35rem; }
+    .pcard-body p { color: var(--ink-500); font-size: .88rem; line-height: 1.4; flex: 1; margin: 0 0 .9rem; }
+    .pcard-cta { display: inline-flex; align-items: center; gap: .35rem; align-self: flex-start; color: var(--orange-500); font-weight: 700; font-size: .9rem; transition: gap .2s var(--ease), color .2s var(--ease); }
+    .pcard-cta:hover { color: #B5560C; gap: .6rem; }
+
+    @media (max-width: 860px) {
+      .cat-wrap { grid-template-columns: 1fr; gap: 1rem; }
+      .cat-side { position: static; flex-direction: row; overflow-x: auto; gap: .5rem; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
+      .cat-side h2 { display: none; }
+      .cat-btn { flex-direction: column; gap: .35rem; min-width: 82px; padding: .6rem .4rem; font-size: .74rem; text-align: center; }
+      .cat-btn.is-active::after { display: none; }
+      .cat-btn span.lbl { line-height: 1.1; }
+    }
+  </style>
+</head>
+<body data-view="personas" class="is-subpage">
+  <a href="#catalogo" class="skip-link">Saltar al contenido</a>
+
+  <!-- ================== HEADER ================== -->
+  <header class="site-header is-scrolled" id="siteHeader">
+    <div class="container nav-bar">
+      <a href="index.html" class="brand" aria-label="Inicio Seguros Iberis">
+        <img src="assets/logo_header.png" alt="Agencia de Seguros Iberis" class="brand-logo" />
+      </a>
+      <nav class="desktop-nav" aria-label="Navegación">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html" aria-current="page">Nuestros seguros</a>
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="cotizar.html">Cotizar</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="renovacion.html" class="btn btn-orange nav-cta nav-cta--renovacion"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg><span>Renovación</span></a><a href="index.html#contacto" class="btn btn-primary nav-cta">Quiero asesoría</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="container">
+      <section class="cat-hero">
+        <span class="eyebrow">Nuestros seguros</span>
+        <h1>Encuentra el seguro <em>ideal</em> para ti</h1>
+        <p>Explora por categoría y cotiza en minutos. Como agencia comparamos las mejores aseguradoras del país para conseguirte la mejor cobertura.</p>
+        <span class="cat-draft" title="Página de propuesta para revisión">● Vista alternativa · borrador para revisión</span>
+      </section>
+    </div>
+
+    <section class="container" id="catalogo">
+      <div class="cat-wrap">
+        <aside class="cat-side" id="catSide" aria-label="Categorías de seguros">
+          <h2>Categorías</h2>
+          <!-- botones inyectados por JS -->
+        </aside>
+
+        <div>
+          <p class="cat-count" id="catCount"></p>
+          <div class="cat-grid" id="catGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================== FOOTER ================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="foot-brand">
+        <img src="assets/logo_header.png" alt="Seguros Iberis" class="foot-logo" />
+        <p>«Has que tu futuro pueda germinar.» Tu aliado como agencia de seguros, con más de 5 años acompañando a personas y compañías con cobertura a nivel nacional.</p><p class="slogan slogan--footer">Contigo hoy, mañana y siempre.</p>
+      </div>
+      <div class="foot-col"><h4>Personas</h4><ul><li><a href="accidentes-personales.html">Accidentes personales</a></li><li><a href="asistencias-hogar.html">Asistencia hogar</a></li><li><a href="asistencia-juridica.html">Asistencia jurídica</a></li><li><a href="accidentes-personales.html#comparar">Comparar planes</a></li></ul></div>
+      <div class="foot-col"><h4>Empresas</h4><ul><li><a href="vida-deudor.html">Vida Deudor</a></li><li><a href="infidelidad.html">Infidelidad y Riesgo Financiero</a></li><li><a href="cyber.html">Cyber</a></li><li><a href="directores-administradores.html">D&amp;O</a></li><li><a href="responsabilidad-civil.html">Responsabilidad Civil</a></li><li><a href="danos-materiales-pymes.html">Todo Riesgo Pymes</a></li></ul></div>
+      <div class="foot-col">
+        <h4>Contacto directo</h4>
+        <ul class="foot-info">
+          <li><a href="tel:+576013907370"><strong>Asistencias:</strong> 601 390 7370</a></li>
+          <li><a href="tel:+573222679674"><strong>Celular:</strong> 322 267 9674</a></li>
+          <li><a href="https://linktr.ee/segurosiberis" target="_blank" rel="noopener">WhatsApp / Linktree</a></li>
+          <li><a href="mailto:servicioalcliente@segurosiberis.co">servicioalcliente@segurosiberis.co</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container foot-bottom">
+      <small>© <span id="year">2026</span> Agencia de Seguros Iberis. Todos los derechos reservados.</small>
+      <small>Documentos sujetos a términos y condiciones. Vigencia 2026.</small>
+    </div>
+  </footer>
+
+  <a class="float-whats" href="https://wa.me/573222679674?text=Hola%20Iberis%2C%20quiero%20asesor%C3%ADa%20sobre%20un%20seguro" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp con un asesor">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91zM12 20.06a8 8 0 0 1-4.07-1.11l-.29-.17-3.06.78.82-2.98-.19-.31A8 8 0 1 1 12 20.06zm4.6-5.93c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.75-.15-.25 0-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.17 1.73 2.64 4.2 3.7.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.11-.23-.17-.48-.29z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const header = document.getElementById('siteHeader');
+    addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 14), { passive: true });
+
+    /* ====== Catálogo ====== */
+    (function () {
+      const ICON = {
+        star: '<path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/>',
+        user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+        car: '<path d="M3 13l2-5a2 2 0 0 1 2-1.3h10A2 2 0 0 1 19 8l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H4a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="16.5" r="1.2" fill="currentColor"/><circle cx="16.5" cy="16.5" r="1.2" fill="currentColor"/>',
+        moto: '<circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M5.5 17h7l3-5h3M9 8h4l3 4"/>',
+        home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/>',
+        health: '<path d="M4 12h3l2-5 3 10 2-5h6"/>',
+        heart: '<path d="M12 21s-7-4.5-9.5-9A5.2 5.2 0 0 1 12 6a5.2 5.2 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/>',
+        plane: '<path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l7 4v2l-7-2v4l2 1.5V21l-3.5-1L11 21v-1.5L13 18v-4l-7 2v-2l7-4z"/>',
+        building: '<path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 21V9h5a1 1 0 0 1 1 1v11"/><path d="M7 8h2M7 12h2M7 16h2M17 13h.01M17 17h.01"/>',
+        shield: '<path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/>',
+        whats: '<path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/>'
+      };
+      const svg = (name) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICON[name] || '') + '</svg>';
+
+      const CATS = [
+        { key: 'imperdibles', label: 'Imperdibles',      color: '#16a34a', icon: 'star' },
+        { key: 'personas',    label: 'Personas',          color: '#0d7d8c', icon: 'user' },
+        { key: 'vehiculos',   label: 'Vehículos',         color: '#2563eb', icon: 'car' },
+        { key: 'hogar',       label: 'Hogar',             color: '#7c3aed', icon: 'home' },
+        { key: 'salud',       label: 'Salud',             color: '#db2777', icon: 'health' },
+        { key: 'vida',        label: 'Vida',              color: '#e11d48', icon: 'heart' },
+        { key: 'viajes',      label: 'Viajes',            color: '#0891b2', icon: 'plane' },
+        { key: 'empresas',    label: 'Empresas y otros',  color: '#F28E42', icon: 'building' }
+      ];
+      const catColor = k => (CATS.find(c => c.key === k) || {}).color || '#0d7d8c';
+      const catLabel = k => (CATS.find(c => c.key === k) || {}).label || k;
+
+      // grad: usa gradiente + icono en vez de foto
+      const P = [
+        { cats: ['imperdibles','personas'], img: 'assets/feat-accidentes.jpg', price: '$10.000.000', unit: 'Cobertura', title: 'Accidentes Personales · Plan A', desc: 'Muerte, incapacidad y desmembración por accidente + asistencias médicas 24/7, hogar y jurídica. Desde $150.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=a150' },
+        { cats: ['personas'], img: 'assets/per-accidentes.jpg', price: '$15.000.000', unit: 'Cobertura', title: 'Accidentes Personales · Plan A Plus', desc: 'Cobertura reforzada por accidente + asistencias médicas ampliadas, de hogar y legales. Desde $170.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=a170' },
+        { cats: ['imperdibles','personas'], img: 'assets/feat-hogar.jpg', price: '$50.000.000', unit: 'Cobertura + VIP', title: 'Plan 400 · Beneficios VIP', desc: 'Máxima cobertura + Beneficios Exclusivos VIP: mascotas, vehículo, salud, hogar y legales. $400.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=b400' },
+        { cats: ['personas','hogar'], img: 'assets/per-hogar.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia para el hogar', desc: 'Plomería, cerrajería, electricidad, remolque y más — soporte inmediato cuando lo necesites.', cta: 'Ver detalles', href: 'asistencias-hogar.html' },
+        { cats: ['personas'], img: 'assets/per-juridica.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia jurídica', desc: 'Derechos de petición, tutelas, minutas y acompañamiento legal continuo.', cta: 'Ver detalles', href: 'asistencia-juridica.html' },
+
+        { cats: ['imperdibles','vehiculos'], grad: 'car', tag: 'Precio oficial 2026', title: 'SOAT en línea', desc: 'Tu SOAT obligatorio al precio oficial, sin filas y en minutos.', cta: 'Cotizar', href: 'cotizar.html' },
+        { cats: ['vehiculos'], grad: 'car', tag: 'Compara +50 aseguradoras', title: 'Seguro todo riesgo para carro', desc: 'Comparamos las mejores aseguradoras del país para proteger tu vehículo con la cobertura que se adapta a ti.', cta: 'Cotizar', href: 'cotizar.html' },
+        { cats: ['vehiculos'], grad: 'moto', tag: 'Compara aseguradoras', title: 'Seguro para tu moto', desc: 'Cobertura voluntaria y protección ante daños por eventos y a terceros, a tu medida.', cta: 'Cotizar', href: 'cotizar.html' },
+
+        { cats: ['imperdibles','vida'], img: 'assets/hero-pareja.jpg', tag: 'Protege a tu familia', title: 'Seguro de Vida', desc: 'Cuando no estés, tu amor seguirá cuidando a los tuyos. Respaldo económico para tu familia.', cta: 'Cotizar', href: 'cotizar.html' },
+        { cats: ['salud'], grad: 'health', tag: 'A tu medida', title: 'Planes de salud y medicina prepagada', desc: 'Desde medicina domiciliaria hasta un plan de salud integral para ti y tu familia.', cta: 'Cotizar', href: 'cotizar.html' },
+        { cats: ['viajes'], grad: 'plane', tag: 'Cobertura internacional', title: 'Seguro de viaje', desc: 'Asistencia médica, equipaje y cancelación para que viajes tranquilo dentro y fuera del país.', cta: 'Cotizar', href: 'cotizar.html' },
+
+        { cats: ['empresas'], img: 'assets/emp-vida-deudor.jpg', tag: 'Saldo de tu deuda', title: 'Vida Deudor', desc: 'Protege tu familia y patrimonio: cubre el saldo insoluto de la deuda ante muerte o incapacidad.', cta: 'Cotizar', href: 'cotizar.html?producto=vida-deudor' },
+        { cats: ['empresas'], img: 'assets/emp-infidelidad.jpg', tag: 'Cotiza a tu medida', title: 'Infidelidad y Riesgo Financiero', desc: 'Antifraude corporativo para entidades financieras y firmas contables.', cta: 'Cotizar', href: 'cotizar.html?producto=infidelidad' },
+        { cats: ['empresas'], img: 'assets/emp-cyber.jpg', tag: 'Cotiza a tu medida', title: 'Cyber', desc: 'Blindaje digital para empresas con información crítica: extorsión, restauración de datos y crisis.', cta: 'Cotizar', href: 'cotizar.html?producto=cyber' },
+        { cats: ['empresas'], img: 'assets/emp-do.jpg', tag: 'Cotiza a tu medida', title: 'D&O · Directores y Administradores', desc: 'Protegemos la gestión de tus líderes ante errores u omisiones, prácticas indebidas y defensa jurídica.', cta: 'Cotizar', href: 'cotizar.html?producto=directores-administradores' },
+        { cats: ['empresas'], img: 'assets/emp-rc.jpg', tag: 'Cotiza a tu medida', title: 'Responsabilidad Civil', desc: 'Escudo legal ante daños a terceros derivados de tu operación empresarial.', cta: 'Cotizar', href: 'cotizar.html?producto=responsabilidad-civil' },
+        { cats: ['empresas'], img: 'assets/emp-pymes.jpg', tag: 'Cotiza a tu medida', title: 'Todo Riesgo Pymes', desc: 'Tu infraestructura y activos protegidos frente a incendios, robos, fallas eléctricas y más.', cta: 'Cotizar', href: 'cotizar.html?producto=danos-materiales-pymes' },
+
+        { cats: ['imperdibles'], grad: 'whats', gradColor: '#25D366', tag: 'Al instante', title: 'Compra en minutos por WhatsApp', desc: '¿No te quedes sin tu seguro? Escríbenos por WhatsApp y un asesor te ayuda ahora mismo.', cta: 'Hablar con asesor', href: 'https://wa.link/f6jaj9' }
+      ];
+
+      const side = document.getElementById('catSide');
+      const grid = document.getElementById('catGrid');
+      const count = document.getElementById('catCount');
+      let active = 'imperdibles';
+
+      // Render sidebar
+      CATS.forEach(c => {
+        const n = P.filter(p => p.cats.includes(c.key)).length;
+        if (!n) return;
+        const b = document.createElement('button');
+        b.className = 'cat-btn' + (c.key === active ? ' is-active' : '');
+        b.type = 'button';
+        b.dataset.cat = c.key;
+        b.innerHTML = '<span class="cat-ic" style="background:' + c.color + '">' + svg(c.icon) + '</span><span class="lbl">' + c.label + '</span>';
+        b.addEventListener('click', () => { active = c.key; sync(); });
+        side.appendChild(b);
+      });
+
+      function card(p) {
+        const primaryCat = p.cats.find(k => k !== 'imperdibles') || p.cats[0];
+        // Badge inferior-izquierdo: precio (con unidad) o, si no hay precio, la etiqueta
+        const priceBadge = p.price
+          ? '<span class="pcard-price"><strong>' + p.price + '</strong><span>' + (p.unit || '') + '</span></span>'
+          : (p.tag ? '<span class="pcard-price"><strong style="font-size:.9rem;font-weight:700">' + p.tag + '</strong></span>' : '');
+        const media = p.grad
+          ? '<div class="pcard-media is-grad" style="background:linear-gradient(150deg,' + (p.gradColor || catColor(primaryCat)) + ',' + shade(p.gradColor || catColor(primaryCat)) + ')">' + svg(p.grad) +
+            (p.tag ? '<span class="pcard-price"><strong style="font-size:.9rem;font-weight:700">' + p.tag + '</strong></span>' : '') + '</div>'
+          : '<div class="pcard-media"><img src="' + p.img + '" alt="' + p.title + '" loading="lazy" />' + priceBadge +
+            '<span class="pcard-tc">Aplican T&amp;C</span></div>';
+        const chip = '<span class="pcard-chip" style="color:' + catColor(primaryCat) + ';background:' + catColor(primaryCat) + '1a">' + catLabel(primaryCat) + '</span>';
+        return '<article class="pcard">' + media +
+          '<div class="pcard-body">' + chip +
+          '<h3>' + p.title + '</h3><p>' + p.desc + '</p>' +
+          '<a class="pcard-cta" href="' + p.href + '"' + (p.href.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' + p.cta + ' →</a>' +
+          '</div></article>';
+      }
+
+      // oscurece un hex para el gradiente
+      function shade(hex) {
+        const h = hex.replace('#',''); const n = parseInt(h.length===3 ? h.split('').map(x=>x+x).join('') : h, 16);
+        let r=(n>>16)&255, g=(n>>8)&255, b=n&255;
+        r=Math.round(r*.7); g=Math.round(g*.7); b=Math.round(b*.7);
+        return '#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+      }
+
+      function sync() {
+        side.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('is-active', b.dataset.cat === active));
+        const list = P.filter(p => p.cats.includes(active));
+        grid.innerHTML = list.map(card).join('');
+        count.innerHTML = '<strong>' + list.length + '</strong> ' + (list.length === 1 ? 'seguro' : 'seguros') + ' en <strong>' + catLabel(active) + '</strong>';
+      }
+      sync();
+    })();
+
+    (function(){var u=/[?&]review=1\b/.test(location.search),g=sessionStorage.getItem('sib_review_mode')==='1';if(!u&&!g)return;if(u)sessionStorage.setItem('sib_review_mode','1');var s=document.createElement('script');s.src='review-mode.js';s.defer=true;document.body.appendChild(s);})()
+  </script>
+</body>
+</html>
