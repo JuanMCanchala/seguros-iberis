@@ -161,47 +161,39 @@
         heart: '<path d="M12 21s-7-4.5-9.5-9A5.2 5.2 0 0 1 12 6a5.2 5.2 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/>',
         plane: '<path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l7 4v2l-7-2v4l2 1.5V21l-3.5-1L11 21v-1.5L13 18v-4l-7 2v-2l7-4z"/>',
         building: '<path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 21V9h5a1 1 0 0 1 1 1v11"/><path d="M7 8h2M7 12h2M7 16h2M17 13h.01M17 17h.01"/>',
+        cap: '<path d="M2 9l10-4 10 4-10 4z"/><path d="M6 11v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/><path d="M22 9v5"/>',
         shield: '<path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/>',
         whats: '<path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/>'
       };
       const svg = (name) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICON[name] || '') + '</svg>';
 
       const CATS = [
-        { key: 'imperdibles', label: 'Imperdibles',      color: '#16a34a', icon: 'star' },
-        { key: 'personas',    label: 'Personas',          color: '#0d7d8c', icon: 'user' },
-        { key: 'vehiculos',   label: 'Vehículos',         color: '#2563eb', icon: 'car' },
-        { key: 'hogar',       label: 'Hogar',             color: '#7c3aed', icon: 'home' },
-        { key: 'salud',       label: 'Salud',             color: '#db2777', icon: 'health' },
-        { key: 'vida',        label: 'Vida',              color: '#e11d48', icon: 'heart' },
-        { key: 'viajes',      label: 'Viajes',            color: '#0891b2', icon: 'plane' },
-        { key: 'empresas',    label: 'Empresas y otros',  color: '#F28E42', icon: 'building' }
+        { key: 'imperdibles', label: 'Imperdibles', color: '#16a34a', icon: 'star' },
+        { key: 'personas',    label: 'Personas',    color: '#0d7d8c', icon: 'user' },
+        { key: 'empresas',    label: 'Empresas',    color: '#F28E42', icon: 'building' }
       ];
       const catColor = k => (CATS.find(c => c.key === k) || {}).color || '#0d7d8c';
       const catLabel = k => (CATS.find(c => c.key === k) || {}).label || k;
 
-      // grad: usa gradiente + icono en vez de foto
+      // Solo productos reales de Iberis (Personas y Empresas). grad = gradiente + icono en vez de foto.
       const P = [
+        // ---- Personas ----
         { cats: ['imperdibles','personas'], img: 'assets/feat-accidentes.jpg', price: '$10.000.000', unit: 'Cobertura', title: 'Accidentes Personales · Plan A', desc: 'Muerte, incapacidad y desmembración por accidente + asistencias médicas 24/7, hogar y jurídica. Desde $150.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=a150' },
         { cats: ['personas'], img: 'assets/per-accidentes.jpg', price: '$15.000.000', unit: 'Cobertura', title: 'Accidentes Personales · Plan A Plus', desc: 'Cobertura reforzada por accidente + asistencias médicas ampliadas, de hogar y legales. Desde $170.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=a170' },
         { cats: ['imperdibles','personas'], img: 'assets/feat-hogar.jpg', price: '$50.000.000', unit: 'Cobertura + VIP', title: 'Plan 400 · Beneficios VIP', desc: 'Máxima cobertura + Beneficios Exclusivos VIP: mascotas, vehículo, salud, hogar y legales. $400.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=b400' },
-        { cats: ['personas','hogar'], img: 'assets/per-hogar.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia para el hogar', desc: 'Plomería, cerrajería, electricidad, remolque y más — soporte inmediato cuando lo necesites.', cta: 'Ver detalles', href: 'asistencias-hogar.html' },
+        { cats: ['personas'], img: 'assets/per-hogar.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia para el hogar', desc: 'Plomería, cerrajería, electricidad, remolque y más — soporte inmediato cuando lo necesites.', cta: 'Ver detalles', href: 'asistencias-hogar.html' },
         { cats: ['personas'], img: 'assets/per-juridica.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia jurídica', desc: 'Derechos de petición, tutelas, minutas y acompañamiento legal continuo.', cta: 'Ver detalles', href: 'asistencia-juridica.html' },
+        { cats: ['personas'], grad: 'cap', gradColor: '#0d7d8c', tag: 'Ahorro programado', title: 'Seguro Educativo', desc: 'Asegura hoy la educación de tus hijos con un ahorro protegido y programado.', cta: 'Cotizar', href: 'cotizar.html' },
 
-        { cats: ['imperdibles','vehiculos'], grad: 'car', tag: 'Precio oficial 2026', title: 'SOAT en línea', desc: 'Tu SOAT obligatorio al precio oficial, sin filas y en minutos.', cta: 'Cotizar', href: 'cotizar.html' },
-        { cats: ['vehiculos'], grad: 'car', tag: 'Compara +50 aseguradoras', title: 'Seguro todo riesgo para carro', desc: 'Comparamos las mejores aseguradoras del país para proteger tu vehículo con la cobertura que se adapta a ti.', cta: 'Cotizar', href: 'cotizar.html' },
-        { cats: ['vehiculos'], grad: 'moto', tag: 'Compara aseguradoras', title: 'Seguro para tu moto', desc: 'Cobertura voluntaria y protección ante daños por eventos y a terceros, a tu medida.', cta: 'Cotizar', href: 'cotizar.html' },
-
-        { cats: ['imperdibles','vida'], img: 'assets/hero-pareja.jpg', tag: 'Protege a tu familia', title: 'Seguro de Vida', desc: 'Cuando no estés, tu amor seguirá cuidando a los tuyos. Respaldo económico para tu familia.', cta: 'Cotizar', href: 'cotizar.html' },
-        { cats: ['salud'], grad: 'health', tag: 'A tu medida', title: 'Planes de salud y medicina prepagada', desc: 'Desde medicina domiciliaria hasta un plan de salud integral para ti y tu familia.', cta: 'Cotizar', href: 'cotizar.html' },
-        { cats: ['viajes'], grad: 'plane', tag: 'Cobertura internacional', title: 'Seguro de viaje', desc: 'Asistencia médica, equipaje y cancelación para que viajes tranquilo dentro y fuera del país.', cta: 'Cotizar', href: 'cotizar.html' },
-
-        { cats: ['empresas'], img: 'assets/emp-vida-deudor.jpg', tag: 'Saldo de tu deuda', title: 'Vida Deudor', desc: 'Protege tu familia y patrimonio: cubre el saldo insoluto de la deuda ante muerte o incapacidad.', cta: 'Cotizar', href: 'cotizar.html?producto=vida-deudor' },
+        // ---- Empresas ----
+        { cats: ['imperdibles','empresas'], img: 'assets/emp-vida-deudor.jpg', tag: 'Saldo de tu deuda', title: 'Vida Deudor', desc: 'Protege tu familia y patrimonio: cubre el saldo insoluto de la deuda ante muerte o incapacidad.', cta: 'Cotizar', href: 'cotizar.html?producto=vida-deudor' },
         { cats: ['empresas'], img: 'assets/infidelidad-corp.jpg', tag: 'Cotiza a tu medida', title: 'Infidelidad y Riesgo Financiero', desc: 'Antifraude corporativo para entidades financieras y firmas contables.', cta: 'Cotizar', href: 'cotizar.html?producto=infidelidad' },
         { cats: ['empresas'], img: 'assets/emp-cyber.jpg', tag: 'Cotiza a tu medida', title: 'Cyber', desc: 'Blindaje digital para empresas con información crítica: extorsión, restauración de datos y crisis.', cta: 'Cotizar', href: 'cotizar.html?producto=cyber' },
         { cats: ['empresas'], img: 'assets/emp-do.jpg', tag: 'Cotiza a tu medida', title: 'D&O · Directores y Administradores', desc: 'Protegemos la gestión de tus líderes ante errores u omisiones, prácticas indebidas y defensa jurídica.', cta: 'Cotizar', href: 'cotizar.html?producto=directores-administradores' },
         { cats: ['empresas'], img: 'assets/emp-rc.jpg', tag: 'Cotiza a tu medida', title: 'Responsabilidad Civil', desc: 'Escudo legal ante daños a terceros derivados de tu operación empresarial.', cta: 'Cotizar', href: 'cotizar.html?producto=responsabilidad-civil' },
-        { cats: ['empresas'], img: 'assets/emp-pymes.jpg', tag: 'Cotiza a tu medida', title: 'Todo Riesgo Pymes', desc: 'Tu infraestructura y activos protegidos frente a incendios, robos, fallas eléctricas y más.', cta: 'Cotizar', href: 'cotizar.html?producto=danos-materiales-pymes' },
+        { cats: ['imperdibles','empresas'], img: 'assets/emp-pymes.jpg', tag: 'Cotiza a tu medida', title: 'Todo Riesgo Pymes', desc: 'Tu infraestructura y activos protegidos frente a incendios, robos, fallas eléctricas y más.', cta: 'Cotizar', href: 'cotizar.html?producto=danos-materiales-pymes' },
 
+        // ---- Canal ----
         { cats: ['imperdibles'], grad: 'whats', gradColor: '#25D366', tag: 'Al instante', title: 'Compra en minutos por WhatsApp', desc: '¿No te quedes sin tu seguro? Escríbenos por WhatsApp y un asesor te ayuda ahora mismo.', cta: 'Hablar con asesor', href: 'https://wa.link/f6jaj9' }
       ];
 
