@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#224859" />
-  <meta name="description" content="Catálogo de seguros Seguros Iberis · encuentra el seguro ideal por categoría: accidentes personales, SOAT, carro, moto, vida, salud, hogar, viajes y líneas empresariales." />
+  <meta name="description" content="Nuestros planes de protección · Seguros Iberis. Accidentes personales AP Pensionado y AP Riesgo Financiero, con asistencias médicas, hogar, jurídicas, vehículo y mascotas." />
   <meta name="robots" content="noindex" />
-  <title>Nuestros seguros — Catálogo · Seguros Iberis (vista alternativa)</title>
+  <title>Nuestros planes de protección · Seguros Iberis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,61 +14,78 @@
   <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ====== Catálogo de productos (vista alternativa) ====== */
-    .cat-hero { padding: 2.4rem 0 1rem; text-align: center; }
-    .cat-hero .eyebrow { justify-content: center; display: inline-flex; }
-    .cat-hero h1 { font-size: clamp(1.9rem, 4vw, 2.9rem); color: var(--brand-700); line-height: 1.06; letter-spacing: -.02em; margin: .3rem 0 .6rem; }
-    .cat-hero h1 em { font-style: italic; color: var(--orange-500); }
-    .cat-hero p { color: var(--ink-500); max-width: 620px; margin: 0 auto; font-size: 1.02rem; }
-    .cat-draft { display: inline-flex; align-items: center; gap: .45rem; margin-top: .9rem; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--orange-500); background: var(--orange-100); padding: .35rem .8rem; border-radius: 999px; }
+    /* ===== Sección "Nuestros planes de protección" (scoped a #planes) ===== */
+    #planes { --ok:#1F9D7C; --salud:#E0464B; }
+    #planes .notice { max-width:860px; margin:0 auto 26px; text-align:center; font-size:1.02rem; font-weight:600; color:var(--ink-500); }
+    #planes .eyebrow { display:flex; align-items:center; justify-content:center; gap:10px; color:var(--cyan-500); font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px; }
+    #planes .eyebrow::before { content:""; width:26px; height:2px; background:var(--cyan-500); border-radius:2px; }
+    #planes h1 { text-align:center; color:var(--brand-700); font-weight:700; font-size:clamp(1.9rem,3vw,2.6rem); margin:0 0 30px; }
 
-    .cat-wrap { display: grid; grid-template-columns: 236px 1fr; gap: 2rem; align-items: start; padding-bottom: 3.5rem; }
+    #planes .tabs { display:flex; gap:14px; margin-bottom:30px; flex-wrap:wrap; justify-content:center; }
+    #planes .tab { display:flex; align-items:center; gap:9px; padding:13px 24px; border-radius:14px; border:1.5px solid var(--ink-100); background:#fff; color:var(--ink-700); font-family:inherit; font-size:.95rem; font-weight:700; cursor:pointer; transition:.18s; }
+    #planes .tab svg { width:20px; height:20px; }
+    #planes .tab.active { background:var(--brand-050); border-color:var(--brand-600); color:var(--brand-700); }
+    #planes .tab:hover { border-color:var(--brand-300); }
 
-    /* Sidebar */
-    .cat-side { position: sticky; top: 90px; display: flex; flex-direction: column; gap: .3rem; }
-    .cat-side h2 { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-400, #8a9499); font-weight: 700; margin: 0 0 .5rem .2rem; }
-    .cat-btn { display: flex; align-items: center; gap: .7rem; width: 100%; text-align: left; background: none; border: 0; padding: .6rem .7rem; border-radius: 12px; cursor: pointer; color: var(--ink-700); font-family: inherit; font-size: .95rem; font-weight: 600; transition: background .2s var(--ease), color .2s var(--ease); }
-    .cat-btn:hover { background: var(--brand-050); }
-    .cat-btn.is-active { background: var(--brand-050); color: var(--brand-700); }
-    .cat-btn.is-active::after { content: ''; margin-left: auto; width: 8px; height: 8px; border-radius: 999px; background: var(--orange-500); }
-    .cat-ic { flex: none; width: 34px; height: 34px; border-radius: 999px; display: grid; place-items: center; color: #fff; }
-    .cat-ic svg { width: 18px; height: 18px; }
+    #planes .layout { display:grid; grid-template-columns:225px 1fr; gap:30px; align-items:start; }
+    #planes .rail { position:sticky; top:90px; display:flex; flex-direction:column; gap:6px; }
+    #planes .cat { display:flex; align-items:center; gap:14px; padding:10px 16px 10px 12px; border-radius:999px; border:0; background:transparent; font-family:inherit; font-size:.95rem; font-weight:600; color:var(--ink-700); cursor:pointer; text-align:left; transition:.18s; }
+    #planes .cat:hover { background:var(--brand-050); }
+    #planes .cat.active { background:var(--brand-050); color:var(--brand-700); font-weight:700; }
+    #planes .cat .ico { flex:none; width:44px; height:44px; border-radius:50%; display:grid; place-items:center; color:#fff; }
+    #planes .cat .ico svg { width:22px; height:22px; }
+    #planes .ico-todos { background:var(--brand-700); }
+    #planes .ico-hogar { background:var(--orange-500); }
+    #planes .ico-mascotas { background:var(--cyan-500); }
+    #planes .ico-juridico { background:var(--brand-600); }
+    #planes .ico-vehiculos { background:var(--ok); }
+    #planes .ico-salud { background:var(--salud); }
 
-    /* Grid */
-    .cat-count { margin: 0 0 1rem; color: var(--ink-500); font-size: .9rem; }
-    .cat-count strong { color: var(--brand-700); }
-    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 1.4rem; }
+    #planes .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; align-items:start; }
+    #planes .card { background:#fff; border:1px solid var(--brand-100); border-radius:var(--radius-lg); padding:0; overflow:hidden; box-shadow:var(--shadow-sm); }
+    #planes .card.featured { border:1.5px solid var(--brand-600); box-shadow:var(--shadow); }
+    #planes .card-body { padding:20px 26px 26px; }
+    #planes .card-media { position:relative; height:172px; background:var(--brand-100); }
+    #planes .card-media img { width:100%; height:100%; object-fit:cover; display:block; }
+    #planes .card-media .chip { position:absolute; top:14px; left:14px; box-shadow:0 2px 10px rgba(5,26,34,.25); }
+    #planes .media-ico { position:absolute; top:12px; right:12px; width:40px; height:40px; border-radius:50%; display:grid; place-items:center; color:#fff; box-shadow:0 2px 10px rgba(5,26,34,.3); }
+    #planes .media-ico svg { width:20px; height:20px; }
+    #planes .media-amount { position:absolute; left:14px; bottom:12px; background:rgba(17,47,59,.92); color:#fff; font-size:.74rem; font-weight:700; padding:8px 14px; border-radius:10px; }
+    #planes .media-amount b { color:var(--orange-400); font-weight:800; }
+    #planes .chip { display:inline-block; padding:7px 15px; border-radius:999px; font-size:.76rem; font-weight:700; }
+    #planes .chip.eco { background:var(--brand-100); color:var(--brand-700); }
+    #planes .chip.rec { background:var(--cyan-100); color:#0A6E73; }
+    #planes .chip.top { background:var(--orange-100); color:#B05E1B; }
+    #planes .plan-name { color:var(--brand-700); font-size:1.5rem; font-weight:700; line-height:1.15; margin:0; }
+    #planes .plan-sub { color:var(--ink-500); font-size:.85rem; font-weight:500; margin-top:5px; }
+    #planes .price { margin:14px 0 4px; color:var(--ink-500); font-size:.95rem; }
+    #planes .price strong { color:var(--brand-700); font-size:1.65rem; font-weight:800; }
+    #planes .price-alt { font-size:.78rem; color:var(--ink-500); margin-bottom:14px; }
+    #planes .cta { display:block; text-align:center; background:var(--orange-500); color:#fff; font-weight:700; font-size:1rem; padding:15px 20px; border-radius:999px; text-decoration:none; margin:12px 0 20px; box-shadow:var(--shadow); transition:.18s; }
+    #planes .cta:hover { background:#E37F33; transform:translateY(-1px); color:#fff; }
+    #planes .group { font-size:.92rem; font-weight:700; color:var(--ink-900); margin:16px 0 10px; padding:2px 8px; border-radius:8px; }
+    #planes .group.add { background:var(--orange-100); color:#B05E1B; }
+    #planes .group.hl { background:var(--cyan-050); color:#0A6E73; }
+    #planes ul { list-style:none; padding:0; margin:0; }
+    #planes li { position:relative; padding-left:31px; margin-bottom:11px; font-size:.88rem; color:var(--ink-700); line-height:1.45; }
+    #planes li::before { content:""; position:absolute; left:0; top:1px; width:21px; height:21px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300B2BA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M8.5 12.2l2.4 2.4 4.8-5'/%3E%3C/svg%3E") no-repeat center/contain; }
+    #planes li b { color:var(--ink-900); font-weight:600; }
+    #planes .note24 { display:flex; gap:8px; align-items:flex-start; margin-top:14px; font-size:.78rem; font-weight:600; color:var(--brand-700); line-height:1.4; }
+    #planes .note24 svg { flex:none; width:16px; height:16px; margin-top:1px; color:var(--cyan-500); }
+    #planes .fam-note { margin-top:12px; background:var(--cyan-050); border-radius:12px; padding:11px 14px; font-size:.78rem; color:#0A6E73; line-height:1.45; }
+    #planes .empty { display:none; background:var(--brand-050); border:1px dashed var(--brand-300); border-radius:var(--radius); padding:34px; text-align:center; color:var(--brand-700); font-weight:600; font-size:.95rem; }
+    #planes .legal { margin-top:26px; text-align:center; font-size:.78rem; color:var(--ink-500); }
+    #planes .hidden { display:none !important; }
 
-    .pcard { background: #fff; border: 1px solid var(--ink-100); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
-    .pcard:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(34,72,89,.14); border-color: var(--orange-300); }
-    .pcard-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
-    .pcard-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
-    .pcard:hover .pcard-media img { transform: scale(1.06); }
-    .pcard-media.is-grad { display: grid; place-items: center; }
-    .pcard-media.is-grad svg { width: 66px; height: 66px; color: rgba(255,255,255,.95); }
-    .pcard-price { position: absolute; left: .8rem; bottom: .8rem; background: rgba(20,42,52,.86); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); color: #fff; border-radius: 12px; padding: .45rem .7rem; line-height: 1.05; }
-    .pcard-price strong { display: block; font-size: 1.12rem; font-weight: 800; letter-spacing: -.01em; }
-    .pcard-price span { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .85; }
-    .pcard-tc { position: absolute; top: .7rem; right: .7rem; background: rgba(255,255,255,.9); color: var(--ink-500); font-size: .62rem; font-weight: 700; letter-spacing: .04em; padding: .22rem .5rem; border-radius: 999px; }
-    .pcard-body { padding: 1.1rem 1.2rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
-    .pcard-chip { display: inline-flex; align-items: center; gap: .35rem; align-self: flex-start; font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: .24rem .55rem; border-radius: 999px; margin-bottom: .55rem; }
-    .pcard h3 { font-size: 1.08rem; color: var(--brand-800); line-height: 1.2; margin: 0 0 .35rem; }
-    .pcard-body p { color: var(--ink-500); font-size: .88rem; line-height: 1.4; flex: 1; margin: 0 0 .9rem; }
-    .pcard-cta { display: inline-flex; align-items: center; gap: .35rem; align-self: flex-start; color: var(--orange-500); font-weight: 700; font-size: .9rem; transition: gap .2s var(--ease), color .2s var(--ease); }
-    .pcard-cta:hover { color: #B5560C; gap: .6rem; }
-
-    @media (max-width: 860px) {
-      .cat-wrap { grid-template-columns: 1fr; gap: 1rem; }
-      .cat-side { position: static; flex-direction: row; overflow-x: auto; gap: .5rem; padding-bottom: .5rem; -webkit-overflow-scrolling: touch; }
-      .cat-side h2 { display: none; }
-      .cat-btn { flex-direction: column; gap: .35rem; min-width: 82px; padding: .6rem .4rem; font-size: .74rem; text-align: center; }
-      .cat-btn.is-active::after { display: none; }
-      .cat-btn span.lbl { line-height: 1.1; }
+    @media (max-width:820px){
+      #planes .layout { grid-template-columns:1fr; }
+      #planes .rail { position:static; flex-direction:row; overflow-x:auto; padding-bottom:6px; }
+      #planes .cat { flex:none; flex-direction:column; gap:8px; padding:8px 12px; font-size:.8rem; border-radius:16px; }
     }
   </style>
 </head>
 <body data-view="personas" class="is-subpage">
-  <a href="#catalogo" class="skip-link">Saltar al contenido</a>
+  <a href="#planes" class="skip-link">Saltar al contenido</a>
 
   <!-- ================== HEADER ================== -->
   <header class="site-header is-scrolled" id="siteHeader">
@@ -78,7 +95,7 @@
       </a>
       <nav class="desktop-nav" aria-label="Navegación">
         <a href="index.html">Inicio</a>
-        <a href="productos.html" aria-current="page">Nuestros seguros</a>
+        <a href="productos.html" aria-current="page">Nuestros planes</a>
         <a href="index.html#nosotros">Nosotros</a>
         <a href="cotizar.html">Cotizar</a>
         <a href="index.html#contacto">Contacto</a>
@@ -90,25 +107,286 @@
   </header>
 
   <main id="contenido">
-    <div class="container">
-      <section class="cat-hero">
-        <span class="eyebrow">Nuestros seguros</span>
-        <h1>Encuentra el seguro <em>ideal</em> para ti</h1>
-        <p>Explora por categoría y cotiza en minutos. Como agencia comparamos las mejores aseguradoras del país para conseguirte la mejor cobertura.</p>
-        <span class="cat-draft" title="Página de propuesta para revisión">● Vista alternativa · borrador para revisión</span>
-      </section>
-    </div>
+    <section class="section">
+      <div class="container">
+        <div id="planes">
+          <p class="notice">Protección por accidentes personales: Por fallecimiento o incapacidad total se paga el 100% del valor asegurado, y por desmembración accidental el porcentaje según tabla.</p>
+          <div class="eyebrow">Seguros para personas</div>
+          <h1>Nuestros planes de protección</h1>
 
-    <section class="container" id="catalogo">
-      <div class="cat-wrap">
-        <aside class="cat-side" id="catSide" aria-label="Categorías de seguros">
-          <h2>Categorías</h2>
-          <!-- botones inyectados por JS -->
-        </aside>
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="pensionado" role="tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+              AP Pensionado
+            </button>
+            <button class="tab" data-tab="riesgo" role="tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/><path d="M6.5 14.5h5"/></svg>
+              AP Riesgo Financiero
+            </button>
+          </div>
 
-        <div>
-          <p class="cat-count" id="catCount"></p>
-          <div class="cat-grid" id="catGrid"></div>
+          <div class="layout">
+            <!-- ===== Rail de categorías ===== -->
+            <nav class="rail" aria-label="Filtrar por asistencia">
+              <button class="cat active" data-cat="todos">
+                <span class="ico ico-todos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 3.9 1.1 5.6-5.1-2.8-5.1 2.8 1.1-5.6-4.2-3.9 5.7-.7z"/></svg></span>
+                Todos los planes
+              </button>
+              <button class="cat" data-cat="salud">
+                <span class="ico ico-salud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12h3l1.8-4.5 3 9 2-4.5H20.5"/></svg></span>
+                Salud
+              </button>
+              <button class="cat" data-cat="hogar">
+                <span class="ico ico-hogar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5L12 3.8l8.5 6.7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/></svg></span>
+                Hogar
+              </button>
+              <button class="cat" data-cat="mascotas">
+                <span class="ico ico-mascotas"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="8.5" r="1.9"/><circle cx="12" cy="6.5" r="1.9"/><circle cx="17" cy="8.5" r="1.9"/><path d="M12 11c3 0 5.6 2.3 5.6 4.6 0 1.6-1.2 2.6-2.7 2.6-1.1 0-2-.5-2.9-.5s-1.8.5-2.9.5c-1.5 0-2.7-1-2.7-2.6C6.4 13.3 9 11 12 11z"/></svg></span>
+                Mascotas
+              </button>
+              <button class="cat" data-cat="juridico">
+                <span class="ico ico-juridico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M5 7h14"/><path d="M7 7l-2.8 6a2.9 2.9 0 005.6 0L7 7z"/><path d="M17 7l-2.8 6a2.9 2.9 0 005.6 0L17 7z"/><path d="M9 20h6"/></svg></span>
+                Jurídico
+              </button>
+              <button class="cat" data-cat="vehiculos">
+                <span class="ico ico-vehiculos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 13l1.6-4.4A2 2 0 018 7.2h8a2 2 0 011.9 1.4L19.5 13"/><rect x="3.5" y="13" width="17" height="5" rx="1.6"/><circle cx="7.5" cy="18.5" r="1.6"/><circle cx="16.5" cy="18.5" r="1.6"/></svg></span>
+                Vehículos
+              </button>
+            </nav>
+
+            <div>
+              <!-- ============ AP PENSIONADO ============ -->
+              <div class="grid" id="panel-pensionado">
+
+                <!-- PLAN 150 -->
+                <article class="card" data-cats="salud hogar juridico">
+                  <div class="card-media">
+                    <img src="assets/plan-150.jpg" alt="Familia protegida" loading="lazy">
+                    <span class="chip eco">Más económico</span>
+                    <span class="media-ico" style="background:var(--cyan-500)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                    <span class="media-amount">Hasta <b>$10.000.000</b> en protección</span>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="plan-name">Plan 150</h2>
+                    <p class="plan-sub">Asistencias médicas, hogar y jurídicas</p>
+                    <p class="price">Desde <strong>$150.000</strong> / año</p>
+                    <a class="cta" href="cotizar.html?producto=accidentes-personales&plan=a150">Cotizar</a>
+
+                    <h3 class="group">Protección del asegurado principal</h3>
+                    <ul>
+                      <li><b>$10.000.000</b> por fallecimiento, incapacidad o desmembración accidental</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="salud">Asistencias médicas</h3>
+                    <ul>
+                      <li>Orientación médica telefónica <b>ilimitada</b></li>
+                      <li>Ambulancia terrestre: 1 evento al año</li>
+                      <li>Médico y enfermera a domicilio</li>
+                      <li>Acompañamiento a citas médicas: 2 eventos al año</li>
+                      <li>Terapias físicas o respiratorias: 2 eventos al año</li>
+                      <li>Descuentos del 5% al 10% con especialistas</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="hogar juridico">Hogar y jurídico</h3>
+                    <ul>
+                      <li>Plomería, cerrajería o electricidad: 2 eventos al año</li>
+                      <li>Orientación jurídica telefónica: 1 evento al año</li>
+                    </ul>
+
+                    <p class="note24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Líneas de asistencia disponibles las 24 horas del día, los 7 días de la semana.</p>
+                    <p class="fam-note">Las asistencias aplican para el asegurado principal y su núcleo familiar: pareja, hijos y padres.</p>
+                  </div>
+                </article>
+
+                <!-- PLAN 170 -->
+                <article class="card featured" data-cats="salud hogar juridico">
+                  <div class="card-media">
+                    <img src="assets/plan-170.jpg" alt="Familia en casa" loading="lazy">
+                    <span class="chip rec">Recomendado</span>
+                    <span class="media-ico" style="background:var(--brand-600)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                    <span class="media-amount">Hasta <b>$15.000.000</b> en protección</span>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="plan-name">Plan 170</h2>
+                    <p class="plan-sub">Asistencias médicas, hogar y jurídicas, con mayor valor asegurado</p>
+                    <p class="price">Desde <strong>$170.000</strong> / año</p>
+                    <a class="cta" href="cotizar.html?producto=accidentes-personales&plan=a170">Cotizar</a>
+
+                    <h3 class="group">Protección del asegurado principal</h3>
+                    <ul>
+                      <li><b>$15.000.000</b> por fallecimiento, incapacidad o desmembración accidental</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="salud">Asistencias médicas</h3>
+                    <ul>
+                      <li>Orientación médica telefónica <b>ilimitada</b></li>
+                      <li>Ambulancia terrestre: 1 evento al año</li>
+                      <li>Médico y enfermera a domicilio</li>
+                      <li>Acompañamiento a citas médicas: 2 eventos al año</li>
+                      <li>Terapias físicas o respiratorias: 2 eventos al año</li>
+                      <li>Descuentos del 5% al 10% con especialistas</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="hogar juridico">Hogar y jurídico</h3>
+                    <ul>
+                      <li>Plomería, cerrajería o electricidad: 2 eventos al año</li>
+                      <li>Orientación jurídica telefónica: 1 evento al año</li>
+                    </ul>
+
+                    <p class="note24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Líneas de asistencia disponibles las 24 horas del día, los 7 días de la semana.</p>
+                    <p class="fam-note">Las asistencias aplican para el asegurado principal y su núcleo familiar: pareja, hijos y padres.</p>
+                  </div>
+                </article>
+
+                <!-- PLAN 400 -->
+                <article class="card" data-cats="salud hogar juridico vehiculos mascotas">
+                  <div class="card-media">
+                    <img src="assets/plan-400.jpg" alt="Mascota protegida en casa" loading="lazy">
+                    <span class="chip top">El más completo</span>
+                    <span class="media-ico" style="background:var(--orange-500)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 3.9 1.1 5.6-5.1-2.8-5.1 2.8 1.1-5.6-4.2-3.9 5.7-.7z"/></svg></span>
+                    <span class="media-amount">Hasta <b>$50.000.000</b> en protección</span>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="plan-name">Plan 400</h2>
+                    <p class="plan-sub">Mascotas, vehículo, médicas, hogar y jurídicas</p>
+                    <p class="price">Desde <strong>$400.000</strong> / año</p>
+                    <a class="cta" href="cotizar.html?producto=accidentes-personales&plan=b400">Cotizar</a>
+
+                    <h3 class="group">Protección del asegurado principal</h3>
+                    <ul>
+                      <li><b>$50.000.000</b> por fallecimiento, incapacidad o desmembración accidental</li>
+                    </ul>
+
+                    <h3 class="group add">Coberturas adicionales <span style="font-weight:600">(exclusivas del Plan 400)</span></h3>
+                    <ul>
+                      <li>Reembolso de gastos del hogar por muerte: <b>$2.000.000</b></li>
+                      <li>Reembolso por rotura de huesos: <b>$1.500.000</b></li>
+                      <li>Reembolso de gastos médicos por accidente: <b>$1.000.000</b></li>
+                      <li>Odontología básica por urgencias: 1 evento al año</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="salud">Asistencias médicas</h3>
+                    <ul>
+                      <li><b>Todas las asistencias médicas, ahora con 2 eventos al año</b></li>
+                    </ul>
+
+                    <h3 class="group" data-cat="vehiculos">Vehículo</h3>
+                    <ul>
+                      <li>Grúa para carro o moto: 2 eventos al año</li>
+                      <li>Auxilio vial en perímetro urbano: 2 eventos al año</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="mascotas">Mascotas</h3>
+                    <ul>
+                      <li>Orientación veterinaria telefónica <b>ilimitada</b></li>
+                      <li>Orientación legal veterinaria por daños a terceros</li>
+                      <li>Refuerzo de vacunación: 1 evento al año</li>
+                    </ul>
+
+                    <h3 class="group" data-cat="hogar juridico">Hogar y jurídico</h3>
+                    <ul>
+                      <li>Plomería, cerrajería o electricidad: 3 eventos al año</li>
+                      <li>Orientación jurídica telefónica: 1 evento al año</li>
+                    </ul>
+
+                    <p class="note24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Líneas de asistencia disponibles las 24 horas del día, los 7 días de la semana.</p>
+                    <p class="fam-note">Las asistencias aplican para el asegurado principal y su núcleo familiar: pareja, hijos y padres.</p>
+                  </div>
+                </article>
+
+                <div class="empty" id="empty-pensionado">Ningún plan de AP Pensionado incluye esta asistencia. Revisa AP Riesgo Financiero.</div>
+              </div>
+
+              <!-- ============ AP RIESGO FINANCIERO ============ -->
+              <!-- Góndola ordenada por precio: $39.000 primero, $45.000 después -->
+              <div class="grid hidden" id="panel-riesgo">
+
+                <!-- MASCOTAS Y VEHICULO ($39.000) -->
+                <article class="card" data-cats="mascotas vehiculos">
+                  <div class="card-media">
+                    <img src="assets/plan-mascota-vehiculo.jpg" alt="Persona con su mascota" loading="lazy">
+                    <span class="chip eco">Mascotas y vehículo</span>
+                    <span class="media-ico" style="background:var(--ok)"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="8.5" r="1.9"/><circle cx="12" cy="6.5" r="1.9"/><circle cx="17" cy="8.5" r="1.9"/><path d="M12 11c3 0 5.6 2.3 5.6 4.6 0 1.6-1.2 2.6-2.7 2.6-1.1 0-2-.5-2.9-.5s-1.8.5-2.9.5c-1.5 0-2.7-1-2.7-2.6C6.4 13.3 9 11 12 11z"/></svg></span>
+                    <span class="media-amount">Hasta <b>$25.000.000</b> en protección</span>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="plan-name">Mascotas y Vehículo</h2>
+                    <p class="plan-sub">Asistencias para tu mascota y tu vehículo + accidentes personales</p>
+                    <p class="price">Desde <strong>$39.000</strong> / trimestre</p>
+                    <p class="price-alt">Semestre $78.000 · Año $156.000</p>
+                    <a class="cta" href="cotizar.html">Cotizar</a>
+
+                    <h3 class="group">Protección del asegurado principal</h3>
+                    <ul>
+                      <li><b>$25.000.000</b> por fallecimiento, incapacidad o desmembración accidental</li>
+                      <li>Auxilio funerario por accidente: <b>$1.200.000</b></li>
+                    </ul>
+
+                    <h3 class="group" data-cat="mascotas">Mascotas</h3>
+                    <ul>
+                      <li>Consulta veterinaria telefónica <b>ilimitada</b></li>
+                      <li>Refuerzo de vacunación: Hasta <b>$100.000</b></li>
+                      <li>Gastos funerarios de tu mascota: Hasta <b>$300.000</b></li>
+                    </ul>
+
+                    <h3 class="group" data-cat="vehiculos">Vehículo</h3>
+                    <ul>
+                      <li>Remolque de grúa (carro o moto): Hasta <b>$120.000</b></li>
+                      <li>Carro taller: Paso de corriente, cambio de llanta y combustible, hasta <b>$50.000</b></li>
+                      <li>Maniguetas, retrovisores y bombillos: Hasta <b>$100.000</b></li>
+                      <li>Pérdida de llaves del vehículo: Hasta <b>$150.000</b></li>
+                      <li>Rotura de vidrios: Hasta <b>$100.000</b></li>
+                    </ul>
+
+                    <p class="note24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Líneas de asistencia disponibles las 24 horas del día, los 7 días de la semana.</p>
+                    <p class="fam-note">Las asistencias aplican para el asegurado principal y su núcleo familiar: pareja, hijos y padres.</p>
+                  </div>
+                </article>
+
+                <!-- TARJETA PROTEGIDA ($45.000) -->
+                <article class="card featured" data-cats="juridico">
+                  <div class="card-media">
+                    <img src="assets/plan-tarjeta.jpg" alt="Persona pagando con tarjeta" loading="lazy">
+                    <span class="chip rec">Protección financiera</span>
+                    <span class="media-ico" style="background:var(--brand-700)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/><path d="M6.5 14.5h5"/></svg></span>
+                    <span class="media-amount">Hasta <b>$25.000.000</b> en protección</span>
+                  </div>
+                  <div class="card-body">
+                    <h2 class="plan-name">Tarjeta Protegida</h2>
+                    <p class="plan-sub">Tarjeta protegida + accidentes personales</p>
+                    <p class="price">Desde <strong>$45.000</strong> / trimestre</p>
+                    <p class="price-alt">Semestre $90.000 · Año $180.000</p>
+                    <a class="cta" href="cotizar.html">Cotizar</a>
+
+                    <h3 class="group">Protección del asegurado principal</h3>
+                    <ul>
+                      <li><b>$25.000.000</b> por fallecimiento, incapacidad o desmembración accidental</li>
+                      <li>Auxilio funerario por accidente: <b>$1.200.000</b></li>
+                    </ul>
+
+                    <h3 class="group">Tu plata protegida</h3>
+                    <ul>
+                      <li>Auxilio por hurto en cajero (fleteo): Hasta <b>$400.000</b></li>
+                      <li>Si le roban su tarjeta física y realizan compras no reconocidas, auxilio de: Hasta <b>$300.000</b></li>
+                    </ul>
+
+                    <h3 class="group" data-cat="juridico">Acompañamiento</h3>
+                    <ul>
+                      <li>Psicólogo al teléfono <b>ilimitado</b></li>
+                      <li>Asesoría legal telefónica <b>ilimitada</b></li>
+                    </ul>
+
+                    <p class="note24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Líneas de asistencia disponibles las 24 horas del día, los 7 días de la semana.</p>
+                    <p class="fam-note">Las asistencias aplican para el asegurado principal y su núcleo familiar: pareja, hijos y padres.</p>
+                  </div>
+                </article>
+
+                <div class="empty" id="empty-riesgo">Ningún plan de AP Riesgo Financiero incluye esta asistencia. Revisa AP Pensionado.</div>
+              </div>
+
+              <p class="legal">* Los valores y eventos por año corresponden a los montos máximos de cada cobertura. Aplican términos y condiciones de la póliza.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -139,7 +417,7 @@
     </div>
   </footer>
 
-  <a class="float-whats" href="https://wa.me/573222679674?text=Hola%20Iberis%2C%20quiero%20asesor%C3%ADa%20sobre%20un%20seguro" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp con un asesor">
+  <a class="float-whats" href="https://wa.me/573222679674?text=Hola%20Iberis%2C%20quiero%20cotizar%20un%20plan%20de%20accidentes%20personales" target="_blank" rel="noopener" aria-label="Hablar por WhatsApp con un asesor">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A10 10 0 0 0 12 2a10 10 0 0 0-8.66 15L2 22l5.16-1.32A10 10 0 1 0 19.05 4.91zM12 20.06a8 8 0 0 1-4.07-1.11l-.29-.17-3.06.78.82-2.98-.19-.31A8 8 0 1 1 12 20.06zm4.6-5.93c-.25-.12-1.47-.73-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.65.81-.79.97-.15.17-.29.19-.54.06-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.75-.15-.25 0-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.17 1.73 2.64 4.2 3.7.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.11-.23-.17-.48-.29z"/></svg>
     <span>WhatsApp</span>
   </a>
@@ -149,106 +427,42 @@
     const header = document.getElementById('siteHeader');
     addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 14), { passive: true });
 
-    /* ====== Catálogo ====== */
+    /* ===== Planes: toggle producto + filtro por categoría ===== */
     (function () {
-      const ICON = {
-        star: '<path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/>',
-        user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
-        car: '<path d="M3 13l2-5a2 2 0 0 1 2-1.3h10A2 2 0 0 1 19 8l2 5"/><path d="M3 13h18v4a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H4a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="16.5" r="1.2" fill="currentColor"/><circle cx="16.5" cy="16.5" r="1.2" fill="currentColor"/>',
-        moto: '<circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M5.5 17h7l3-5h3M9 8h4l3 4"/>',
-        home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/>',
-        health: '<path d="M4 12h3l2-5 3 10 2-5h6"/>',
-        heart: '<path d="M12 21s-7-4.5-9.5-9A5.2 5.2 0 0 1 12 6a5.2 5.2 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/>',
-        plane: '<path d="M10.5 3.5a1.5 1.5 0 0 1 3 0V9l7 4v2l-7-2v4l2 1.5V21l-3.5-1L11 21v-1.5L13 18v-4l-7 2v-2l7-4z"/>',
-        building: '<path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16"/><path d="M14 21V9h5a1 1 0 0 1 1 1v11"/><path d="M7 8h2M7 12h2M7 16h2M17 13h.01M17 17h.01"/>',
-        cap: '<path d="M2 9l10-4 10 4-10 4z"/><path d="M6 11v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/><path d="M22 9v5"/>',
-        shield: '<path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/>',
-        whats: '<path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/>'
-      };
-      const svg = (name) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICON[name] || '') + '</svg>';
+      const root = document.getElementById('planes');
+      let product = 'pensionado';
+      let cat = 'todos';
+      const tabs = root.querySelectorAll('.tab');
+      const cats = root.querySelectorAll('.cat');
 
-      const CATS = [
-        { key: 'imperdibles', label: 'Imperdibles', color: '#16a34a', icon: 'star' },
-        { key: 'personas',    label: 'Personas',    color: '#0d7d8c', icon: 'user' },
-        { key: 'empresas',    label: 'Empresas',    color: '#F28E42', icon: 'building' }
-      ];
-      const catColor = k => (CATS.find(c => c.key === k) || {}).color || '#0d7d8c';
-      const catLabel = k => (CATS.find(c => c.key === k) || {}).label || k;
-
-      // Solo productos reales de Iberis (Personas y Empresas). grad = gradiente + icono en vez de foto.
-      const P = [
-        // ---- Personas ----
-        { cats: ['imperdibles','personas'], img: 'assets/feat-accidentes.jpg', price: '$10.000.000', unit: 'Cobertura', title: 'Accidentes Personales · Plan A', desc: 'Muerte, incapacidad y desmembración por accidente + asistencias médicas 24/7, hogar y jurídica. Desde $150.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=a150' },
-        { cats: ['personas'], img: 'assets/per-accidentes.jpg', price: '$15.000.000', unit: 'Cobertura', title: 'Accidentes Personales · Plan A Plus', desc: 'Cobertura reforzada por accidente + asistencias médicas ampliadas, de hogar y legales. Desde $170.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=a170' },
-        { cats: ['imperdibles','personas'], img: 'assets/feat-hogar.jpg', price: '$50.000.000', unit: 'Cobertura + VIP', title: 'Plan 400 · Beneficios VIP', desc: 'Máxima cobertura + Beneficios Exclusivos VIP: mascotas, vehículo, salud, hogar y legales. $400.000/año.', cta: 'Cotizar', href: 'cotizar.html?producto=accidentes-personales&plan=b400' },
-        { cats: ['personas'], img: 'assets/per-hogar.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia para el hogar', desc: 'Plomería, cerrajería, electricidad, remolque y más — soporte inmediato cuando lo necesites.', cta: 'Ver detalles', href: 'asistencias-hogar.html' },
-        { cats: ['personas'], img: 'assets/per-juridica.jpg', tag: 'Cotiza a tu medida', title: 'Asistencia jurídica', desc: 'Derechos de petición, tutelas, minutas y acompañamiento legal continuo.', cta: 'Ver detalles', href: 'asistencia-juridica.html' },
-        { cats: ['personas'], grad: 'cap', gradColor: '#0d7d8c', tag: 'Ahorro programado', title: 'Seguro Educativo', desc: 'Asegura hoy la educación de tus hijos con un ahorro protegido y programado.', cta: 'Cotizar', href: 'cotizar.html' },
-
-        // ---- Empresas ----
-        { cats: ['imperdibles','empresas'], img: 'assets/emp-vida-deudor.jpg', tag: 'Saldo de tu deuda', title: 'Vida Deudor', desc: 'Protege tu familia y patrimonio: cubre el saldo insoluto de la deuda ante muerte o incapacidad.', cta: 'Cotizar', href: 'cotizar.html?producto=vida-deudor' },
-        { cats: ['empresas'], img: 'assets/infidelidad-corp.jpg', tag: 'Cotiza a tu medida', title: 'Infidelidad y Riesgo Financiero', desc: 'Antifraude corporativo para entidades financieras y firmas contables.', cta: 'Cotizar', href: 'cotizar.html?producto=infidelidad' },
-        { cats: ['empresas'], img: 'assets/emp-cyber.jpg', tag: 'Cotiza a tu medida', title: 'Cyber', desc: 'Blindaje digital para empresas con información crítica: extorsión, restauración de datos y crisis.', cta: 'Cotizar', href: 'cotizar.html?producto=cyber' },
-        { cats: ['empresas'], img: 'assets/emp-do.jpg', tag: 'Cotiza a tu medida', title: 'D&O · Directores y Administradores', desc: 'Protegemos la gestión de tus líderes ante errores u omisiones, prácticas indebidas y defensa jurídica.', cta: 'Cotizar', href: 'cotizar.html?producto=directores-administradores' },
-        { cats: ['empresas'], img: 'assets/emp-rc.jpg', tag: 'Cotiza a tu medida', title: 'Responsabilidad Civil', desc: 'Escudo legal ante daños a terceros derivados de tu operación empresarial.', cta: 'Cotizar', href: 'cotizar.html?producto=responsabilidad-civil' },
-        { cats: ['imperdibles','empresas'], img: 'assets/emp-pymes.jpg', tag: 'Cotiza a tu medida', title: 'Todo Riesgo Pymes', desc: 'Tu infraestructura y activos protegidos frente a incendios, robos, fallas eléctricas y más.', cta: 'Cotizar', href: 'cotizar.html?producto=danos-materiales-pymes' },
-
-        // ---- Canal ----
-        { cats: ['imperdibles'], grad: 'whats', gradColor: '#25D366', tag: 'Al instante', title: 'Compra en minutos por WhatsApp', desc: '¿No te quedes sin tu seguro? Escríbenos por WhatsApp y un asesor te ayuda ahora mismo.', cta: 'Hablar con asesor', href: 'https://wa.link/f6jaj9' }
-      ];
-
-      const side = document.getElementById('catSide');
-      const grid = document.getElementById('catGrid');
-      const count = document.getElementById('catCount');
-      let active = 'imperdibles';
-
-      // Render sidebar
-      CATS.forEach(c => {
-        const n = P.filter(p => p.cats.includes(c.key)).length;
-        if (!n) return;
-        const b = document.createElement('button');
-        b.className = 'cat-btn' + (c.key === active ? ' is-active' : '');
-        b.type = 'button';
-        b.dataset.cat = c.key;
-        b.innerHTML = '<span class="cat-ic" style="background:' + c.color + '">' + svg(c.icon) + '</span><span class="lbl">' + c.label + '</span>';
-        b.addEventListener('click', () => { active = c.key; sync(); });
-        side.appendChild(b);
-      });
-
-      function card(p) {
-        const primaryCat = p.cats.find(k => k !== 'imperdibles') || p.cats[0];
-        // Badge inferior-izquierdo: precio (con unidad) o, si no hay precio, la etiqueta
-        const priceBadge = p.price
-          ? '<span class="pcard-price"><strong>' + p.price + '</strong><span>' + (p.unit || '') + '</span></span>'
-          : (p.tag ? '<span class="pcard-price"><strong style="font-size:.9rem;font-weight:700">' + p.tag + '</strong></span>' : '');
-        const media = p.grad
-          ? '<div class="pcard-media is-grad" style="background:linear-gradient(150deg,' + (p.gradColor || catColor(primaryCat)) + ',' + shade(p.gradColor || catColor(primaryCat)) + ')">' + svg(p.grad) +
-            (p.tag ? '<span class="pcard-price"><strong style="font-size:.9rem;font-weight:700">' + p.tag + '</strong></span>' : '') + '</div>'
-          : '<div class="pcard-media"><img src="' + p.img + '" alt="' + p.title + '" loading="lazy" />' + priceBadge +
-            '<span class="pcard-tc">Aplican T&amp;C</span></div>';
-        const chip = '<span class="pcard-chip" style="color:' + catColor(primaryCat) + ';background:' + catColor(primaryCat) + '1a">' + catLabel(primaryCat) + '</span>';
-        return '<article class="pcard">' + media +
-          '<div class="pcard-body">' + chip +
-          '<h3>' + p.title + '</h3><p>' + p.desc + '</p>' +
-          '<a class="pcard-cta" href="' + p.href + '"' + (p.href.startsWith('http') ? ' target="_blank" rel="noopener"' : '') + '>' + p.cta + ' →</a>' +
-          '</div></article>';
+      function apply() {
+        root.querySelector('#panel-pensionado').classList.toggle('hidden', product !== 'pensionado');
+        root.querySelector('#panel-riesgo').classList.toggle('hidden', product !== 'riesgo');
+        const panel = root.querySelector('#panel-' + product);
+        let visible = 0;
+        panel.querySelectorAll('.card').forEach(card => {
+          const match = cat === 'todos' || (card.dataset.cats || '').split(' ').includes(cat);
+          card.classList.toggle('hidden', !match);
+          if (match) visible++;
+          card.querySelectorAll('.group[data-cat]').forEach(g => {
+            g.classList.toggle('hl', cat !== 'todos' && g.dataset.cat.split(' ').includes(cat));
+          });
+        });
+        panel.querySelector('.empty').style.display = visible === 0 ? 'block' : 'none';
       }
 
-      // oscurece un hex para el gradiente
-      function shade(hex) {
-        const h = hex.replace('#',''); const n = parseInt(h.length===3 ? h.split('').map(x=>x+x).join('') : h, 16);
-        let r=(n>>16)&255, g=(n>>8)&255, b=n&255;
-        r=Math.round(r*.7); g=Math.round(g*.7); b=Math.round(b*.7);
-        return '#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
-      }
-
-      function sync() {
-        side.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('is-active', b.dataset.cat === active));
-        const list = P.filter(p => p.cats.includes(active));
-        grid.innerHTML = list.map(card).join('');
-        count.innerHTML = '<strong>' + list.length + '</strong> ' + (list.length === 1 ? 'seguro' : 'seguros') + ' en <strong>' + catLabel(active) + '</strong>';
-      }
-      sync();
+      tabs.forEach(t => t.addEventListener('click', () => {
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        product = t.dataset.tab;
+        apply();
+      }));
+      cats.forEach(c => c.addEventListener('click', () => {
+        cats.forEach(x => x.classList.remove('active'));
+        c.classList.add('active');
+        cat = c.dataset.cat;
+        apply();
+      }));
     })();
 
     (function(){var u=/[?&]review=1\b/.test(location.search),g=sessionStorage.getItem('sib_review_mode')==='1';if(!u&&!g)return;if(u)sessionStorage.setItem('sib_review_mode','1');var s=document.createElement('script');s.src='review-mode.js';s.defer=true;document.body.appendChild(s);})()
