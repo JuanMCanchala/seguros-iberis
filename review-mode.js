@@ -494,13 +494,26 @@
   });
   window.addEventListener('load', () => setTimeout(renderPins, 300));
 
-  // Re-pintar pines al cambiar de vista Personas/Empresas (togglean display:none),
-  // para que cada pin aparezca solo sobre su elemento real y no amontonados en la esquina.
-  const viewObserver = new MutationObserver(() => {
+  // Re-pintar pines cuando cambia la VISTA visible, para que cada pin aparezca solo
+  // sobre su elemento real (y no pegado/desubicado al cambiar de vista).
+  // Cubrimos las dos formas de conmutar vista del sitio:
+  //   • index.html: atributo data-view en <body> (Personas/Empresas).
+  //   • productos.html: clase .hidden en los paneles (pestañas Libranza/Inversión)
+  //     y en las tarjetas (filtros del rail de categorías).
+  // Como el ancla de un comentario vive dentro de su panel/vista, al ocultarse ese
+  // contenedor (display:none → rect 0×0) pinPosition() devuelve null y el pin no se
+  // pinta; al volver a mostrarse, reaparece en su sitio exacto.
+  const viewObserver = new MutationObserver((records) => {
+    // Ignora los cambios de clase del propio widget (FAB activo, panel abierto, etc.).
+    if (records.every((r) => r.target.nodeType === 1 && r.target.closest && r.target.closest('.r-root'))) return;
     clearTimeout(resizeT);
-    resizeT = setTimeout(renderPins, 80);
+    resizeT = setTimeout(renderPins, 90);
   });
-  viewObserver.observe(document.body, { attributes: true, attributeFilter: ['data-view'] });
+  viewObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['data-view', 'class', 'hidden'],
+    subtree: true,
+  });
 
   // ---------- Realtime: suscripcion a INSERT/UPDATE/DELETE en la tabla ----------
   // Cargamos el SDK de Supabase desde ESM CDN (solo aqui, no en produccion regular).
